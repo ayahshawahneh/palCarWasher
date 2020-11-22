@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "130543269473",
+    "firebase_url": "https://pal-car-washer.firebaseio.com",
+    "project_id": "pal-car-washer",
+    "storage_bucket": "pal-car-washer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130543269473:android:5805dd9ec4091023125c20",
+        "android_client_info": {
+          "package_name": "com.example.palcarwasher"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130543269473-plhtmjosb45spdi3tf4239e00kkhelho.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.palcarwasher",
+            "certificate_hash": "69b4616c2c3522777153152bb75273b629123357"
+          }
+        },
+        {
+          "client_id": "130543269473-pet95htag5p068p7glqb288vldgh8gai.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4mz5yMH9vu8XEi0dkulKIbNdQWbeC21U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130543269473-pet95htag5p068p7glqb288vldgh8gai.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
