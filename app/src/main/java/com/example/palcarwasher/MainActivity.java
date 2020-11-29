@@ -21,5 +21,7 @@ public class MainActivity extends AppCompatActivity {
         myRef.setValue("Hello, World!");
 
         Toast.makeText(this,"Aosome",Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this,"Hi from shatha",Toast.LENGTH_SHORT).show();
     }
 }
