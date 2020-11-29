@@ -26,5 +26,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this,"Hi from shatha2",Toast.LENGTH_SHORT).show();
         Toast.makeText(this,"Hi from ayah   ",Toast.LENGTH_SHORT).show();
         Toast.makeText(this,"Hi from ayah++   ",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Hi from ayah+++   ",Toast.LENGTH_SHORT).show();
     }
 }
