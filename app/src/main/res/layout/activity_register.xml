@@ -84,69 +84,149 @@
             android:background="@drawable/et_custom"
             android:layout_marginBottom="10dp"
             android:textSize="15sp"
-            android:autofillHints="" />
-
-
-
+           android:autofillHints="" />
 
     <EditText
+        android:id="@+id/birthday_date"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/et_custom"
+        android:ems="10"
+        android:fontFamily="@font/roboto_regular"
+        android:hint="@string/birthday_date"
+        android:importantForAutofill="no"
+        android:inputType="date"
+        android:padding="15dp"
+        android:textSize="15sp"
+        android:layout_marginBottom="10dp"/>
+
+
+
+    <RadioGroup
+
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="15dp"
+        android:background="@drawable/et_custom"
+        android:fontFamily="@font/roboto_regular"
+        android:importantForAutofill="no"
+        >
+
+        <LinearLayout
+
+            android:layout_width="537dp"
+            android:layout_height="40dp"
+
+            android:importantForAutofill="no"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+
+
+            <TextView
+                android:id="@+id/gender"
+
+                android:layout_width="67dp"
+                android:layout_height="30dp"
+
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/gender"
+                android:textSize="15sp" />
+
+
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="159dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/male" />
+
+            <RadioButton
+                android:id="@+id/female"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/female" />
+
+
+        </LinearLayout>
+    </RadioGroup>
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:importantForAutofill="no"
+        android:orientation="horizontal"
+        >
+
+        <Spinner
+            android:id="@+id/spinnerCountries"
+            android:layout_width="80dp"
+            android:layout_height="50dp" />
+
+
+        <EditText
             android:id="@+id/phone_number"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+
+
+            android:background="@drawable/et_custom"
+            android:fontFamily="@font/roboto_regular"
             android:hint="@string/phone_number"
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            android:padding="15dp"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginTop="100dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_above="@id/swipeLeft"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_arrow_left" />
+
+        <TextView
+            android:id="@+id/swipeLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/swipe_right_for_login"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_verfiy"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:padding="15dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/btn_custom"
             android:fontFamily="@font/roboto_regular"
-            android:inputType="phone"
-            android:background="@drawable/et_custom"
-            android:textSize="15sp"
-            android:importantForAutofill="no" />
+            android:text="@string/verfiy_your_phone"
+            android:textColor="@android:color/white" />
 
 
+    </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <Button
-                android:id="@+id/btn_verfiy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/btn_custom"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/verfiy_your_phone"
-                android:textColor="@android:color/white" />
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_arrow_left"
-                android:layout_above="@id/swipeLeft"
-                android:layout_centerHorizontal="true"
-                android:contentDescription="@string/todo" />
-
-            <TextView
-                android:id="@+id/swipeLeft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/swipe_right_for_login"
-                android:textSize="15sp"
-                android:fontFamily="@font/roboto_regular"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="20dp"/>
-
-
-
-        </RelativeLayout>
-
-    </LinearLayout>
+</LinearLayout>
 
 
 

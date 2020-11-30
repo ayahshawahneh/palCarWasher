@@ -40,7 +40,7 @@ public class register extends AppCompatActivity {
         RePassword = findViewById(R.id.et_repassword);
 
 
-        findViewById(R.id.btn_register).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_verfiy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
