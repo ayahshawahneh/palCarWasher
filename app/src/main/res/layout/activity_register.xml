@@ -93,19 +93,26 @@
             android:textSize="15sp"
             android:autofillHints="" />
 
-        <EditText
-            android:id="@+id/phone_number"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/phone_number"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:padding="15dp"
-            android:fontFamily="@font/roboto_regular"
-            android:inputType="phone"
-            android:background="@drawable/et_custom"
-            android:textSize="15sp"
-            android:importantForAutofill="no" />
+    <Spinner
+        android:id="@+id/spinnerCountries"
+        android:layout_width="131dp"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/phone_number"
+        android:layout_width="371dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/et_custom"
+        android:fontFamily="@font/roboto_regular"
+        android:hint="@string/phone_number"
+        android:importantForAutofill="no"
+        android:inputType="phone"
+        android:padding="15dp"
+        android:textSize="15sp"
+        android:maxLength="9"
+        />
 
 
 

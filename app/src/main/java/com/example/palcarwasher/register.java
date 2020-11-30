@@ -8,6 +8,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+import static com.example.palcarwasher.R.id.spinnerCountries;
 
 public class register extends AppCompatActivity {
 
@@ -23,8 +28,10 @@ public class register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-       // spinner=findViewById(R.id.spinnerCountries);
-        spinner.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,CountryData.countryNames));
+   spinner = findViewById(R.id.spinnerCountries);
+
+        spinner.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,
+                CountryData.countryNames));
 
         PhoneNum = findViewById(R.id.phone_number);
         FullName = findViewById(R.id.et_name);
@@ -69,21 +76,37 @@ public class register extends AppCompatActivity {
                     PhoneNum.requestFocus();
                     return;
                 }
-                if(repassword != password){
-                    RePassword.setError("Please enter The same password");
-                    RePassword.requestFocus();
+                if(number.isEmpty() || password.isEmpty()||email.isEmpty()|| repassword.isEmpty()||fullName.isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Please fill all information",Toast.LENGTH_SHORT).show();
                     return;
+                }
+               if(repassword.equals(password)==false){
+                    RePassword.setError("Please enter The same password");
+                  RePassword.requestFocus();
+                   return;
 
                 }
 
                 String PhoneNumber = "+" + code + number;
 
-              //  Intent intent = new Intent(register.this, verifiyPhoneNumber.class);
-                //intent.putExtra("phonenumber", PhoneNumber);
-                //startActivity(intent);
+               Intent intent = new Intent(register.this, sendCodeVrification.class);
+                intent.putExtra("phonenumber", PhoneNumber);
+                intent.putExtra("fullname", fullName);
+                intent.putExtra("email", email);
+                intent.putExtra("password", password);
+                startActivity(intent);
             }
         });
 
 
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(FirebaseAuth.getInstance().getCurrentUser() !=null){
+            Intent intent = new Intent(this,insideOurProject.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
     }
 }
