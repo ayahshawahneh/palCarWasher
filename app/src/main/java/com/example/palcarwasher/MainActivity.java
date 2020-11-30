@@ -15,16 +15,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //DatabaseReference myRef = database.getReference("message");
 
-        myRef.setValue("Hello, World!");
+       // myRef.setValue("Hello, World!");
 
-        Toast.makeText(this,"Aosome",Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(this,"Hi from shatha1",Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,"Hi from shatha2",Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,"Hi from ayah   ",Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,"Hi from areej   ",Toast.LENGTH_SHORT).show();
     }
 }

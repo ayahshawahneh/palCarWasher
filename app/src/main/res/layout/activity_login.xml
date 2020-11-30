@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tv_subtitle"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/spicy_rice"
+        android:text="@string/app_name"
+        android:textSize="50sp" />
+
+    <TextView
+        android:id="@+id/tv_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/phone_number"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="@font/coming_soon"
+        android:text="@string/tag"
+        android:textSize="17sp" />
+
+    <EditText
+        android:id="@+id/phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/phone_number"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="15dp"
+        android:inputType="phone"
+        android:fontFamily="@font/roboto_regular"
+        android:layout_above="@id/et_password"
+        android:background="@drawable/et_custom"
+        android:textSize="15sp"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/password"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:padding="15dp"
+        android:fontFamily="@font/roboto_regular"
+        android:inputType="textPassword"
+        android:layout_centerInParent="true"
+        android:background="@drawable/et_custom"
+        android:textSize="15sp"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_password"
+        android:background="@drawable/btn_custom"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@android:color/white"
+        android:text="@string/login"/>
+
+    <TextView
+        android:id="@+id/forget_password"
+        android:layout_width="251dp"
+        android:layout_height="26dp"
+        android:layout_above="@+id/have_account"
+        android:layout_below="@+id/btn_login"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="134dp"
+        android:layout_marginBottom="89dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/did_you_forget_your_password"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/have_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="19dp"
+        android:layout_marginEnd="208dp"
+        android:layout_marginBottom="133dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/you_don_t_have_an_account"
+        android:textSize="15sp" />
+
+ <Button
+     android:id="@+id/reg_customer"
+     style="@style/Widget.AppCompat.Button.Colored"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:layout_below="@+id/btn_login"
+     android:layout_alignParentStart="true"
+     android:layout_alignParentBottom="true"
+     android:layout_marginStart="24dp"
+     android:layout_marginTop="197dp"
+     android:layout_marginEnd="23dp"
+     android:layout_marginBottom="70dp"
+     android:layout_toStartOf="@+id/reg_company"
+     android:text="@string/register_as_customer" />
+
+ <Button
+     android:id="@+id/reg_company"
+     style="@style/Widget.AppCompat.Button.Colored"
+     android:layout_width="202dp"
+     android:layout_height="56dp"
+     android:layout_below="@+id/btn_login"
+     android:layout_alignParentEnd="true"
+     android:layout_alignParentBottom="true"
+     android:layout_marginTop="197dp"
+     android:layout_marginEnd="24dp"
+     android:layout_marginBottom="70dp"
+     android:text="@string/register_as_company" />
+
+
+</RelativeLayout>
