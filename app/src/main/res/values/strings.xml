@@ -18,6 +18,8 @@
     <string name="did_you_forget_your_password">Did you forget your password?</string>
     <string name="you_don_t_have_an_account">You don\'t have an account?</string>
     <string name="todo">TODO</string>
+    <string name="verfiy_your_phone">verfiy your phone</string>
+    <string name="choose_your_country">choose your country</string>
 
 
 </resources>

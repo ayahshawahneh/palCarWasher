@@ -21,17 +21,10 @@
             android:fontFamily="@font/dekko"
             android:text="@string/register_as_customer"
             android:textAlignment="center"
-            android:textSize="38sp" />
+            android:textSize="38sp"
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginBottom="50dp"
-            android:fontFamily="@font/coming_soon"
-            android:text="@string/tag"
-            android:textSize="17sp" />
+
 
         <EditText
             android:id="@+id/et_name"
@@ -93,26 +86,22 @@
             android:textSize="15sp"
             android:autofillHints="" />
 
-    <Spinner
-        android:id="@+id/spinnerCountries"
-        android:layout_width="131dp"
-        android:layout_height="wrap_content" />
+
+
 
     <EditText
-        android:id="@+id/phone_number"
-        android:layout_width="371dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/et_custom"
-        android:fontFamily="@font/roboto_regular"
-        android:hint="@string/phone_number"
-        android:importantForAutofill="no"
-        android:inputType="phone"
-        android:padding="15dp"
-        android:textSize="15sp"
-        android:maxLength="9"
-        />
+            android:id="@+id/phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/phone_number"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:padding="15dp"
+            android:fontFamily="@font/roboto_regular"
+            android:inputType="phone"
+            android:background="@drawable/et_custom"
+            android:textSize="15sp"
+            android:importantForAutofill="no" />
 
 
 
@@ -122,17 +111,17 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/btn_register"
+                android:id="@+id/btn_verfiy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_custom"
-                android:fontFamily="@font/roboto_regular"
+                android:layout_centerInParent="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="30dp"
-                android:layout_centerInParent="true"
-                android:textColor="@android:color/white"
-                android:text="@string/register"/>
+                android:background="@drawable/btn_custom"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/verfiy_your_phone"
+                android:textColor="@android:color/white" />
 
             <ImageView
                 android:layout_width="30dp"
