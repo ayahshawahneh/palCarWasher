@@ -93,7 +93,7 @@ public class sendCodeVrification extends AppCompatActivity {
 
 
                         }else {
-                            Toast.makeText(sendCodeVrification.this,task.getException().getMessage()
+                            Toast.makeText(sendCodeVrification.this,"incorrect code "
                                     ,Toast.LENGTH_LONG).show();
 
                         }
@@ -142,6 +142,7 @@ public class sendCodeVrification extends AppCompatActivity {
         public void onVerificationFailed(@NonNull FirebaseException e) {
 
             Toast.makeText(sendCodeVrification.this,"onVerificationFailed",Toast.LENGTH_LONG).show();
+            return;
         }
     };
 
