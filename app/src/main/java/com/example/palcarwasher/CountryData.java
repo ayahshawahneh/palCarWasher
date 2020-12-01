@@ -3,11 +3,11 @@ package com.example.palcarwasher;
 public class CountryData {
     public static final String[] countryNames =
             {
-                    "Palestine 970","Jordan 962","Lebanon 961",
-                    "Syria 963","Saudi 966","Egypt 20", "Morocco 212",
-                    "Bahrain 973", "Iraq 964", "Algeria 213",
-                    "Tunisia 216","Qatar 974","UAE 971","Amman 968",
-                    "Kuwait 965","Sudan 249", "Somalia 252"
+                    "+970   Palestine","+962    Jordan","+961   Lebanon ",
+                    "+963   Syria","+966   Saudi","+20    Egypt", "+212    Morocco ",
+                    "+973   Bahrain", "+964    Iraq", "Algeria  213",
+                    "+216   Tunisia","+974  Qatar","+971    UAE","+968  Amman",
+                    "+965   Kuwait","+249  Sudan", "+252    Somalia"
             };
 
     public static final String[] countryAreaCodes =
