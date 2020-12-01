@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +31,10 @@ public class register extends AppCompatActivity {
     private EditText RePassword;
     private Spinner spinner;
     private EditText BirthdayDate;
+    private RadioButton male;
+    private RadioButton female;
+    private String gender;
+
 
 
 
@@ -37,7 +43,7 @@ public class register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_register);
 
-  //spinner = findViewById(R.id.spinnerCountries);
+  spinner = findViewById(R.id.spinnerCountries);
 
 
         spinner.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,
@@ -49,6 +55,10 @@ public class register extends AppCompatActivity {
         Password = findViewById(R.id.et_password);
         RePassword = findViewById(R.id.et_repassword);
         BirthdayDate = findViewById(R.id.birthday_date);
+        male = (RadioButton)findViewById(R.id.male);
+        female = (RadioButton)findViewById(R.id.female);
+
+
 
         setDatePicker(BirthdayDate);
 
@@ -115,6 +125,14 @@ public class register extends AppCompatActivity {
                    return;
 
                 }
+               if(male.isChecked()){
+                   gender="male";
+               }else {
+                if(female.isChecked())
+                    gender="female";
+
+                }
+
                /* BirthdayDate.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
@@ -140,6 +158,7 @@ public class register extends AppCompatActivity {
                 intent.putExtra("email", email);
                 intent.putExtra("password", password);
                 intent.putExtra("Birthdaydate",Birthdaydate);
+                intent.putExtra("gender",gender);
                 startActivity(intent);
             }
         });

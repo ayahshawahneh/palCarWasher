@@ -108,19 +108,16 @@
         android:layout_marginBottom="10dp"/>
 
 
-
     <RadioGroup
-
-        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:padding="15dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/et_custom"
         android:fontFamily="@font/roboto_regular"
         android:importantForAutofill="no"
-        >
+        android:padding="15dp">
 
         <LinearLayout
 
@@ -162,6 +159,7 @@
 
         </LinearLayout>
     </RadioGroup>
+
     <LinearLayout
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
