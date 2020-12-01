@@ -30,7 +30,7 @@ public class register extends AppCompatActivity {
     private EditText Password;
     private EditText RePassword;
     private Spinner spinner;
-    private EditText BirthdayDate;
+    private TextView BirthdayDate;
     private RadioButton male;
     private RadioButton female;
     private String gender;
@@ -73,6 +73,15 @@ public class register extends AppCompatActivity {
                 String password = Password.getText().toString();
                 String repassword = RePassword.getText().toString();
                 String Birthdaydate = BirthdayDate.getText().toString();
+
+
+                if(male.isChecked()){
+                    gender="male";
+                }else {
+                    if(female.isChecked())
+                        gender="female";
+
+                }
 
                 if(fullName.isEmpty()){
                     FullName.setError("Please enter your Name");
@@ -125,31 +134,9 @@ public class register extends AppCompatActivity {
                    return;
 
                 }
-               if(male.isChecked()){
-                   gender="male";
-               }else {
-                if(female.isChecked())
-                    gender="female";
 
-                }
 
-               /* BirthdayDate.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        int mYear, mMonth, mDay;
-                        final Calendar c = Calendar.getInstance();
-                        mYear = c.get(Calendar.YEAR);
-                        mMonth = c.get(Calendar.MONTH);
-                        mDay = c.get(Calendar.DAY_OF_MONTH);
-                        DatePickerDialog datePickerDialog = new DatePickerDialog(register.this, R.style.CustomDatePickerDialog, new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                BirthdayDate.setText(year + "/" + (month + 1) + "/" + dayOfMonth);
-                            }
-                        }, mYear, mMonth, mDay);
-                        datePickerDialog.show();
-                    }
-                });*/
+
 
                 String PhoneNumber = "+" + code + number;
                Intent intent = new Intent(register.this, sendCodeVrification.class);
