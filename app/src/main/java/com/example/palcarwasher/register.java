@@ -92,7 +92,6 @@ public class register extends AppCompatActivity {
                 }
 
                 String PhoneNumber = "+" + code + number;
-
                Intent intent = new Intent(register.this, sendCodeVrification.class);
                 intent.putExtra("phonenumber", PhoneNumber);
                 intent.putExtra("fullname", fullName);

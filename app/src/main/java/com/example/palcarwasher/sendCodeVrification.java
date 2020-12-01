@@ -28,7 +28,7 @@ public class sendCodeVrification extends AppCompatActivity {
     private String verificationId;
     private FirebaseAuth mAuth;
     private EditText editText;
-    DatabaseReference databaseReference;
+   // DatabaseReference databaseReference;
 
 
     @Override
@@ -36,23 +36,10 @@ public class sendCodeVrification extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_code_vrification);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("Customer");
-
         mAuth = FirebaseAuth.getInstance();
-
         editText = findViewById(R.id.editTextCode);
 
-        String phonenumber = getIntent().getStringExtra("phonenumber");
-        String fullname = getIntent().getStringExtra("fullname");
-        String email = getIntent().getStringExtra("email");
-        String password = getIntent().getStringExtra("password");
-
-        String CustomerId = databaseReference.push().getKey();
-
-        Customer customer = new Customer(CustomerId,fullname,phonenumber,password,email,null,null,null);
-        databaseReference.push().setValue(customer);
-
-
+       String phonenumber = getIntent().getStringExtra("phonenumber");
 
         sendVerficationCode(phonenumber);
 
@@ -87,13 +74,23 @@ public class sendCodeVrification extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-
-
                             //here we
+
+                            String phonenumber = getIntent().getStringExtra("phonenumber");
+                            String fullname = getIntent().getStringExtra("fullname");
+                            String email = getIntent().getStringExtra("email");
+                            String password = getIntent().getStringExtra("password");
 
                             Intent intent = new Intent(sendCodeVrification.this,insideOurProject.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.putExtra("phonenumber", phonenumber);
+                            intent.putExtra("fullname", fullname);
+                            intent.putExtra("email", email);
+                            intent.putExtra("password", password);
+
                             startActivity(intent);
+
+
 
                         }else {
                             Toast.makeText(sendCodeVrification.this,task.getException().getMessage()
