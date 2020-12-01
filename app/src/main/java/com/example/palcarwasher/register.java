@@ -8,11 +8,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import static com.example.palcarwasher.R.id.spinnerCountries;
+import static com.example.palcarwasher.R.*;
 
 public class register extends AppCompatActivity {
 
@@ -23,24 +24,27 @@ public class register extends AppCompatActivity {
     private EditText RePassword;
     private Spinner spinner;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(layout.activity_register);
 
-   spinner = findViewById(R.id.spinnerCountries);
+  spinner = findViewById(id.spinnerCountries);
+
 
         spinner.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,
                 CountryData.countryNames));
 
-        PhoneNum = findViewById(R.id.phone_number);
-        FullName = findViewById(R.id.et_name);
-        Email = findViewById(R.id.et_email);
-        Password = findViewById(R.id.et_password);
-        RePassword = findViewById(R.id.et_repassword);
+        PhoneNum = findViewById(id.phone_number);
+        FullName = findViewById(id.et_name);
+        Email = findViewById(id.et_email);
+        Password = findViewById(id.et_password);
+        RePassword = findViewById(id.et_repassword);
 
 
-        findViewById(R.id.btn_verfiy).setOnClickListener(new View.OnClickListener() {
+        findViewById(id.btn_verfiy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
