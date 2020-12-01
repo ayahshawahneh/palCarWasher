@@ -25,10 +25,11 @@ public class insideOurProject extends AppCompatActivity {
         String fullname = getIntent().getStringExtra("fullname");
         String email = getIntent().getStringExtra("email");
         String password = getIntent().getStringExtra("password");
+        String Birthdaydate = getIntent().getStringExtra("Birthdaydate");
 
         String CustomerId = databaseReference.push().getKey();
 
-        Customer customer = new Customer(CustomerId,fullname,phonenumber,password,email,null,null,null);
+        Customer customer = new Customer(CustomerId,fullname,phonenumber,password,email,Birthdaydate,null,null);
         databaseReference.push().setValue(customer);
 
         findViewById(R.id.bu_logout).setOnClickListener(new View.OnClickListener() {

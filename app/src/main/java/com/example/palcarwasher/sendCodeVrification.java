@@ -80,6 +80,7 @@ public class sendCodeVrification extends AppCompatActivity {
                             String fullname = getIntent().getStringExtra("fullname");
                             String email = getIntent().getStringExtra("email");
                             String password = getIntent().getStringExtra("password");
+                            String Birthdaydate = getIntent().getStringExtra("Birthdaydate");
 
                             Intent intent = new Intent(sendCodeVrification.this,insideOurProject.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -87,6 +88,7 @@ public class sendCodeVrification extends AppCompatActivity {
                             intent.putExtra("fullname", fullname);
                             intent.putExtra("email", email);
                             intent.putExtra("password", password);
+                            intent.putExtra("Birthdaydate", Birthdaydate);
 
                             startActivity(intent);
 

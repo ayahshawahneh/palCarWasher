@@ -1,169 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".register">
 
 
 
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
-        <TextView
-            android:id="@+id/regtext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/dekko"
-            android:text="@string/register_as_customer"
-            android:textAlignment="center"
-            android:textSize="38sp" />
+    <TextView
+        android:id="@+id/regtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/dekko"
+        android:text="@string/register_as_customer"
+        android:textAlignment="center"
+        android:textSize="38sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginBottom="50dp"
-            android:fontFamily="@font/coming_soon"
-            android:text="@string/tag"
-            android:textSize="17sp" />
-
-        <EditText
-            android:id="@+id/et_name"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/your_name"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:padding="15dp"
-            android:inputType="textPersonName"
-            android:fontFamily="@font/roboto_regular"
-            android:background="@drawable/et_custom"
-            android:textSize="15sp"
-            android:importantForAutofill="no" />
-
-        <EditText
-            android:id="@+id/et_email"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/e_mail"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:padding="15dp"
-            android:fontFamily="@font/roboto_regular"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/et_custom"
-            android:textSize="15sp"
-            android:autofillHints="" />
-
-        <EditText
-            android:id="@+id/et_password"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/password"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:padding="15dp"
-            android:fontFamily="@font/roboto_regular"
-            android:inputType="textPassword"
-            android:background="@drawable/et_custom"
-            android:textSize="15sp"
-            android:importantForAutofill="no" />
-
-        <EditText
-            android:id="@+id/et_repassword"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/re_type_password"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:padding="15dp"
-            android:fontFamily="@font/roboto_regular"
-            android:inputType="textPassword"
-            android:background="@drawable/et_custom"
-            android:layout_marginBottom="10dp"
-            android:textSize="15sp"
-            android:autofillHints="" />
-
-    <Spinner
-        android:id="@+id/spinnerCountries"
-        android:layout_width="131dp"
-        android:layout_height="wrap_content" />
 
 
     <EditText
-        android:id="@+id/phone_number"
-        android:layout_width="371dp"
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/your_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:padding="15dp"
+        android:inputType="textPersonName"
+        android:fontFamily="@font/roboto_regular"
+        android:background="@drawable/et_custom"
+        android:textSize="15sp"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/e_mail"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:padding="15dp"
+        android:fontFamily="@font/roboto_regular"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/et_custom"
+        android:textSize="15sp"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/password"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:padding="15dp"
+        android:fontFamily="@font/roboto_regular"
+        android:inputType="textPassword"
+        android:background="@drawable/et_custom"
+        android:textSize="15sp"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/et_repassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/re_type_password"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="15dp"
+        android:fontFamily="@font/roboto_regular"
+        android:inputType="textPassword"
+        android:background="@drawable/et_custom"
+        android:layout_marginBottom="10dp"
+        android:textSize="15sp"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/birthday_date"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/et_custom"
+        android:ems="10"
         android:fontFamily="@font/roboto_regular"
-        android:hint="@string/phone_number"
+        android:hint="@string/birthday_date"
         android:importantForAutofill="no"
-        android:inputType="phone"
+        android:inputType="date"
         android:padding="15dp"
         android:textSize="15sp"
-        android:maxLength="9"
-        />
+        android:layout_marginBottom="10dp"/>
 
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+    <RadioGroup
 
-            <Button
-                android:id="@+id/btn_verfiy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_custom"
-                android:fontFamily="@font/roboto_regular"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="30dp"
-                android:layout_centerInParent="true"
-                android:textColor="@android:color/white"
-                android:text="@string/register"/>
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="15dp"
+        android:background="@drawable/et_custom"
+        android:fontFamily="@font/roboto_regular"
+        android:importantForAutofill="no"
+        >
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_arrow_left"
-                android:layout_above="@id/swipeLeft"
-                android:layout_centerHorizontal="true"
-                android:contentDescription="@string/todo" />
+        <LinearLayout
+
+            android:layout_width="537dp"
+            android:layout_height="40dp"
+
+            android:importantForAutofill="no"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+
 
             <TextView
-                android:id="@+id/swipeLeft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/swipe_right_for_login"
-                android:textSize="15sp"
+                android:id="@+id/gender"
+
+                android:layout_width="90dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="0"
                 android:fontFamily="@font/roboto_regular"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="20dp"/>
+                android:text="@string/gender"
+                android:textSize="15sp" />
+
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0"
+                android:text="@string/male" />
+
+            <RadioButton
+                android:id="@+id/female"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:text="@string/female" />
 
 
+        </LinearLayout>
+    </RadioGroup>
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
 
-        </RelativeLayout>
+        android:importantForAutofill="no"
+        android:orientation="horizontal"
+        >
 
+
+        <Spinner
+            android:id="@+id/spinnerCountries"
+            android:layout_width="180dp"
+            android:layout_height="50dp" />
+
+        <EditText
+            android:id="@+id/phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+
+
+            android:background="@drawable/et_custom"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/phone_number"
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            android:padding="15dp"
+            android:textSize="15sp" />
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginTop="95dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_above="@id/swipeLeft"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_arrow_left" />
+
+        <TextView
+            android:id="@+id/swipeLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/swipe_right_for_login"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_verfiy"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/btn_custom"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/verfiy_your_phone"
+            android:textColor="@android:color/white" />
 
 
+    </RelativeLayout>
 
-
+</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
