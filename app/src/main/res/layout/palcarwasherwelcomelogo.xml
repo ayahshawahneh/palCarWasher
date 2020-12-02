@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#C4DDDB"
+    >
+
+    <LinearLayout
+        android:id="@+id/welcomeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PAL CAR WASHER"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="10dp"
+            android:fontFamily="@font/dekko"
+            android:textAlignment="center"
+            android:textSize="38sp"
+            android:textStyle="bold"
+
+            />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="378dp"
+            android:layout_height="372dp"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/carwashlogo" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

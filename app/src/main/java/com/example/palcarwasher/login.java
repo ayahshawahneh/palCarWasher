@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroupOverlay;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class login extends AppCompatActivity {
     private Button RegAsCustomer;
@@ -15,6 +19,16 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //welcome logo:
+        LayoutInflater myinflater = getLayoutInflater();
+        View myView = myinflater.inflate(R.layout.palcarwasherwelcomelogo, null);
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL,0,0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(myView);
+        toast.show();
+
 
         RegAsCustomer = (Button)findViewById(R.id.reg_as_customer);
         RegAsCompany = (Button)findViewById(R.id.reg_as_company);
