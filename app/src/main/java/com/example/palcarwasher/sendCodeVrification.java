@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -28,7 +29,7 @@ public class sendCodeVrification extends AppCompatActivity {
     private String verificationId;
     private FirebaseAuth mAuth;
     private EditText editText;
-   // DatabaseReference databaseReference;
+    private ProgressBar progressBar;
 
 
     @Override
@@ -38,6 +39,8 @@ public class sendCodeVrification extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         editText = findViewById(R.id.editTextCode);
+        progressBar = findViewById(R.id.progressBar2);
+
 
        String phonenumber = getIntent().getStringExtra("phonenumber");
 
@@ -46,10 +49,18 @@ public class sendCodeVrification extends AppCompatActivity {
         findViewById(R.id.buttonSignIn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String code = editText.getText().toString().trim();
 
-                if(code.isEmpty() || code.length()<6){
-                    editText.setError(" Enter code...");
+                progressBar.setVisibility(View.VISIBLE);
+                String code = editText.getText().toString().trim();
+                if(code.isEmpty()){
+                    progressBar.setVisibility(View.INVISIBLE);
+                    editText.setError(" Enter code ...");
+                    editText.requestFocus();
+                    return;
+                }
+                if(code.length()<6){
+                    progressBar.setVisibility(View.INVISIBLE);
+                    editText.setError("The code must be 6 digit");
                     editText.requestFocus();
                     return;
                 }
@@ -68,13 +79,14 @@ public class sendCodeVrification extends AppCompatActivity {
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential){
+        progressBar.setVisibility(View.VISIBLE);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            //here we
+                            progressBar.setVisibility(View.GONE);
 
                             String phonenumber = getIntent().getStringExtra("phonenumber");
                             String fullname = getIntent().getStringExtra("fullname");
@@ -99,6 +111,7 @@ public class sendCodeVrification extends AppCompatActivity {
                         }else {
                             Toast.makeText(sendCodeVrification.this,"incorrect code "
                                     ,Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
 
                         }
                     }

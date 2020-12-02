@@ -101,7 +101,7 @@
 
 
         <Button
-            android:id="@+id/reg_as_cusromer"
+            android:id="@+id/reg_as_customer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"

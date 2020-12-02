@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -34,6 +36,7 @@ public class register extends AppCompatActivity {
     private RadioButton male;
     private RadioButton female;
     private String gender;
+    private ProgressBar progressBar;
 
 
 
@@ -44,11 +47,11 @@ public class register extends AppCompatActivity {
         setContentView(layout.activity_register);
 
   spinner = findViewById(R.id.spinnerCountries);
-
-
         spinner.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,
                 CountryData.countryNames));
 
+
+        progressBar = findViewById(id.progressBar);
         PhoneNum = findViewById(R.id.phone_number);
         FullName = findViewById(R.id.et_name);
         Email = findViewById(R.id.et_email);
@@ -66,6 +69,8 @@ public class register extends AppCompatActivity {
         findViewById(id.btn_verfiy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                progressBar.setVisibility(View.VISIBLE);
                 String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
                 String number = PhoneNum.getText().toString().trim();
                 String fullName = FullName.getText().toString();
@@ -84,51 +89,68 @@ public class register extends AppCompatActivity {
                 }
 
                 if(fullName.isEmpty()){
+                    progressBar.setVisibility(View.GONE);
                     FullName.setError("Please enter your Name");
                     FullName.requestFocus();
                     return;
                 }
                 if(email.isEmpty()){
+                    progressBar.setVisibility(View.GONE);
                     Email.setError("Please enter your Email");
                     Email.requestFocus();
                     return;
                 }
                 if(!EMAIL_ADDRESS_PATTERN.matcher(email).matches()){
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(register.this,"Invalid Email Address",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(password.isEmpty()){
+                    progressBar.setVisibility(View.GONE);
                     Password.setError("Please enter your Password");
                     Password.requestFocus();
                     return;
                 }
                 if(password.length()<6){
+                    progressBar.setVisibility(View.GONE);
                     Password.setError("Password must be more than 6 characters");
                     Password.requestFocus();
                     return;
                 }
                 if(password.length()>12){
+                    progressBar.setVisibility(View.GONE);
                     Password.setError("Password must be less than 12 characters");
                     Password.requestFocus();
                     return;
                 }
 
                 if(repassword.isEmpty()){
+                    progressBar.setVisibility(View.GONE);
                    RePassword.setError("Please enter your Password again");
                     RePassword.requestFocus();
                     return;
                 }
 
-                if ( number.isEmpty() || number.length()<9 ){
-                    PhoneNum.setError("Valid Number is required");
+                if ( number.isEmpty()){
+                    progressBar.setVisibility(View.GONE);
+                    PhoneNum.setError("Please Enter Your Phone Number");
                     PhoneNum.requestFocus();
                     return;
                 }
+                if (number.length()<9 ||number.length()>9 ){
+                    progressBar.setVisibility(View.GONE);
+                    PhoneNum.setError("number must be 9 digit");
+                    PhoneNum.requestFocus();
+                    return;
+
+                }
+
                 if(number.isEmpty() || password.isEmpty()||email.isEmpty()|| repassword.isEmpty()||fullName.isEmpty()){
                     Toast.makeText(getApplicationContext(),"Please fill all information",Toast.LENGTH_SHORT).show();
                     return;
                 }
                if(repassword.equals(password)==false){
+                   progressBar.setVisibility(View.GONE);
                     RePassword.setError("Please enter The same password");
                   RePassword.requestFocus();
                    return;
@@ -137,7 +159,7 @@ public class register extends AppCompatActivity {
 
 
 
-
+                progressBar.setVisibility(View.VISIBLE);
                 String PhoneNumber = "+" + code + number;
                Intent intent = new Intent(register.this, sendCodeVrification.class);
                 intent.putExtra("phonenumber", PhoneNumber);
@@ -147,6 +169,7 @@ public class register extends AppCompatActivity {
                 intent.putExtra("Birthdaydate",Birthdaydate);
                 intent.putExtra("gender",gender);
                 startActivity(intent);
+
             }
         });
 

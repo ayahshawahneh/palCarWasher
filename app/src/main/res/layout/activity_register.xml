@@ -235,8 +235,24 @@
             android:text="@string/verfiy_your_phone"
             android:textColor="@android:color/white" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="61dp"
+            android:layout_height="61dp"
+            android:layout_alignStart="@+id/btn_verfiy"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="297dp"
+            android:layout_marginEnd="23dp"
+            android:layout_marginBottom="11dp"
+            android:visibility="gone"
+            android:theme="@style/AppTheme.NoActionBar1" />
+
 
     </RelativeLayout>
+
+
 
 
 </LinearLayout>
