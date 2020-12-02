@@ -28,6 +28,7 @@ public class login extends AppCompatActivity {
         toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(myView);
         toast.show();
+        //end welcome logo
 
 
         RegAsCustomer = (Button)findViewById(R.id.reg_as_customer);
