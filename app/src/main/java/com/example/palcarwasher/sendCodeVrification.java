@@ -38,6 +38,8 @@ public class sendCodeVrification extends AppCompatActivity {
         setContentView(R.layout.activity_send_code_vrification);
 
         mAuth = FirebaseAuth.getInstance();
+        mAuth.setLanguageCode("fr");
+
         editText = findViewById(R.id.editTextCode);
         progressBar = findViewById(R.id.progressBar2);
 
@@ -132,6 +134,8 @@ public class sendCodeVrification extends AppCompatActivity {
 
 
     }
+
+
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks
             mCallbacks = new PhoneAuthProvider.

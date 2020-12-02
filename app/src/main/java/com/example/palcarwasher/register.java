@@ -46,7 +46,7 @@ public class register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_register);
 
-  spinner = findViewById(R.id.spinnerCountries);
+       spinner = findViewById(R.id.spinnerCountries);
         spinner.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,
                 CountryData.countryNames));
 
@@ -61,10 +61,7 @@ public class register extends AppCompatActivity {
         male = (RadioButton)findViewById(R.id.male);
         female = (RadioButton)findViewById(R.id.female);
 
-
-
         setDatePicker(BirthdayDate);
-
 
         findViewById(id.btn_verfiy).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,8 +122,7 @@ public class register extends AppCompatActivity {
                 }
 
                 if(repassword.isEmpty()){
-                    progressBar.setVisibility(View.GONE);
-                   RePassword.setError("Please enter your Password again");
+                    progressBar.setVisibility(View.GONE);RePassword.setError("Please enter your Password again");
                     RePassword.requestFocus();
                     return;
                 }
