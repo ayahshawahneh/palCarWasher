@@ -24,7 +24,7 @@ public class login extends AppCompatActivity {
         LayoutInflater myinflater = getLayoutInflater();
         View myView = myinflater.inflate(R.layout.palcarwasherwelcomelogo, null);
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER_VERTICAL,0,0);
+        toast.setGravity(Gravity.FILL,0,0);
         toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(myView);
         toast.show();
