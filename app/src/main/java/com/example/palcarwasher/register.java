@@ -30,7 +30,7 @@ public class register extends AppCompatActivity {
     private EditText FullName;
     private EditText Email;
     private EditText Password;
-    private EditText RePassword;
+
     private Spinner spinner;
     private TextView BirthdayDate;
     private RadioButton male;
@@ -56,7 +56,7 @@ public class register extends AppCompatActivity {
         FullName = findViewById(R.id.et_name);
         Email = findViewById(R.id.et_email);
         Password = findViewById(R.id.et_password);
-        RePassword = findViewById(R.id.et_repassword);
+
         BirthdayDate = findViewById(R.id.birthday_date);
         male = (RadioButton)findViewById(R.id.male);
         female = (RadioButton)findViewById(R.id.female);
@@ -73,7 +73,7 @@ public class register extends AppCompatActivity {
                 String fullName = FullName.getText().toString();
                 String email = Email.getText().toString();
                 String password = Password.getText().toString();
-                String repassword = RePassword.getText().toString();
+
                 String Birthdaydate = BirthdayDate.getText().toString();
 
 
@@ -121,11 +121,7 @@ public class register extends AppCompatActivity {
                     return;
                 }
 
-                if(repassword.isEmpty()){
-                    progressBar.setVisibility(View.GONE);RePassword.setError("Please enter your Password again");
-                    RePassword.requestFocus();
-                    return;
-                }
+
 
                 if ( number.isEmpty()){
                     progressBar.setVisibility(View.GONE);
@@ -133,7 +129,7 @@ public class register extends AppCompatActivity {
                     PhoneNum.requestFocus();
                     return;
                 }
-                if (number.length()<9 ||number.length()>9 ){
+                if (number.length() != 9){
                     progressBar.setVisibility(View.GONE);
                     PhoneNum.setError("number must be 9 digit");
                     PhoneNum.requestFocus();
@@ -141,17 +137,11 @@ public class register extends AppCompatActivity {
 
                 }
 
-                if(number.isEmpty() || password.isEmpty()||email.isEmpty()|| repassword.isEmpty()||fullName.isEmpty()){
+                if(number.isEmpty() || password.isEmpty() ||email.isEmpty() ||fullName.isEmpty()){
                     Toast.makeText(getApplicationContext(),"Please fill all information",Toast.LENGTH_SHORT).show();
                     return;
                 }
-               if(repassword.equals(password)==false){
-                   progressBar.setVisibility(View.GONE);
-                    RePassword.setError("Please enter The same password");
-                  RePassword.requestFocus();
-                   return;
 
-                }
 
 
 
