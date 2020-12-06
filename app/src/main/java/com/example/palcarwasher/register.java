@@ -138,7 +138,7 @@ public class register extends AppCompatActivity {
                 }
 
                 if(number.isEmpty() || password.isEmpty() ||email.isEmpty() ||fullName.isEmpty()){
-                    Toast.makeText(getApplicationContext(),"Please fill all information",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext()," Please fill all information",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
