@@ -36,7 +36,7 @@ public class sendCodeVrification extends AppCompatActivity {
         setContentView(R.layout.activity_send_code_vrification);
 
         mAuth = FirebaseAuth.getInstance();
-        mAuth.setLanguageCode("fr");
+        mAuth.setLanguageCode("en");
 
         editText = findViewById(R.id.editTextCode);
         progressBar = findViewById(R.id.progressBar2);
@@ -87,7 +87,7 @@ public class sendCodeVrification extends AppCompatActivity {
                         .setActivity(this) // Activity (for callback binding)
                         .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
                         .build();
-        Toast.makeText(getApplicationContext(),"from send method",Toast.LENGTH_LONG).show();
+      //  Toast.makeText(getApplicationContext(),"from send method",Toast.LENGTH_LONG).show();
         PhoneAuthProvider.verifyPhoneNumber(options);
 
 

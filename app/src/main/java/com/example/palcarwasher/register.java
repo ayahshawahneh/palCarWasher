@@ -1,5 +1,6 @@
 package com.example.palcarwasher;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -18,6 +19,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.regex.Pattern;
@@ -37,7 +44,7 @@ public class register extends AppCompatActivity {
     private RadioButton female;
     private String gender;
     private ProgressBar progressBar;
-
+    boolean flag =true;
 
 
 
@@ -70,9 +77,9 @@ public class register extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
                 String number = PhoneNum.getText().toString().trim();
-                String fullName = FullName.getText().toString();
-                String email = Email.getText().toString();
-                String password = Password.getText().toString();
+                 String fullName = FullName.getText().toString();
+                 String email = Email.getText().toString();
+                  String password = Password.getText().toString();
 
                 String Birthdaydate = BirthdayDate.getText().toString();
 
@@ -137,24 +144,46 @@ public class register extends AppCompatActivity {
 
                 }
 
-                if(number.isEmpty() || password.isEmpty() ||email.isEmpty() ||fullName.isEmpty()){
+              /*  if(number.isEmpty() || password.isEmpty() ||email.isEmpty() ||fullName.isEmpty()){
                     Toast.makeText(getApplicationContext()," Please fill all information",Toast.LENGTH_SHORT).show();
                     return;
-                }
+                }*/
 
 
 
 
-                progressBar.setVisibility(View.VISIBLE);
-                String PhoneNumber = "+" + code + number;
-               Intent intent = new Intent(register.this, sendCodeVrification.class);
+
+                String PhoneNumber ="+" + code + number;
+
+                isValidPhoneNumber( PhoneNumber);
+              /*  Intent intent = new Intent(register.this, sendCodeVrification.class);
                 intent.putExtra("phonenumber", PhoneNumber);
                 intent.putExtra("fullname", fullName);
                 intent.putExtra("email", email);
                 intent.putExtra("password", password);
-                intent.putExtra("Birthdaydate",Birthdaydate);
-                intent.putExtra("gender",gender);
-                startActivity(intent);
+                intent.putExtra("Birthdaydate", Birthdaydate);
+                intent.putExtra("gender", gender);
+                startActivity(intent);*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             }
         });
@@ -203,5 +232,88 @@ public class register extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+    public void isValidPhoneNumber(String PhoneNumber){
+
+
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("Customer");
+        Query query=reference.orderByChild("phoneNumber").equalTo(PhoneNumber);// or in general i can put the edittext insted of "sham"
+        query.addListenerForSingleValueEvent(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.exists()){
+                    Toast.makeText(getApplicationContext(), "It's a used phone number use another one or you can Login", Toast.LENGTH_LONG).show();
+
+
+
+
+                }
+
+                else
+                    sendData();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
+
+    }
+
+
+
+       /*boolean isFlag(){
+        return flag;
+      }*/
+
+
+    void sendData() {
+
+        PhoneNum = findViewById(R.id.phone_number);
+        FullName = findViewById(R.id.et_name);
+        Email = findViewById(R.id.et_email);
+        Password = findViewById(R.id.et_password);
+        BirthdayDate = findViewById(R.id.birthday_date);
+        spinner = findViewById(R.id.spinnerCountries);
+        spinner.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,
+                CountryData.countryNames));
+
+
+        String number = PhoneNum.getText().toString().trim();
+        String fullName = FullName.getText().toString();
+        String email = Email.getText().toString();
+        String password = Password.getText().toString();
+        String Birthdaydate = BirthdayDate.getText().toString();
+
+        String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
+        String PhoneNumber ="+" + code + number;
+
+
+        Intent intent = new Intent(register.this, sendCodeVrification.class);
+        intent.putExtra("phonenumber", PhoneNumber);
+        intent.putExtra("fullname", fullName);
+        intent.putExtra("email", email);
+        intent.putExtra("password", password);
+        intent.putExtra("Birthdaydate", Birthdaydate);
+        intent.putExtra("gender", gender);
+        startActivity(intent);
+
+    }
+
+
+
 
 }
