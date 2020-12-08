@@ -13,28 +13,31 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="170dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="250dp"
+            app:srcCompat="@drawable/carwasher" />
+
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PAL CAR WASHER"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="1dp"
             android:layout_marginRight="20dp"
-            android:paddingLeft="10dp"
             android:fontFamily="@font/spicy_rice"
+            android:paddingStart="10dp"
+            android:text="@string/pal_car_washer_logo"
             android:textAlignment="center"
+            android:textColor="#393434"
+
             android:textSize="30sp"
-            android:textStyle="bold"
-
-            />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="367dp"
-            android:layout_height="368dp"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="3dp"
-            app:srcCompat="@drawable/carwashlogo" />
+            android:textStyle="bold" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
