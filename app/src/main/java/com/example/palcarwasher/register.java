@@ -92,7 +92,10 @@ public class register extends AppCompatActivity {
 
                 }
 
-                if(fullName.isEmpty()){
+
+
+
+                /*if(fullName.isEmpty()){
                     progressBar.setVisibility(View.GONE);
                     FullName.setError("Please enter your Name");
                     FullName.requestFocus();
@@ -104,17 +107,49 @@ public class register extends AppCompatActivity {
                     Email.requestFocus();
                     return;
                 }
-                if(!EMAIL_ADDRESS_PATTERN.matcher(email).matches()){
+
+
+                if ( number.isEmpty()){
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(register.this,"Invalid Email Address",Toast.LENGTH_SHORT).show();
+                    PhoneNum.setError("Please Enter Your Phone Number");
+                    PhoneNum.requestFocus();
                     return;
                 }
+
+
                 if(password.isEmpty()){
                     progressBar.setVisibility(View.GONE);
                     Password.setError("Please enter your Password");
                     Password.requestFocus();
                     return;
+                }*/
+
+
+
+                boolean flag=true;
+                String []array = new String[]{fullName,email,password,number};
+                EditText []editArray =new EditText[]{FullName,Email,Password,PhoneNum};
+                for (int i=0;i<array.length;i++){
+
+                   if(array[i].isEmpty()) {
+                       flag=false;
+                       progressBar.setVisibility(View.GONE);
+                       editArray[i].setError("You have to fill it!");
+                       editArray[i].requestFocus();
+
+                   }
                 }
+                   if(!flag) return;
+
+
+
+                //////////////////////////////////////////////////////////////////////
+                if(!EMAIL_ADDRESS_PATTERN.matcher(email).matches()){
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(register.this,"Invalid Email Address",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if(password.length()<6){
                     progressBar.setVisibility(View.GONE);
                     Password.setError("Password must be more than 6 characters");
@@ -130,12 +165,7 @@ public class register extends AppCompatActivity {
 
 
 
-                if ( number.isEmpty()){
-                    progressBar.setVisibility(View.GONE);
-                    PhoneNum.setError("Please Enter Your Phone Number");
-                    PhoneNum.requestFocus();
-                    return;
-                }
+
                 if (number.length() != 9){
                     progressBar.setVisibility(View.GONE);
                     PhoneNum.setError("number must be 9 digit");
@@ -143,6 +173,9 @@ public class register extends AppCompatActivity {
                     return;
 
                 }
+
+
+
 
               /*  if(number.isEmpty() || password.isEmpty() ||email.isEmpty() ||fullName.isEmpty()){
                     Toast.makeText(getApplicationContext()," Please fill all information",Toast.LENGTH_SHORT).show();
