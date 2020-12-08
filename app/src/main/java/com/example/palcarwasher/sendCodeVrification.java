@@ -174,23 +174,7 @@ public class sendCodeVrification extends AppCompatActivity {
                             intent.putExtra("gender", gender);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
-/*
-FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-firebaseAuth.signInWithCredential(credential)
-        .addOnCompleteListener(VerifyPhoneNo.this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                if (task.isSuccessful()) {
-
-                    Toast.makeText(VerifyPhoneNo.this, "Your Account has been created successfully!", Toast.LENGTH_SHORT).show();
-
-                    //Perform Your required action here to either let the user sign In or do something required
-                    Intent intent = new Intent(getApplicationContext(), Login.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-*/
                         }else {
                             Toast.makeText(sendCodeVrification.this,"incorrect code "
                                     ,Toast.LENGTH_LONG).show();
@@ -204,7 +188,13 @@ firebaseAuth.signInWithCredential(credential)
 
 
 
+    public void clickBack(){
 
+        Intent intent = new Intent(getApplicationContext(),
+                register.class);
+        startActivity(intent);
+
+    }
 
 
 }

@@ -8,7 +8,7 @@
     <string name="password">Password</string>
     <string name="e_mail">Email</string>
     <string name="tag">Let\'s join us and \nClean your car quickly and easily</string>
-    <string name="swipe_right_for_login">Swipe Right for Login</string>
+    <string name="swipe_right_for_login">Click here for Login</string>
     <string name="register">Register</string>
     <string name="re_type_password">Re-type Password</string>
     <string name="your_name">Full Name</string>
@@ -24,10 +24,15 @@
     <string name="gender">Gender</string>
     <string name="female">Female</string>
     <string name="male">Male</string>
-    <string name="enter_the_code_that_was_send">Enter the code that was send :</string>
+    <string name="enter_the_code_that_was_send">Enter the code that was sent :</string>
     <string name="tap_here_to_edit_your_phone_number">Tap here to edit your phon number</string>
     <string name="pal_car_washer" />
     <string name="pal_car_washer_logo">PAL CAR WASHER</string>
+    <string name="company_name">Company Name</string>
+    <string name="owner_name">Owner Name</string>
+    <string name="stationary">Stationary</string>
+    <string name="mobile">Mobile</string>
+    <string name="email_optional">Email (Optional)</string>
 
 
 </resources>

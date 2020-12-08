@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -58,6 +59,19 @@ public class register extends AppCompatActivity {
                 CountryData.countryNames));
 
 
+        ImageView ClickhereForLogin =(ImageView)findViewById(id.imageView8);
+        ClickhereForLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),login.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+
         progressBar = findViewById(id.progressBar);
         PhoneNum = findViewById(R.id.phone_number);
         FullName = findViewById(R.id.et_name);
@@ -95,40 +109,10 @@ public class register extends AppCompatActivity {
 
 
 
-                /*if(fullName.isEmpty()){
-                    progressBar.setVisibility(View.GONE);
-                    FullName.setError("Please enter your Name");
-                    FullName.requestFocus();
-                    return;
-                }
-                if(email.isEmpty()){
-                    progressBar.setVisibility(View.GONE);
-                    Email.setError("Please enter your Email");
-                    Email.requestFocus();
-                    return;
-                }
-
-
-                if ( number.isEmpty()){
-                    progressBar.setVisibility(View.GONE);
-                    PhoneNum.setError("Please Enter Your Phone Number");
-                    PhoneNum.requestFocus();
-                    return;
-                }
-
-
-                if(password.isEmpty()){
-                    progressBar.setVisibility(View.GONE);
-                    Password.setError("Please enter your Password");
-                    Password.requestFocus();
-                    return;
-                }*/
-
-
 
                 boolean flag=true;
-                String []array = new String[]{fullName,email,password,number};
-                EditText []editArray =new EditText[]{FullName,Email,Password,PhoneNum};
+                String []array = new String[]{fullName,password,number};
+                EditText []editArray =new EditText[]{FullName,Password,PhoneNum};
                 for (int i=0;i<array.length;i++){
 
                    if(array[i].isEmpty()) {
@@ -281,7 +265,7 @@ public class register extends AppCompatActivity {
 
                 if(dataSnapshot.exists()){
                     Toast.makeText(getApplicationContext(), "It's a used phone number use another one or you can Login", Toast.LENGTH_LONG).show();
-
+                    progressBar.setVisibility(View.GONE);
 
 
 
@@ -345,6 +329,11 @@ public class register extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+
+
+
+
 
 
 
