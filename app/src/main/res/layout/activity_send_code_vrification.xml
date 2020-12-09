@@ -85,6 +85,7 @@
         android:fontFamily="@font/roboto_regular"
         android:inputType="phone"
         android:maxLength="10"
+        android:paddingLeft="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

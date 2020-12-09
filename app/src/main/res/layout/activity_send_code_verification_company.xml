@@ -71,6 +71,7 @@
         android:layout_height="45dp"
         android:layout_centerHorizontal="true"
         android:autofillHints=""
+        android:paddingLeft="65dp"
         android:background="@drawable/et_custom"
         android:digits="0123456789"
         android:drawablePadding="10dp"

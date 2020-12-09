@@ -108,6 +108,7 @@ public class SendCodeVerificationCompany extends AppCompatActivity {
 
 
             Toast.makeText(getApplicationContext(),"on code sent",Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.GONE);
 
         }
 
@@ -125,6 +126,7 @@ public class SendCodeVerificationCompany extends AppCompatActivity {
         public void onVerificationFailed(@NonNull FirebaseException e) {
 
             Toast.makeText(SendCodeVerificationCompany.this,"onVerificationFailed",Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.GONE);
             return;
         }
     };

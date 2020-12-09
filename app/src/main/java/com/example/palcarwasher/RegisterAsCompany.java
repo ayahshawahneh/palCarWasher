@@ -307,7 +307,7 @@ public class RegisterAsCompany extends AppCompatActivity {
         String PhoneNumber ="+" + code + number;
 
 
-        Intent intent = new Intent(RegisterAsCompany.this, sendCodeVrification.class);
+        Intent intent = new Intent(RegisterAsCompany.this, SendCodeVerificationCompany.class);
         intent.putExtra("phonenumber", PhoneNumber);
         intent.putExtra("ownername", ownerName);
         intent.putExtra("companyname", companyName);
