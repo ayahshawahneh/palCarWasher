@@ -116,9 +116,9 @@
 
             <TextView
                 android:id="@+id/gender"
-                android:layout_width="50dp"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_regular"
@@ -219,12 +219,12 @@
                 android:layout_height="50dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="20dp"
-
+                android:text="@string/verfiy_your_phone"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/btn_custom"
                 android:fontFamily="@font/roboto_regular"
-                android:text="@string/verfiy_your_phone"
+
                 android:textColor="@android:color/white" />
 
             <ProgressBar

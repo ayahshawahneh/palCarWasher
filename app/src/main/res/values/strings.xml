@@ -35,6 +35,22 @@
     <string name="email_optional">Email (Optional)</string>
     <string name="companytype">CompanyType</string>
     <string name="both">Both</string>
+    <string name="new_vehicle_type">New Vehicle Type</string>
+    <string name="you_can_add_new_vehicle_type_new_service_or_both">You can add new vehicle type, new Service or both</string>
+    <string name="new_service">New Service</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="assign_services_to_each_vehicle_type_that_you_provide">Assign services to each vehicle type that you provide:</string>
+    <string name="vehicle_type">Vehicle Type</string>
+    <string name="service">Service</string>
+    <string name="service_price_on_this_vehicle_type">Service Price on this Vehicle type</string>
+    <string name="description">Description</string>
+    <string name="add_services">Add Services</string>
+    <string name="currency_type">Currency Type</string>
+    <string name="vehicle_size">Vehicle Size</string>
+    <string name="service_type">Service Type</string>
+    <string name="price">Price</string>
+    <string name="discription">Discription</string>
 
 
 </resources>
