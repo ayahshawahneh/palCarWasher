@@ -20,7 +20,8 @@ public class insideOurProject extends AppCompatActivity {
         //send the new user to database
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("Customer");
+        databaseReference = FirebaseDatabase.getInstance().getReference()
+                .child("PalCarWasher").child("Customer");
 
         String phonenumber = getIntent().getStringExtra("phonenumber");
         String fullname = getIntent().getStringExtra("fullname");

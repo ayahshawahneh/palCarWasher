@@ -20,7 +20,8 @@ public class insideOurProjectCompany extends AppCompatActivity {
         //send the new user to database
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServiceProvider");
+        databaseReference = FirebaseDatabase.getInstance().getReference()
+                .child("PalCarWasher").child("ServiceProvider");
 
 
         String PhoneNumber = getIntent().getStringExtra("phonenumber");
@@ -33,7 +34,7 @@ public class insideOurProjectCompany extends AppCompatActivity {
         String companyType = getIntent().getStringExtra("companyType");
 
         String ProviderId = databaseReference.push().getKey();
-        //(String providerId, String companyName, String companyType, String logo, String name, String email, String password, String phoneNumber, String address, String gender, String bankAccount, String workingStatus)
+                                               //(String providerId, String companyName, String companyType, String logo, String name, String email, String password, String phoneNumber, String address, String gender, String bankAccount, String workingStatus)
         ServiceProvider company = new ServiceProvider( ProviderId, companyName, companyType,null, ownerName, email, password, PhoneNumber,null,Gender,null,null);
         databaseReference.push().setValue(company);
 

@@ -127,7 +127,7 @@ public class register extends AppCompatActivity {
 
 
                 //////////////////////////////////////////////////////////////////////
-                if(!EMAIL_ADDRESS_PATTERN.matcher(email).matches()){
+                if((!EMAIL_ADDRESS_PATTERN.matcher(email).matches())&&(!email.isEmpty()) ){
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(register.this,"Invalid Email Address",Toast.LENGTH_SHORT).show();
                     return;

@@ -43,7 +43,7 @@ public class RegisterAsCompany extends AppCompatActivity {
     private RadioButton Female;
     private String Gender;
     private ProgressBar progressBar;
-    private LinearLayout CompanyTypeLayout;
+
 
 
 
@@ -83,7 +83,6 @@ public class RegisterAsCompany extends AppCompatActivity {
         BirthdayDate = findViewById(R.id.birthday_date);
         Male = (RadioButton)findViewById(R.id.male);
         Female = (RadioButton)findViewById(R.id.female);
-        CompanyTypeLayout = (LinearLayout)findViewById(R.id.comp_type_layout);
 
 
 
@@ -113,8 +112,9 @@ public class RegisterAsCompany extends AppCompatActivity {
                 else if(Stationary.isChecked())
                     companyType="stationary";
 
-                    else if(Both.isChecked())
-                companyType="both";
+                    else {
+                    companyType="both";
+                }
 
 
 
@@ -156,7 +156,7 @@ public class RegisterAsCompany extends AppCompatActivity {
 
 
                 //////////////////////////////////////////////////////////////////////
-                if(!EMAIL_ADDRESS_PATTERN.matcher(email).matches()){
+                if((!EMAIL_ADDRESS_PATTERN.matcher(email).matches())&&(!email.isEmpty()) ){
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(RegisterAsCompany.this,"Invalid Email Address",Toast.LENGTH_LONG).show();
                     return;
