@@ -45,7 +45,7 @@ public class register extends AppCompatActivity {
     private RadioButton female;
     private String gender;
     private ProgressBar progressBar;
-    boolean flag =true;
+
 
 
 
@@ -77,7 +77,6 @@ public class register extends AppCompatActivity {
         FullName = findViewById(R.id.et_name);
         Email = findViewById(R.id.et_email);
         Password = findViewById(R.id.et_password);
-
         BirthdayDate = findViewById(R.id.birthday_date);
         male = (RadioButton)findViewById(R.id.male);
         female = (RadioButton)findViewById(R.id.female);
@@ -161,44 +160,10 @@ public class register extends AppCompatActivity {
 
 
 
-              /*  if(number.isEmpty() || password.isEmpty() ||email.isEmpty() ||fullName.isEmpty()){
-                    Toast.makeText(getApplicationContext()," Please fill all information",Toast.LENGTH_SHORT).show();
-                    return;
-                }*/
-
-
-
-
 
                 String PhoneNumber ="+" + code + number;
 
                 isValidPhoneNumber( PhoneNumber);
-              /*  Intent intent = new Intent(register.this, sendCodeVrification.class);
-                intent.putExtra("phonenumber", PhoneNumber);
-                intent.putExtra("fullname", fullName);
-                intent.putExtra("email", email);
-                intent.putExtra("password", password);
-                intent.putExtra("Birthdaydate", Birthdaydate);
-                intent.putExtra("gender", gender);
-                startActivity(intent);*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -290,11 +255,6 @@ public class register extends AppCompatActivity {
 
     }
 
-
-
-       /*boolean isFlag(){
-        return flag;
-      }*/
 
 
     void sendData() {

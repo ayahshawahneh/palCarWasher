@@ -33,6 +33,8 @@
     <string name="stationary">Stationary</string>
     <string name="mobile">Mobile</string>
     <string name="email_optional">Email (Optional)</string>
+    <string name="companytype">CompanyType</string>
+    <string name="both">Both</string>
 
 
 </resources>

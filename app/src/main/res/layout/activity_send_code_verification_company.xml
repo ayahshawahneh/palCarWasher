@@ -4,22 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C4DADB"
-    tools:context=".sendCodeVrification">
+    android:background="#C4D5DB"
+    tools:context=".SendCodeVerificationCompany">
 
 
     <Button
         android:id="@+id/buttonSignIn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-
-
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/btn_custom"
-
-
         android:fontFamily="@font/roboto_regular"
         android:text="@string/register"
         android:textColor="@android:color/white"
@@ -33,24 +29,20 @@
 
     <Button
         android:id="@+id/back"
-        android:layout_width="62dp"
-        android:layout_height="45dp"
+        android:layout_width="72dp"
+        android:layout_height="38dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="28dp"
-
         android:background="@drawable/ic_arrow_left"
-
-
         android:backgroundTint="#009688"
         android:fontFamily="@font/roboto_regular"
-
         android:onClick="clickBack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="OnClick" />
+        tools:ignore="OnClick"/>
 
 
 

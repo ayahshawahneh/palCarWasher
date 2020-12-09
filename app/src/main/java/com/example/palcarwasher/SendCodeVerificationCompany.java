@@ -1,4 +1,5 @@
 package com.example.palcarwasher;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,18 +23,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
-
-public class sendCodeVrification extends AppCompatActivity {
+public class SendCodeVerificationCompany extends AppCompatActivity {
 
     private String verificationId;
     private FirebaseAuth mAuth;
     private EditText editText;
     private ProgressBar progressBar;
 
-   @Override
+
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_send_code_vrification);
+        setContentView(R.layout.activity_send_code_verification_company);
 
         mAuth = FirebaseAuth.getInstance();
         mAuth.setLanguageCode("en");
@@ -42,7 +45,7 @@ public class sendCodeVrification extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar2);
 
 
-       String phonenumber = getIntent().getStringExtra("phonenumber");
+        String phonenumber = getIntent().getStringExtra("phonenumber");
 
         sendVerficationCode(phonenumber);
 
@@ -52,7 +55,7 @@ public class sendCodeVrification extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
                 String code = editText.getText().toString();
-                        //.trim();
+                //.trim();
                 if(code.isEmpty()){
                     progressBar.setVisibility(View.INVISIBLE);
                     editText.setError(" Enter code ...");
@@ -68,7 +71,7 @@ public class sendCodeVrification extends AppCompatActivity {
                     return;
                 }
 
-               verifiyCode(code);
+                verifiyCode(code);
 
             }
         });
@@ -87,7 +90,7 @@ public class sendCodeVrification extends AppCompatActivity {
                         .setActivity(this) // Activity (for callback binding)
                         .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
                         .build();
-      //  Toast.makeText(getApplicationContext(),"from send method",Toast.LENGTH_LONG).show();
+        //  Toast.makeText(getApplicationContext(),"from send method",Toast.LENGTH_LONG).show();
         PhoneAuthProvider.verifyPhoneNumber(options);
 
 
@@ -121,7 +124,7 @@ public class sendCodeVrification extends AppCompatActivity {
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
 
-            Toast.makeText(sendCodeVrification.this,"onVerificationFailed",Toast.LENGTH_LONG).show();
+            Toast.makeText(SendCodeVerificationCompany.this,"onVerificationFailed",Toast.LENGTH_LONG).show();
             return;
         }
     };
@@ -149,50 +152,56 @@ public class sendCodeVrification extends AppCompatActivity {
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential){
         progressBar.setVisibility(View.VISIBLE);
-        mAuth.signInWithCredential(credential).addOnCompleteListener(sendCodeVrification.this,new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithCredential(credential).addOnCompleteListener(SendCodeVerificationCompany.this,new OnCompleteListener<AuthResult>() {
 
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            progressBar.setVisibility(View.GONE);
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    progressBar.setVisibility(View.GONE);
 
-                            String phonenumber = getIntent().getStringExtra("phonenumber");
-                            String fullname = getIntent().getStringExtra("fullname");
-                            String email = getIntent().getStringExtra("email");
-                            String password = getIntent().getStringExtra("password");
-                            String Birthdaydate = getIntent().getStringExtra("Birthdaydate");
-                            String gender = getIntent().getStringExtra("gender");
+                    String PhoneNumber = getIntent().getStringExtra("phonenumber");
+                    String ownerName = getIntent().getStringExtra("ownername");
+                    String email = getIntent().getStringExtra("email");
+                    String password = getIntent().getStringExtra("password");
+                    String Birthdaydate = getIntent().getStringExtra("Birthdaydate");
+                    String Gender = getIntent().getStringExtra("Gender");
+                    String companyName = getIntent().getStringExtra("companyname");
+                    String companyType = getIntent().getStringExtra("companyType");
+                    Intent intent = new Intent(getApplicationContext(),
+                            insideOurProjectCompany.class);
 
-                            Intent intent = new Intent(getApplicationContext(),
-                                    insideOurProject.class);
-                            //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            intent.putExtra("phonenumber", phonenumber);
-                            intent.putExtra("fullname", fullname);
-                            intent.putExtra("email", email);
-                            intent.putExtra("password", password);
-                            intent.putExtra("Birthdaydate", Birthdaydate);
-                            intent.putExtra("gender", gender);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
 
-                        }else {
-                            Toast.makeText(sendCodeVrification.this,"incorrect code "
-                                    ,Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
 
-                        }
-                    }
-                });
+                    intent.putExtra("phonenumber", PhoneNumber);
+                    intent.putExtra("ownername", ownerName);
+                    intent.putExtra("companyname", companyName);
+                    intent.putExtra("email", email);
+                    intent.putExtra("password", password);
+                    intent.putExtra("Birthdaydate", Birthdaydate);
+                    intent.putExtra("companyType", companyType);
+                    intent.putExtra("Gender",Gender);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+
+                }else {
+                    Toast.makeText(SendCodeVerificationCompany.this,"incorrect code "
+                            ,Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
+
+                }
+            }
+        });
     }
 
 
 
 
+    public void clickBack(View view){
 
-
-    public void clickBack(View view) {
         Intent intent = new Intent(getApplicationContext(),
-                register.class);
+                RegisterAsCompany.class);
         startActivity(intent);
+
     }
+
 }

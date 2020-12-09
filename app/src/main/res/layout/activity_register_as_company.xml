@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".register">
+    tools:context=".RegisterAsCompany">
 
 
     <LinearLayout
@@ -58,28 +58,29 @@
             android:inputType="textPersonName"
             android:padding="15dp"
             android:textSize="15sp" />
+
         <LinearLayout
+            android:id="@+id/comp_type_layout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/et_custom"
             android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
 
 
-            >
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/company_type"
                 android:layout_width="120dp"
                 android:layout_height="30dp"
-                android:paddingStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="0"
                 android:fontFamily="@font/roboto_regular"
-                android:text="CompanyType"
+                android:paddingStart="10dp"
+                android:text="@string/companytype"
 
                 android:textSize="15sp" />
 
@@ -107,12 +108,13 @@
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:text="@string/stationary" />
+
                 <RadioButton
                     android:id="@+id/both"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:text="Both" />
+                    android:text="@string/both" />
 
 
             </RadioGroup>
@@ -128,7 +130,7 @@
             android:autofillHints=""
             android:background="@drawable/et_custom"
             android:fontFamily="@font/roboto_regular"
-            android:hint="@string/e_mail"
+            android:hint="@string/email_optional"
             android:inputType="textEmailAddress"
             android:padding="15dp"
             android:textSize="15sp" />
@@ -264,12 +266,12 @@
 
             <ImageView
                 android:id="@+id/imageView8"
-                android:layout_width="36dp"
+                android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="95dp"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/ic_arrow_left" />
 
@@ -279,7 +281,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="100dp"
-                android:layout_marginEnd="206dp"
+                android:layout_marginEnd="239dp"
                 android:layout_marginBottom="0dp"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/swipe_right_for_login"
@@ -291,11 +293,11 @@
                 android:layout_height="40dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="30dp"
-                android:gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/btn_custom"
                 android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
                 android:text="@string/verfiy_your_phone"
                 android:textColor="@android:color/white" />
 
@@ -309,8 +311,8 @@
 
                 android:layout_gravity="center"
                 android:layout_marginStart="58dp"
-                android:layout_marginEnd="65dp"
                 android:layout_marginTop="80dp"
+                android:layout_marginEnd="65dp"
                 android:visibility="gone"
                 />
 

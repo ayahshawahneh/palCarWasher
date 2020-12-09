@@ -19,6 +19,7 @@ public class insideOurProject extends AppCompatActivity {
 
         //send the new user to database
 
+
         databaseReference = FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("Customer");
 
         String phonenumber = getIntent().getStringExtra("phonenumber");
