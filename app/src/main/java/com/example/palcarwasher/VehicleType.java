@@ -10,7 +10,7 @@ public class VehicleType {
     public VehicleType() {
     }
 
-    public VehicleType(String vehicleId, String serviceName, String size) {
+    public VehicleType(String vehicleId, String size, String serviceName) {
         this.vehicleId = vehicleId;
         this.serviceName = serviceName;
         this.size = size;
