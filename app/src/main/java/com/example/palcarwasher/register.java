@@ -147,6 +147,10 @@ public class register extends AppCompatActivity {
                 }
 
 
+                    String[] numberArray= number.split("");
+                      if(numberArray[0].equals("0"))
+                       number = number.substring(1);
+
 
 
                 if (number.length() != 9){
@@ -154,6 +158,10 @@ public class register extends AppCompatActivity {
                     PhoneNum.setError("number must be 9 digit");
                     PhoneNum.requestFocus();
                     return;
+
+
+
+
 
                 }
 
@@ -163,7 +171,7 @@ public class register extends AppCompatActivity {
 
                 String PhoneNumber ="+" + code + number;
 
-                isValidPhoneNumber( PhoneNumber);
+                isValidPhoneNumberClassCustomer( PhoneNumber);
 
 
 
@@ -218,10 +226,61 @@ public class register extends AppCompatActivity {
 
 
 
-    public void isValidPhoneNumber(String PhoneNumber){
+    public void isValidPhoneNumberClassCustomer(String PhoneNumber){
 
 
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("Customer");
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
+                .child("Customer");
+        Query query=reference.orderByChild("phoneNumber").equalTo(PhoneNumber);// or in general i can put the edittext insted of "sham"
+        query.addListenerForSingleValueEvent(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.exists()){
+                    Toast.makeText(getApplicationContext(), "It's a used phone number use another one or you can Login", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
+
+
+
+                }
+
+                else
+                    isValidPhoneNumberClassProvider( );
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+    public void isValidPhoneNumberClassProvider(){
+        String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
+        PhoneNum = findViewById(R.id.phone_number);
+        String number = PhoneNum.getText().toString().trim();
+        String[] numberArray= number.split("");
+        if(numberArray[0].equals("0"))
+            number = number.substring(1);
+        String PhoneNumber ="+" + code + number;
+
+
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
+                .child("ServiceProvider");
         Query query=reference.orderByChild("phoneNumber").equalTo(PhoneNumber);// or in general i can put the edittext insted of "sham"
         query.addListenerForSingleValueEvent(new ValueEventListener(){
 
@@ -249,11 +308,13 @@ public class register extends AppCompatActivity {
 
 
 
-
-
-
-
     }
+
+
+
+
+
+
 
 
 

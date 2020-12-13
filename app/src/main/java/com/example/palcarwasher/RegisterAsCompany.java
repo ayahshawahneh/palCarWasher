@@ -175,7 +175,9 @@ public class RegisterAsCompany extends AppCompatActivity {
                     return;
                 }
 
-
+                String[] numberArray= number.split("");
+                if(numberArray[0].equals("0"))
+                    number = number.substring(1);
 
 
                 if (number.length() != 9){
@@ -189,7 +191,7 @@ public class RegisterAsCompany extends AppCompatActivity {
 
                 String PhoneNumber ="+" + code + number;
 
-                isValidPhoneNumber( PhoneNumber);
+                isValidPhoneNumberClassProvider( PhoneNumber);
 
 
             }
@@ -240,7 +242,7 @@ public class RegisterAsCompany extends AppCompatActivity {
 
 
 
-    public void isValidPhoneNumber(String PhoneNumber){
+    public void isValidPhoneNumberClassProvider(String PhoneNumber){
 
 
         DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServiceProvider");
@@ -259,7 +261,7 @@ public class RegisterAsCompany extends AppCompatActivity {
                 }
 
                 else
-                    sendData();
+                    isValidPhoneNumberClassCustomer();
 
             }
 
@@ -272,6 +274,54 @@ public class RegisterAsCompany extends AppCompatActivity {
 
 
     }
+
+
+
+    public void isValidPhoneNumberClassCustomer(){
+        String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
+        PhoneNum = findViewById(R.id.phone_number);
+        String number = PhoneNum.getText().toString().trim();
+        String[] numberArray= number.split("");
+        if(numberArray[0].equals("0"))
+            number = number.substring(1);
+        String PhoneNumber ="+" + code + number;
+
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
+                .child("Customer");
+        Query query=reference.orderByChild("phoneNumber").equalTo(PhoneNumber);// or in general i can put the edittext insted of "sham"
+        query.addListenerForSingleValueEvent(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.exists()){
+                    Toast.makeText(getApplicationContext(), "It's a used phone number use another one or you can Login", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
+
+
+
+                }
+
+                else
+                   sendData();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
+
+    }
+
+
 
 
 

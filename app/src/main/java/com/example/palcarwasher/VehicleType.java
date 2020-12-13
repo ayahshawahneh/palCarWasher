@@ -3,15 +3,16 @@ package com.example.palcarwasher;
 public class VehicleType {
 
     private String vehicleId;
-   // private String name;
+    private String serviceName;
     private String size;
+
 
     public VehicleType() {
     }
 
-
-    public VehicleType(String vehicleId, String size) {
+    public VehicleType(String vehicleId, String serviceName, String size) {
         this.vehicleId = vehicleId;
+        this.serviceName = serviceName;
         this.size = size;
     }
 
@@ -22,6 +23,14 @@ public class VehicleType {
 
     public void setVehicleId(String vehicleId) {
         this.vehicleId = vehicleId;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
     }
 
     public String getSize() {

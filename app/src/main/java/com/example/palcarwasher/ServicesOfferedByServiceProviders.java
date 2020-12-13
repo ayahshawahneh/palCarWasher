@@ -3,7 +3,6 @@ package com.example.palcarwasher;
 public class ServicesOfferedByServiceProviders {
 
     private String offerId;
-    private String serviceId;
     private String providerId;
     private String vehicleId;
     private String description;
@@ -16,9 +15,8 @@ public class ServicesOfferedByServiceProviders {
     }
 
 
-    public ServicesOfferedByServiceProviders(String offerId, String serviceId, String providerId, String vehicleId, String description, String price, boolean discountOnOff, String discountId) {
+    public ServicesOfferedByServiceProviders(String offerId,  String providerId, String vehicleId, String description, String price, boolean discountOnOff, String discountId) {
         this.offerId = offerId;
-        this.serviceId = serviceId;
         this.providerId = providerId;
         this.vehicleId = vehicleId;
         this.description = description;
@@ -35,13 +33,6 @@ public class ServicesOfferedByServiceProviders {
         this.offerId = offerId;
     }
 
-    public String getServiceId() {
-        return serviceId;
-    }
-
-    public void setServiceId(String serviceId) {
-        this.serviceId = serviceId;
-    }
 
     public String getProviderId() {
         return providerId;
