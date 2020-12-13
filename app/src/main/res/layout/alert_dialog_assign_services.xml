@@ -43,24 +43,14 @@
 
             <Spinner
                 android:id="@+id/spinnerVehicle"
-                android:layout_width="50dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp" />
-
-            <TextView
-                android:id="@+id/textVehicle"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
-                android:layout_weight="1"
-                android:background="@color/browser_actions_bg_grey"
-                android:fontFamily="@font/roboto_regular"
-                android:padding="15dp"
-                android:text="@string/vehicle_type"
-                android:textSize="15sp" />
+                android:layout_marginBottom="10dp"
+                android:spinnerMode="dialog"
+                android:prompt="@string/vehicle_type"/>
 
 
         </LinearLayout>
@@ -74,24 +64,13 @@
 
             <Spinner
                 android:id="@+id/spinnerService"
-                android:layout_width="50dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp" />
-
-            <TextView
-                android:id="@+id/textService"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginEnd="20dp"
-                android:layout_weight="1"
-                android:background="@color/browser_actions_bg_grey"
-                android:fontFamily="@font/roboto_regular"
-                android:padding="15dp"
-                android:text="@string/service"
-                android:textSize="15sp" />
+                />
 
 
         </LinearLayout>
@@ -112,7 +91,7 @@
             tools:layout_editor_absoluteY="173dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginStart="70dp"
+            android:layout_marginStart="20dp"
             />
 
 
@@ -133,7 +112,7 @@
             tools:layout_editor_absoluteY="173dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginStart="70dp"
+            android:layout_marginStart="20dp"
             />
 
 
