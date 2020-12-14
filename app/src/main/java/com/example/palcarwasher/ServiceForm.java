@@ -1,5 +1,6 @@
 package com.example.palcarwasher;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,8 +16,12 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -30,26 +35,28 @@ FloatingActionButton button;
         setContentView(R.layout.activity_service_form);
 
         imageView2 = findViewById(R.id.imageView2);
-
+/*
         databaseReference = FirebaseDatabase.getInstance().getReference()
                 .child("PalCarWasher").child("VehicleType");
       String vehicleId = databaseReference.push().getKey();
-      VehicleType vehicleType1 = new VehicleType(vehicleId,"Car(5-pass)","Internal washing and polishing");
+      VehicleType vehicleType1 = new VehicleType(vehicleId,"Truck","Internal washing and polishing");
        databaseReference.push().setValue(vehicleType1);
 
-        VehicleType vehicleType2 = new VehicleType(vehicleId,"Car(5-pass)","External Washing and polishing");
+        VehicleType vehicleType2 = new VehicleType(vehicleId,"Truck","External Washing and polishing");
         databaseReference.push().setValue(vehicleType2);
 
-        VehicleType vehicleType3 = new VehicleType(vehicleId,"Car(5-pass)","Internal and external washing and polishing");
+        VehicleType vehicleType3 = new VehicleType(vehicleId,"Truck","Internal and external washing and polishing");
         databaseReference.push().setValue(vehicleType3);
 
-
-        VehicleType vehicleType4 = new VehicleType(vehicleId,"Car(5-pass)","internal washing and polishing with chairs");
-        databaseReference.push().setValue(vehicleType4);
-
-        VehicleType vehicleType5 = new VehicleType(vehicleId,"Car(5-pass)","Change wheels");
+        VehicleType vehicleType5 = new VehicleType(vehicleId,"Truck","Change wheels");
         databaseReference.push().setValue(vehicleType5);
 
+        VehicleType vehicleType4 = new VehicleType(vehicleId,"Motor Cycle","Internal and external washing and polishing");
+        databaseReference.push().setValue(vehicleType4);
+
+
+        VehicleType vehicleType6 = new VehicleType(vehicleId,"Motor Cycle","Change wheels");
+        databaseReference.push().setValue(vehicleType4);*/
 
 
         imageView2.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +69,39 @@ FloatingActionButton button;
 
                 Spinner spinner1 = myView.findViewById(R.id.spinnerVehicle);
                 Spinner spinner2 = myView.findViewById(R.id.spinnerService);
-                ArrayList<String> arrayList = new ArrayList<>();
+                final ArrayList<String> arrayList = new ArrayList<>();
+
+
+                DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
+                        .child("VehicleType");
+                Query query=reference.orderByChild("size");
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            String vehicleType = snapshot.getValue(VehicleType.class).getSize();
+                            arrayList.add(vehicleType);
+
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+
+
+
+
+
+
+
+
 
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ServiceForm.this,
                         android.R.layout.simple_spinner_item, arrayList);
@@ -74,7 +113,7 @@ FloatingActionButton button;
                        ArrayList<String> arrayList2 = new ArrayList<>();
                        Spinner spinner2 = myView.findViewById(R.id.spinnerService);
 
-                       if(tutorialsName=="Buss(5-pass)") {
+                          /*if(tutorialsName=="Buss(5-pass)") {
                            arrayList2.add("Internal washing and polishing");
                            arrayList2.add("External Washing and polishing");
                            arrayList2.add("Internal and external washing and polishing");
@@ -82,9 +121,30 @@ FloatingActionButton button;
                            arrayList2.add("Change wheels");
                        }
 
+ public void getVehicleType(){
 
 
-                       /*  else  if (tutorialsName == "Car(7-pass)") {
+        FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
+                .child("VehicleType").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                    String vehicleType=snapshot.getValue(VehicleType.class).getSize();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+    }
+
+
+                      else  if (tutorialsName == "Car(7-pass)") {
                                arrayList2.add("Internal washing and polishing");
                                arrayList2.add("External Washing and polishing");
                                arrayList2.add("Internal and external washing and polishing");
@@ -120,10 +180,10 @@ FloatingActionButton button;
                                arrayList2.add("Change wheels");
 
 
-                       }*/
+                       }
                            ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<String>(ServiceForm.this,
                                    android.R.layout.simple_spinner_item, arrayList2);
-                           spinner2.setAdapter(arrayAdapter2);
+                           spinner2.setAdapter(arrayAdapter2);*/
 
 
                    }
@@ -159,6 +219,15 @@ FloatingActionButton button;
 
 
     }
+
+
+
+
+
+
+
+
+
 
 
 }
