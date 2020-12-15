@@ -39,6 +39,7 @@ public class LaundryLicencePic extends AppCompatActivity {
                 Intent ImageIntent = new Intent(Intent.ACTION_PICK);
                 ImageIntent.setType("image/*");
                 startActivityForResult(ImageIntent, 3);
+                
 
             }
         });
