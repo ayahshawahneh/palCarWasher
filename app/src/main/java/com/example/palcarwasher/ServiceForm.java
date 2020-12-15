@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -29,46 +31,61 @@ public class ServiceForm extends AppCompatActivity {
     FloatingActionButton button;
     ImageView imageView2 ;
     DatabaseReference databaseReference;
+    EditText price;
+    EditText description;
+    String vehicleSize;
+    String service;
+    Button add;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_form);
 
+
+
+
         imageView2 = findViewById(R.id.imageView2);
 /*
         databaseReference = FirebaseDatabase.getInstance().getReference()
-                .child("PalCarWasher").child("VehicleType");
+                .child("PalCarWasher").child("Services");
       String vehicleId = databaseReference.push().getKey();
-      VehicleType vehicleType1 = new VehicleType(vehicleId,"Truck","Internal washing and polishing");
+        Services vehicleType1 = new Services(vehicleId,"Internal washing and polishing");
        databaseReference.push().setValue(vehicleType1);
 
-        VehicleType vehicleType2 = new VehicleType(vehicleId,"Truck","External Washing and polishing");
+        Services vehicleType2 = new Services(vehicleId,"External Washing and polishing");
         databaseReference.push().setValue(vehicleType2);
 
-        VehicleType vehicleType3 = new VehicleType(vehicleId,"Truck","Internal and external washing and polishing");
+        Services vehicleType3 = new Services(vehicleId,"Internal and external washing and polishing");
         databaseReference.push().setValue(vehicleType3);
 
-        VehicleType vehicleType5 = new VehicleType(vehicleId,"Truck","Change wheels");
+        Services vehicleType5 = new Services(vehicleId,"internal washing and polishing with chairs");
         databaseReference.push().setValue(vehicleType5);
 
-        VehicleType vehicleType4 = new VehicleType(vehicleId,"Motor Cycle","Internal and external washing and polishing");
+
+        Services vehicleType6 = new Services(vehicleId,"Change wheels");
+        databaseReference.push().setValue(vehicleType6);
+
+
+        Services vehicleType8 = new Services(vehicleId, "Internal and external washing and polishing with polishing");
+        databaseReference.push().setValue(vehicleType8);
+
+        Services vehicleType4 = new Services(vehicleId,"Clean motor and gear");
         databaseReference.push().setValue(vehicleType4);
 
 
-        VehicleType vehicleType6 = new VehicleType(vehicleId,"Motor Cycle","Change wheels");
-        databaseReference.push().setValue(vehicleType4);*/
-
+        Services vehicleType7 = new Services(vehicleId, "Change oil");
+        databaseReference.push().setValue(vehicleType7);*/
 
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final AlertDialog.Builder alertBuilder = new AlertDialog.Builder((Context) ServiceForm.this);
+                final AlertDialog.Builder alertBuilder = new AlertDialog.Builder((Context) ServiceForm.this,R.style.my_dialog);
                 LayoutInflater myinflater = getLayoutInflater();
                 final View myView = myinflater.inflate(R.layout.alert_dialog_assign_services, null);
 
                 Spinner spinner1 = myView.findViewById(R.id.spinnerVehicle);
-                Spinner spinner2 = myView.findViewById(R.id.spinnerService);
                 final ArrayList<String> arrayList = new ArrayList<>();
 
 
@@ -95,7 +112,30 @@ public class ServiceForm extends AppCompatActivity {
 
 
 
+                Spinner spinner2 = myView.findViewById(R.id.spinnerService);
+                final ArrayList<String> arrayList2 = new ArrayList<>();
 
+                DatabaseReference reference2= FirebaseDatabase.getInstance()
+                        .getReference().child("PalCarWasher")
+                        .child("Services");
+                Query query2=reference2.orderByChild("serviceName");
+                query2.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            String serviceName= snapshot.getValue(Services.class).getServiceName();
+                            arrayList2.add(serviceName);
+
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
 
 
@@ -104,87 +144,13 @@ public class ServiceForm extends AppCompatActivity {
 
 
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ServiceForm.this,
-                        android.R.layout.simple_spinner_item, arrayList);
+                        android.R.layout.simple_spinner_dropdown_item, arrayList);
                 spinner1.setAdapter(arrayAdapter);
                 spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        String tutorialsName = parent.getItemAtPosition(position).toString();
-                        ArrayList<String> arrayList2 = new ArrayList<>();
-                        Spinner spinner2 = myView.findViewById(R.id.spinnerService);
-
-                          /*if(tutorialsName=="Buss(5-pass)") {
-                           arrayList2.add("Internal washing and polishing");
-                           arrayList2.add("External Washing and polishing");
-                           arrayList2.add("Internal and external washing and polishing");
-                           arrayList2.add("internal washing and polishing with chairs");
-                           arrayList2.add("Change wheels");
-                       }
-
- public void getVehicleType(){
-
-
-        FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
-                .child("VehicleType").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot snapshot:dataSnapshot.getChildren()){
-                    String vehicleType=snapshot.getValue(VehicleType.class).getSize();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-
-    }
-
-
-                      else  if (tutorialsName == "Car(7-pass)") {
-                               arrayList2.add("Internal washing and polishing");
-                               arrayList2.add("External Washing and polishing");
-                               arrayList2.add("Internal and external washing and polishing");
-                               arrayList2.add("internal washing and polishing with chairs");
-                               arrayList2.add("Change wheels");
-
-                       }
-
-                     else if (tutorialsName == "Car(20-pass)") {
-                               arrayList2.add("Internal washing and polishing");
-                               arrayList2.add("External Washing and polishing");
-                               arrayList2.add("Internal and external washing and polishing");
-                               arrayList2.add("internal washing and polishing with chairs");
-                               arrayList2.add("Change wheels");
-
-                           }
-
-
-
-
-                         else  if (tutorialsName == "Truck") {
-                               arrayList2.add("Internal washing and polishing");
-                               arrayList2.add("External Washing and polishing");
-                               arrayList2.add("Internal and external washing and polishing");
-                               arrayList2.add("internal washing and polishing with chairs");
-                               arrayList2.add("Change wheels");
-
-                           }
-
-
-
-                           else if (tutorialsName == "Motor Cycle") {
-                               arrayList2.add("Internal and external washing and polishing");
-                               arrayList2.add("Change wheels");
-
-
-                       }
-                           ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<String>(ServiceForm.this,
-                                   android.R.layout.simple_spinner_item, arrayList2);
-                           spinner2.setAdapter(arrayAdapter2);*/
+                        String selectedVehicleSize = parent.getItemAtPosition(position).toString();
+                        setVehicleSize(selectedVehicleSize);
 
 
                     }
@@ -197,25 +163,60 @@ public class ServiceForm extends AppCompatActivity {
 
 
 
-                alertBuilder.setView(myView);
-                alertBuilder.create();
-                alertBuilder.create().show();
 
+                ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<String>(ServiceForm.this,
+                        android.R.layout.simple_spinner_dropdown_item, arrayList2);
+                //simple_spinner_dropdown_item
+                spinner1.setAdapter(arrayAdapter2);
+                spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        String selectedService = parent.getItemAtPosition(position).toString();
+                        setService(selectedService);
+
+                        /*Intent intent = new Intent(ServiceForm.this, SendServicesToFirebase.class);
+                        intent.putExtra("selectedVehicleSize", selectedVehicleSize);
+                        startActivity(intent);
+                       */
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+
+
+
+
+
+
+                alertBuilder.setView(myView);
+
+                alertBuilder.create();
+
+                alertBuilder.create().show();
+               // alertBuilder.getWindow().setLayout(600, 400);
             }
         });
 
-      /*  button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final AlertDialog.Builder alertBuilder = new AlertDialog.Builder((Context) ServiceForm.this);
-                LayoutInflater myinflater = getLayoutInflater();
-                final View myView = myinflater.inflate(R.layout.alert_dialog_add_new_service_or_vehicle, null);
-                alertBuilder.setView(myView);
-                alertBuilder.create();
-                alertBuilder.create().show();
 
-            }
-        });*/
+
+        price=findViewById(R.id.price);
+        description=findViewById(R.id.description);
+
+        String servicePrice=price.getText().toString();
+        String serviceDescription=description.getText().toString();
+
+
+
+       add=findViewById(R.id.addButton);
+
+
+
+
+
 
 
 
@@ -224,6 +225,26 @@ public class ServiceForm extends AppCompatActivity {
 
 
 
+void setVehicleSize(String selectedVehicleSize){
+
+        vehicleSize=selectedVehicleSize;
+
+}
+
+    void setService(String selectedService){
+
+        service=selectedService;
+
+    }
+
+
+
+    void onClickAddButton(){
+
+
+
+
+    }
 
 
 

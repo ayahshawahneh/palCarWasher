@@ -55,7 +55,8 @@ public class register extends AppCompatActivity {
         setContentView(layout.activity_register);
 
        spinner = findViewById(R.id.spinnerCountries);
-        spinner.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,
+        spinner.setAdapter(new ArrayAdapter<String>(this,android.R
+                .layout.simple_spinner_dropdown_item,
                 CountryData.countryNames));
 
 

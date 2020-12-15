@@ -4,7 +4,8 @@ public class ServicesOfferedByServiceProviders {
 
     private String offerId;
     private String providerId;
-    private String vehicleId;
+    private String serviceName;
+    private String vehicleName;
     private String description;
     private String price;
     private boolean discountOnOff;
@@ -13,12 +14,11 @@ public class ServicesOfferedByServiceProviders {
 
     public ServicesOfferedByServiceProviders() {
     }
-
-
-    public ServicesOfferedByServiceProviders(String offerId,  String providerId, String vehicleId, String description, String price, boolean discountOnOff, String discountId) {
+    public ServicesOfferedByServiceProviders(String offerId, String providerId, String serviceName, String vehicleName, String description, String price, boolean discountOnOff, String discountId) {
         this.offerId = offerId;
         this.providerId = providerId;
-        this.vehicleId = vehicleId;
+        this.serviceName = serviceName;
+        this.vehicleName = vehicleName;
         this.description = description;
         this.price = price;
         this.discountOnOff = discountOnOff;
@@ -33,7 +33,6 @@ public class ServicesOfferedByServiceProviders {
         this.offerId = offerId;
     }
 
-
     public String getProviderId() {
         return providerId;
     }
@@ -42,12 +41,20 @@ public class ServicesOfferedByServiceProviders {
         this.providerId = providerId;
     }
 
-    public String getVehicleId() {
-        return vehicleId;
+    public String getServiceName() {
+        return serviceName;
     }
 
-    public void setVehicleId(String vehicleId) {
-        this.vehicleId = vehicleId;
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public String getVehicleName() {
+        return vehicleName;
+    }
+
+    public void setVehicleName(String vehicleName) {
+        this.vehicleName = vehicleName;
     }
 
     public String getDescription() {
@@ -81,4 +88,6 @@ public class ServicesOfferedByServiceProviders {
     public void setDiscountId(String discountId) {
         this.discountId = discountId;
     }
+
+
 }
