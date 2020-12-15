@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -13,17 +14,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ServiceForm">
+        <activity android:name=".LaundryLicencePic">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".insideOurProjectCompany">
-
-        </activity>
+        <activity android:name=".ServiceForm"></activity>
+        <activity android:name=".insideOurProjectCompany"></activity>
         <activity android:name=".SendCodeVerificationCompany" />
         <activity android:name=".RegisterAsCompany" />
         <activity android:name=".sendCodeVrification" />

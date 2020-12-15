@@ -53,7 +53,7 @@ public class Customer {
         return phoneNumber;
     }
 
-    public String getPassword() {
+    public  String getPassword() {
         return password;
     }
 

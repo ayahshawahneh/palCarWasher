@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class ServiceForm extends AppCompatActivity {
-FloatingActionButton button;
+    FloatingActionButton button;
     ImageView imageView2 ;
     DatabaseReference databaseReference;
     @Override
@@ -107,11 +107,11 @@ FloatingActionButton button;
                         android.R.layout.simple_spinner_item, arrayList);
                 spinner1.setAdapter(arrayAdapter);
                 spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                   @Override
-                   public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                       String tutorialsName = parent.getItemAtPosition(position).toString();
-                       ArrayList<String> arrayList2 = new ArrayList<>();
-                       Spinner spinner2 = myView.findViewById(R.id.spinnerService);
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        String tutorialsName = parent.getItemAtPosition(position).toString();
+                        ArrayList<String> arrayList2 = new ArrayList<>();
+                        Spinner spinner2 = myView.findViewById(R.id.spinnerService);
 
                           /*if(tutorialsName=="Buss(5-pass)") {
                            arrayList2.add("Internal washing and polishing");
@@ -186,13 +186,13 @@ FloatingActionButton button;
                            spinner2.setAdapter(arrayAdapter2);*/
 
 
-                   }
+                    }
 
-                   @Override
-                   public void onNothingSelected(AdapterView<?> parent) {
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
 
-                   }
-               });
+                    }
+                });
 
 
 
