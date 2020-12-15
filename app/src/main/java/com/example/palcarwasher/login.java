@@ -51,6 +51,7 @@ public class login extends AppCompatActivity {
         Password = (EditText)findViewById(R.id.et_password);
 
 
+
         RegAsCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -29,6 +29,7 @@ public class LaundryLicencePic extends AppCompatActivity {
        //implementation 'com.google.firebase:firebase-storage:19.2.0'
       //implementation 'com.google.firebase:firebase-core:16.0.4'
 
+        
 
         //go to gallary to select picture
         UploadPic=(Button)findViewById(R.id.UploadPic);
@@ -39,7 +40,7 @@ public class LaundryLicencePic extends AppCompatActivity {
                 Intent ImageIntent = new Intent(Intent.ACTION_PICK);
                 ImageIntent.setType("image/*");
                 startActivityForResult(ImageIntent, 3);
-                
+
 
             }
         });

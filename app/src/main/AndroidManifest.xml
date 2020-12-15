@@ -21,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".ServiceForm"></activity>
         <activity android:name=".insideOurProjectCompany"></activity>
         <activity android:name=".SendCodeVerificationCompany" />

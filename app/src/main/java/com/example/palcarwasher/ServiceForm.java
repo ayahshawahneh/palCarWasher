@@ -175,6 +175,7 @@ public class ServiceForm extends AppCompatActivity {
                            }
 
 
+
                            else if (tutorialsName == "Motor Cycle") {
                                arrayList2.add("Internal and external washing and polishing");
                                arrayList2.add("Change wheels");
