@@ -26,14 +26,14 @@ public class LaundryLicencePic extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laundry_licence_pic);
-       //implementation 'com.google.firebase:firebase-storage:19.2.0'
-      //implementation 'com.google.firebase:firebase-core:16.0.4'
+        //implementation 'com.google.firebase:firebase-storage:19.2.0'
+        //implementation 'com.google.firebase:firebase-core:16.0.4'
 
-        
+
 
         //go to gallary to select picture
         UploadPic=(Button)findViewById(R.id.UploadPic);
-       mStorage = FirebaseStorage.getInstance().getReference();// the root
+        mStorage = FirebaseStorage.getInstance().getReference();// the root
         UploadPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
