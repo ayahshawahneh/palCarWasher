@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +17,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class ServiceForm extends AppCompatActivity {
-    FloatingActionButton button;
+  /*  FloatingActionButton button;
     ImageView imageView2 ;
     DatabaseReference databaseReference;
     EditText price;
@@ -36,6 +40,8 @@ public class ServiceForm extends AppCompatActivity {
     String vehicleSize;
     String service;
     Button add;
+    Button cancel;
+    TableLayout table;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +50,9 @@ public class ServiceForm extends AppCompatActivity {
 
 
 
-
-        imageView2 = findViewById(R.id.imageView2);
 /*
+        imageView2 = findViewById(R.id.imageView2);
+
         databaseReference = FirebaseDatabase.getInstance().getReference()
                 .child("PalCarWasher").child("Services");
       String vehicleId = databaseReference.push().getKey();
@@ -75,7 +81,7 @@ public class ServiceForm extends AppCompatActivity {
 
 
         Services vehicleType7 = new Services(vehicleId, "Change oil");
-        databaseReference.push().setValue(vehicleType7);*/
+        databaseReference.push().setValue(vehicleType7);
 
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +90,75 @@ public class ServiceForm extends AppCompatActivity {
                 final AlertDialog.Builder alertBuilder = new AlertDialog.Builder((Context) ServiceForm.this,R.style.my_dialog);
                 LayoutInflater myinflater = getLayoutInflater();
                 final View myView = myinflater.inflate(R.layout.alert_dialog_assign_services, null);
+
+                alertBuilder.setCancelable(true);
+
+                alertBuilder.setPositiveButton(
+                        "ADD",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+
+
+
+
+                                price=findViewById(R.id.price);
+                                description=findViewById(R.id.description);
+                                table=(TableLayout)findViewById(R.id.tableId);
+                                String servicePrice=price.getText().toString();
+                                String serviceDescription=description.getText().toString();
+
+                                table.setStretchAllColumns(true);
+                                table.bringToFront();
+
+                                TableRow tr =  new TableRow(ServiceForm.this);
+
+                                TextView c1 = new TextView(ServiceForm.this);
+                                c1.setText(vehicleSize);
+
+                                TextView c2 = new TextView(ServiceForm.this);
+                                c2.setText(service);
+
+                                TextView c3 = new TextView(ServiceForm.this);
+                                c3.setText(servicePrice);
+
+                                TextView c4 = new TextView(ServiceForm.this);
+                                c4.setText(serviceDescription);
+
+                                tr.addView(c1);
+                                tr.addView(c2);
+                                tr.addView(c3);
+                                tr.addView(c4);
+                                //  tr.addView(c4);
+                                table.addView(tr);
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            }
+                        });
+
+                alertBuilder.setNegativeButton(
+                        "CANCEL",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+
+
+
+
 
                 Spinner spinner1 = myView.findViewById(R.id.spinnerVehicle);
                 final ArrayList<String> arrayList = new ArrayList<>();
@@ -165,19 +240,16 @@ public class ServiceForm extends AppCompatActivity {
 
 
                 ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<String>(ServiceForm.this,
-                        android.R.layout.simple_spinner_dropdown_item, arrayList2);
+                        android.R.layout.simple_spinner_item, arrayList2);
                 //simple_spinner_dropdown_item
-                spinner1.setAdapter(arrayAdapter2);
-                spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                spinner2.setAdapter(arrayAdapter2);
+                spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         String selectedService = parent.getItemAtPosition(position).toString();
                         setService(selectedService);
 
-                        /*Intent intent = new Intent(ServiceForm.this, SendServicesToFirebase.class);
-                        intent.putExtra("selectedVehicleSize", selectedVehicleSize);
-                        startActivity(intent);
-                       */
+
                     }
 
                     @Override
@@ -187,7 +259,42 @@ public class ServiceForm extends AppCompatActivity {
                 });
 
 
+                /*add= myView.findViewById(R.id.addButton);
+                add.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        price=findViewById(R.id.price);
+                        description=findViewById(R.id.description);
+                        table=(TableLayout)findViewById(R.id.tableId);
+                        String servicePrice=price.getText().toString();
+                        String serviceDescription=description.getText().toString();
 
+                        table.setStretchAllColumns(true);
+                        table.bringToFront();
+
+                        TableRow tr =  new TableRow(ServiceForm.this);
+
+                        TextView c1 = new TextView(ServiceForm.this);
+                        c1.setText(vehicleSize);
+
+                        TextView c2 = new TextView(ServiceForm.this);
+                        c2.setText(service);
+
+                        TextView c3 = new TextView(ServiceForm.this);
+                        c3.setText(servicePrice);
+
+                        TextView c4 = new TextView(ServiceForm.this);
+                        c4.setText(serviceDescription);
+
+                        tr.addView(c1);
+                        tr.addView(c2);
+                        tr.addView(c3);
+                        tr.addView(c4);
+                        //  tr.addView(c4);
+                        table.addView(tr);
+
+                    }
+                });
 
 
 
@@ -203,18 +310,15 @@ public class ServiceForm extends AppCompatActivity {
 
 
 
-        price=findViewById(R.id.price);
-        description=findViewById(R.id.description);
-
-        String servicePrice=price.getText().toString();
-        String serviceDescription=description.getText().toString();
 
 
 
-       add=findViewById(R.id.addButton);
 
 
 
+
+
+*/
 
 
 
@@ -224,7 +328,7 @@ public class ServiceForm extends AppCompatActivity {
 
 
 
-
+/*
 void setVehicleSize(String selectedVehicleSize){
 
         vehicleSize=selectedVehicleSize;
@@ -239,17 +343,45 @@ void setVehicleSize(String selectedVehicleSize){
 
 
 
-    void onClickAddButton(){
+
+    public void onClickAddButton(View view) {
+
+        //vehicleSize=selectedVehicleSize;
+        //service=selectedService;
+        price=findViewById(R.id.price);
+        description=findViewById(R.id.description);
+        table=(TableLayout)findViewById(R.id.tableId);
+        String servicePrice=price.getText().toString();
+        String serviceDescription=description.getText().toString();
+
+        table.setStretchAllColumns(true);
+        table.bringToFront();
+
+        TableRow tr =  new TableRow(this);
+
+        TextView c1 = new TextView(this);
+        c1.setText(vehicleSize);
+
+        TextView c2 = new TextView(this);
+        c2.setText(service);
+
+        TextView c3 = new TextView(this);
+        c3.setText(servicePrice);
+
+        TextView c4 = new TextView(this);
+        c4.setText(serviceDescription);
+
+        tr.addView(c1);
+        tr.addView(c2);
+        tr.addView(c3);
+        tr.addView(c4);
+        //  tr.addView(c4);
+        table.addView(tr);
 
 
 
 
-    }
-
-
-
-
-
+    }*/
 
 
 }

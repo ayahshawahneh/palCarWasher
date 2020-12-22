@@ -51,6 +51,8 @@
     <string name="service_type">Service Type</string>
     <string name="price">Price</string>
     <string name="discription">Discription</string>
+    <string name="add_new_service">Add New Service</string>
+    <string name="confirm_and_submit">Confirm and Submit</string>
 
 
 </resources>

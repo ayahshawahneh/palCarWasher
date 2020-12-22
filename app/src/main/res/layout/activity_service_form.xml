@@ -36,16 +36,13 @@
                 />
 
 
-
-
-
             <TableLayout
+                android:id="@+id/tableId"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:stretchColumns="*"
 
-                >
+                android:stretchColumns="*">
 
 
                 <TableRow
@@ -111,20 +108,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="25dp"
-                        app:srcCompat="@android:drawable/ic_input_add"
-                         />
+                        app:srcCompat="@android:drawable/ic_input_add" />
 
 
                 </TableRow>
 
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                </TableRow>
-
+                
 
             </TableLayout>
 
