@@ -1,0 +1,250 @@
+Index: app/src/main/java/com/example/palcarwasher/ServiceForm.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.palcarwasher;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AlertDialog;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.app.FragmentManager;\r\nimport android.content.Context;\r\nimport android.os.Bundle;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.widget.AdapterView;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.Button;\r\nimport android.widget.ImageView;\r\nimport android.widget.Spinner;\r\n\r\nimport com.google.android.material.floatingactionbutton.FloatingActionButton;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.Query;\r\nimport com.google.firebase.database.ValueEventListener;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class ServiceForm extends AppCompatActivity {\r\n    FloatingActionButton button;\r\n    ImageView imageView2 ;\r\n    DatabaseReference databaseReference;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_service_form);\r\n\r\n        imageView2 = findViewById(R.id.imageView2);\r\n/*\r\n        databaseReference = FirebaseDatabase.getInstance().getReference()\r\n                .child(\"PalCarWasher\").child(\"VehicleType\");\r\n      String vehicleId = databaseReference.push().getKey();\r\n      VehicleType vehicleType1 = new VehicleType(vehicleId,\"Truck\",\"Internal washing and polishing\");\r\n       databaseReference.push().setValue(vehicleType1);\r\n\r\n        VehicleType vehicleType2 = new VehicleType(vehicleId,\"Truck\",\"External Washing and polishing\");\r\n        databaseReference.push().setValue(vehicleType2);\r\n\r\n        VehicleType vehicleType3 = new VehicleType(vehicleId,\"Truck\",\"Internal and external washing and polishing\");\r\n        databaseReference.push().setValue(vehicleType3);\r\n\r\n        VehicleType vehicleType5 = new VehicleType(vehicleId,\"Truck\",\"Change wheels\");\r\n        databaseReference.push().setValue(vehicleType5);\r\n\r\n        VehicleType vehicleType4 = new VehicleType(vehicleId,\"Motor Cycle\",\"Internal and external washing and polishing\");\r\n        databaseReference.push().setValue(vehicleType4);\r\n\r\n\r\n        VehicleType vehicleType6 = new VehicleType(vehicleId,\"Motor Cycle\",\"Change wheels\");\r\n        databaseReference.push().setValue(vehicleType4);*/\r\n\r\n\r\n        imageView2.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n\r\n                final AlertDialog.Builder alertBuilder = new AlertDialog.Builder((Context) ServiceForm.this);\r\n                LayoutInflater myinflater = getLayoutInflater();\r\n                final View myView = myinflater.inflate(R.layout.alert_dialog_assign_services, null);\r\n\r\n                Spinner spinner1 = myView.findViewById(R.id.spinnerVehicle);\r\n                Spinner spinner2 = myView.findViewById(R.id.spinnerService);\r\n                final ArrayList<String> arrayList = new ArrayList<>();\r\n\r\n\r\n                DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child(\"PalCarWasher\")\r\n                        .child(\"VehicleType\");\r\n                Query query=reference.orderByChild(\"size\");\r\n                query.addListenerForSingleValueEvent(new ValueEventListener() {\r\n                    @Override\r\n                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {\r\n                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {\r\n                            String vehicleType = snapshot.getValue(VehicleType.class).getSize();\r\n                            arrayList.add(vehicleType);\r\n\r\n                        }\r\n\r\n\r\n                    }\r\n\r\n                    @Override\r\n                    public void onCancelled(@NonNull DatabaseError error) {\r\n\r\n                    }\r\n                });\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ServiceForm.this,\r\n                        android.R.layout.simple_spinner_item, arrayList);\r\n                spinner1.setAdapter(arrayAdapter);\r\n                spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {\r\n                    @Override\r\n                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {\r\n                        String tutorialsName = parent.getItemAtPosition(position).toString();\r\n                        ArrayList<String> arrayList2 = new ArrayList<>();\r\n                        Spinner spinner2 = myView.findViewById(R.id.spinnerService);\r\n\r\n                          /*if(tutorialsName==\"Buss(5-pass)\") {\r\n                           arrayList2.add(\"Internal washing and polishing\");\r\n                           arrayList2.add(\"External Washing and polishing\");\r\n                           arrayList2.add(\"Internal and external washing and polishing\");\r\n                           arrayList2.add(\"internal washing and polishing with chairs\");\r\n                           arrayList2.add(\"Change wheels\");\r\n                       }\r\n\r\n public void getVehicleType(){\r\n\r\n\r\n        FirebaseDatabase.getInstance().getReference().child(\"PalCarWasher\")\r\n                .child(\"VehicleType\").addListenerForSingleValueEvent(new ValueEventListener() {\r\n            @Override\r\n            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {\r\n                for(DataSnapshot snapshot:dataSnapshot.getChildren()){\r\n                    String vehicleType=snapshot.getValue(VehicleType.class).getSize();\r\n                }\r\n            }\r\n\r\n            @Override\r\n            public void onCancelled(@NonNull DatabaseError error) {\r\n\r\n            }\r\n        });\r\n\r\n\r\n\r\n    }\r\n\r\n\r\n                      else  if (tutorialsName == \"Car(7-pass)\") {\r\n                               arrayList2.add(\"Internal washing and polishing\");\r\n                               arrayList2.add(\"External Washing and polishing\");\r\n                               arrayList2.add(\"Internal and external washing and polishing\");\r\n                               arrayList2.add(\"internal washing and polishing with chairs\");\r\n                               arrayList2.add(\"Change wheels\");\r\n\r\n                       }\r\n\r\n                     else if (tutorialsName == \"Car(20-pass)\") {\r\n                               arrayList2.add(\"Internal washing and polishing\");\r\n                               arrayList2.add(\"External Washing and polishing\");\r\n                               arrayList2.add(\"Internal and external washing and polishing\");\r\n                               arrayList2.add(\"internal washing and polishing with chairs\");\r\n                               arrayList2.add(\"Change wheels\");\r\n\r\n                           }\r\n\r\n\r\n\r\n\r\n                         else  if (tutorialsName == \"Truck\") {\r\n                               arrayList2.add(\"Internal washing and polishing\");\r\n                               arrayList2.add(\"External Washing and polishing\");\r\n                               arrayList2.add(\"Internal and external washing and polishing\");\r\n                               arrayList2.add(\"internal washing and polishing with chairs\");\r\n                               arrayList2.add(\"Change wheels\");\r\n\r\n                           }\r\n\r\n\r\n\r\n                           else if (tutorialsName == \"Motor Cycle\") {\r\n                               arrayList2.add(\"Internal and external washing and polishing\");\r\n                               arrayList2.add(\"Change wheels\");\r\n\r\n\r\n                       }\r\n                           ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<String>(ServiceForm.this,\r\n                                   android.R.layout.simple_spinner_item, arrayList2);\r\n                           spinner2.setAdapter(arrayAdapter2);*/\r\n\r\n\r\n                    }\r\n\r\n                    @Override\r\n                    public void onNothingSelected(AdapterView<?> parent) {\r\n\r\n                    }\r\n                });\r\n\r\n\r\n\r\n                alertBuilder.setView(myView);\r\n                alertBuilder.create();\r\n                alertBuilder.create().show();\r\n\r\n            }\r\n        });\r\n\r\n      /*  button.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                final AlertDialog.Builder alertBuilder = new AlertDialog.Builder((Context) ServiceForm.this);\r\n                LayoutInflater myinflater = getLayoutInflater();\r\n                final View myView = myinflater.inflate(R.layout.alert_dialog_add_new_service_or_vehicle, null);\r\n                alertBuilder.setView(myView);\r\n                alertBuilder.create();\r\n                alertBuilder.create().show();\r\n\r\n            }\r\n        });*/\r\n\r\n\r\n\r\n    }\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/palcarwasher/ServiceForm.java	(revision 967e63be70fc290ef4a08a509b48c8b0476ca65f)
++++ app/src/main/java/com/example/palcarwasher/ServiceForm.java	(date 1608066247607)
+@@ -1,6 +1,5 @@
+ package com.example.palcarwasher;
+ 
+-import androidx.annotation.NonNull;
+ import androidx.appcompat.app.AlertDialog;
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+@@ -16,47 +15,42 @@
+ import android.widget.Spinner;
+ 
+ import com.google.android.material.floatingactionbutton.FloatingActionButton;
+-import com.google.firebase.database.DataSnapshot;
+-import com.google.firebase.database.DatabaseError;
+ import com.google.firebase.database.DatabaseReference;
+ import com.google.firebase.database.FirebaseDatabase;
+-import com.google.firebase.database.Query;
+-import com.google.firebase.database.ValueEventListener;
+ 
+ import java.util.ArrayList;
+ 
+ public class ServiceForm extends AppCompatActivity {
+-    FloatingActionButton button;
++FloatingActionButton button;
+     ImageView imageView2 ;
+     DatabaseReference databaseReference;
++
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_service_form);
+ 
+         imageView2 = findViewById(R.id.imageView2);
+-/*
++
+         databaseReference = FirebaseDatabase.getInstance().getReference()
+                 .child("PalCarWasher").child("VehicleType");
+       String vehicleId = databaseReference.push().getKey();
+-      VehicleType vehicleType1 = new VehicleType(vehicleId,"Truck","Internal washing and polishing");
++      VehicleType vehicleType1 = new VehicleType(vehicleId,"Car(5-pass)","Internal washing and polishing");
+        databaseReference.push().setValue(vehicleType1);
+ 
+-        VehicleType vehicleType2 = new VehicleType(vehicleId,"Truck","External Washing and polishing");
++        VehicleType vehicleType2 = new VehicleType(vehicleId,"Car(5-pass)","External Washing and polishing");
+         databaseReference.push().setValue(vehicleType2);
+ 
+-        VehicleType vehicleType3 = new VehicleType(vehicleId,"Truck","Internal and external washing and polishing");
++        VehicleType vehicleType3 = new VehicleType(vehicleId,"Car(5-pass)","Internal and external washing and polishing");
+         databaseReference.push().setValue(vehicleType3);
+ 
+-        VehicleType vehicleType5 = new VehicleType(vehicleId,"Truck","Change wheels");
+-        databaseReference.push().setValue(vehicleType5);
+ 
+-        VehicleType vehicleType4 = new VehicleType(vehicleId,"Motor Cycle","Internal and external washing and polishing");
++        VehicleType vehicleType4 = new VehicleType(vehicleId,"Car(5-pass)","internal washing and polishing with chairs");
+         databaseReference.push().setValue(vehicleType4);
+ 
++        VehicleType vehicleType5 = new VehicleType(vehicleId,"Car(5-pass)","Change wheels");
++        databaseReference.push().setValue(vehicleType5);
+ 
+-        VehicleType vehicleType6 = new VehicleType(vehicleId,"Motor Cycle","Change wheels");
+-        databaseReference.push().setValue(vehicleType4);*/
+ 
+ 
+         imageView2.setOnClickListener(new View.OnClickListener() {
+@@ -67,53 +61,32 @@
+                 LayoutInflater myinflater = getLayoutInflater();
+                 final View myView = myinflater.inflate(R.layout.alert_dialog_assign_services, null);
+ 
++
++              /*  final AlertDialog show = alertBuilder.show();
++                Button cancel = (Button)myView.findViewById(R.id.cancelButton);
++                alertBuilder.setView(cancel);
++                cancel.setOnClickListener(new View.OnClickListener() {
++                    @Override
++                    public void onClick(View v) {
++                        show.dismiss();
++                    }
++                });*/
++
+                 Spinner spinner1 = myView.findViewById(R.id.spinnerVehicle);
+                 Spinner spinner2 = myView.findViewById(R.id.spinnerService);
+-                final ArrayList<String> arrayList = new ArrayList<>();
+-
+-
+-                DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
+-                        .child("VehicleType");
+-                Query query=reference.orderByChild("size");
+-                query.addListenerForSingleValueEvent(new ValueEventListener() {
+-                    @Override
+-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+-                            String vehicleType = snapshot.getValue(VehicleType.class).getSize();
+-                            arrayList.add(vehicleType);
+-
+-                        }
+-
+-
+-                    }
+-
+-                    @Override
+-                    public void onCancelled(@NonNull DatabaseError error) {
+-
+-                    }
+-                });
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
++                ArrayList<String> arrayList = new ArrayList<>();
+ 
+                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ServiceForm.this,
+                         android.R.layout.simple_spinner_item, arrayList);
+                 spinner1.setAdapter(arrayAdapter);
+                 spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+-                    @Override
+-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+-                        String tutorialsName = parent.getItemAtPosition(position).toString();
+-                        ArrayList<String> arrayList2 = new ArrayList<>();
+-                        Spinner spinner2 = myView.findViewById(R.id.spinnerService);
++                   @Override
++                   public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
++                       String tutorialsName = parent.getItemAtPosition(position).toString();
++                       ArrayList<String> arrayList2 = new ArrayList<>();
++                       Spinner spinner2 = myView.findViewById(R.id.spinnerService);
+ 
+-                          /*if(tutorialsName=="Buss(5-pass)") {
++                       if(tutorialsName=="Buss(5-pass)") {
+                            arrayList2.add("Internal washing and polishing");
+                            arrayList2.add("External Washing and polishing");
+                            arrayList2.add("Internal and external washing and polishing");
+@@ -121,30 +94,9 @@
+                            arrayList2.add("Change wheels");
+                        }
+ 
+- public void getVehicleType(){
+-
+-
+-        FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
+-                .child("VehicleType").addListenerForSingleValueEvent(new ValueEventListener() {
+-            @Override
+-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+-                for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+-                    String vehicleType=snapshot.getValue(VehicleType.class).getSize();
+-                }
+-            }
+-
+-            @Override
+-            public void onCancelled(@NonNull DatabaseError error) {
+ 
+-            }
+-        });
+ 
+-
+-
+-    }
+-
+-
+-                      else  if (tutorialsName == "Car(7-pass)") {
++                       /*  else  if (tutorialsName == "Car(7-pass)") {
+                                arrayList2.add("Internal washing and polishing");
+                                arrayList2.add("External Washing and polishing");
+                                arrayList2.add("Internal and external washing and polishing");
+@@ -175,25 +127,24 @@
+                            }
+ 
+ 
+-
+                            else if (tutorialsName == "Motor Cycle") {
+                                arrayList2.add("Internal and external washing and polishing");
+                                arrayList2.add("Change wheels");
+ 
+ 
+-                       }
++                       }*/
+                            ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<String>(ServiceForm.this,
+                                    android.R.layout.simple_spinner_item, arrayList2);
+-                           spinner2.setAdapter(arrayAdapter2);*/
++                           spinner2.setAdapter(arrayAdapter2);
+ 
+ 
+-                    }
++                   }
+ 
+-                    @Override
+-                    public void onNothingSelected(AdapterView<?> parent) {
++                   @Override
++                   public void onNothingSelected(AdapterView<?> parent) {
+ 
+-                    }
+-                });
++                   }
++               });
+ 
+ 
+ 
+@@ -222,13 +173,4 @@
+     }
+ 
+ 
+-
+-
+-
+-
+-
+-
+-
+-
+-
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/palcarwasher/LaundryLicencePic.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.palcarwasher;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.net.Uri;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageView;\r\nimport android.widget.Toast;\r\n\r\nimport com.google.android.gms.tasks.OnSuccessListener;\r\nimport com.google.firebase.storage.FirebaseStorage;\r\nimport com.google.firebase.storage.StorageReference;\r\nimport com.google.firebase.storage.UploadTask;\r\n\r\nimport java.util.Calendar;\r\n\r\npublic class LaundryLicencePic extends AppCompatActivity {\r\n    private Button UploadPic;\r\n    StorageReference mStorage=null  ;\r\n    private ImageView imageView;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_laundry_licence_pic);\r\n       //implementation 'com.google.firebase:firebase-storage:19.2.0'\r\n      //implementation 'com.google.firebase:firebase-core:16.0.4'\r\n\r\n        \r\n\r\n        //go to gallary to select picture\r\n        UploadPic=(Button)findViewById(R.id.UploadPic);\r\n       mStorage = FirebaseStorage.getInstance().getReference();// the root\r\n        UploadPic.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Intent ImageIntent = new Intent(Intent.ACTION_PICK);\r\n                ImageIntent.setType(\"image/*\");\r\n                startActivityForResult(ImageIntent, 3);\r\n\r\n\r\n            }\r\n        });\r\n\r\n    }\r\n\r\n    //select picture\r\n    @Override\r\n    public void onActivityResult(int requestCode,int resultCode,Intent data){\r\n        super.onActivityResult(requestCode,resultCode,data);\r\n        if (requestCode==3 && resultCode==RESULT_OK){\r\n            final Uri uriImage = data.getData();\r\n\r\n            StorageReference filePath =  mStorage.child(Calendar.getInstance().getTime().toString());//the name of the child\r\n            if (uriImage!=null) {\r\n                filePath.putFile(uriImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {\r\n                    @Override\r\n                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {\r\n                        Toast.makeText(getApplicationContext(),\"upload image done\", Toast.LENGTH_LONG).show();\r\n                        imageView = (ImageView)findViewById(R.id.imageView3);\r\n                        imageView.setImageURI(uriImage);\r\n\r\n                    }\r\n                });\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/palcarwasher/LaundryLicencePic.java	(revision 967e63be70fc290ef4a08a509b48c8b0476ca65f)
++++ app/src/main/java/com/example/palcarwasher/LaundryLicencePic.java	(date 1608053151005)
+@@ -29,7 +29,6 @@
+        //implementation 'com.google.firebase:firebase-storage:19.2.0'
+       //implementation 'com.google.firebase:firebase-core:16.0.4'
+ 
+-        
+ 
+         //go to gallary to select picture
+         UploadPic=(Button)findViewById(R.id.UploadPic);
+@@ -41,7 +40,6 @@
+                 ImageIntent.setType("image/*");
+                 startActivityForResult(ImageIntent, 3);
+ 
+-
+             }
+         });
+ 

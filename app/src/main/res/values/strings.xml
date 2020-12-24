@@ -67,5 +67,7 @@
     <string name="monday">Monday</string>
     <string name="wednesday">Wednesday</string>
 
+    <string name="map_key" translatable="false">AIzaSyA6PuOAmal2_WM4IWo8Ekj8_PtXOUdC19o</string>
+
 
 </resources>
