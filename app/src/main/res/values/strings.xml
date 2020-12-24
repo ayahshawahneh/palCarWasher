@@ -50,9 +50,22 @@
     <string name="vehicle_size">Vehicle Size</string>
     <string name="service_type">Service Type</string>
     <string name="price">Price</string>
-    <string name="discription">Discription</string>
     <string name="add_new_service">Add New Service</string>
     <string name="confirm_and_submit">Confirm and Submit</string>
+    <string name="working_hours_per_day">Working Hours Per Day</string>
+    <string name="open">Open:</string>
+    <string name="saterday">Saturday</string>
+    <string name="_8_00_am">8:00 AM</string>
+    <string name="_6_00_pm">6:00 PM</string>
+    <string name="close">Close:</string>
+    <string name="select_the_days_you_work_and_then_the_working_time_for_each_day">Select the days you work and then the working time for each day :</string>
+    <string name="add_part_time"><u>Add part time</u></string>
+    <string name="sunday">Sunday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="monday">Monday</string>
+    <string name="wednesday">Wednesday</string>
 
 
 </resources>

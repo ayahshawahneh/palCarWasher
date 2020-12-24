@@ -14,21 +14,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+
+
         <activity android:name=".SendServicesToFirebase" />
-        <activity android:name=".LaundryLicencePic" />
-        <activity android:name=".ServiceForm"/>
-
-
-            <activity android:name=".FormOfTheServices" >
+        <activity android:name=".WorkingHoursPerDay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
+        <activity android:name=".LaundryLicencePic" />
+        <activity android:name=".FormOfTheServices"/>
         <activity android:name=".insideOurProjectCompany" />
         <activity android:name=".SendCodeVerificationCompany" />
         <activity android:name=".RegisterAsCompany" />
@@ -37,6 +34,7 @@
         <activity android:name=".register" />
         <activity android:name=".login" />
         <activity android:name=".MainActivity" />
+
 
         <meta-data
             android:name="preloaded_fonts"
