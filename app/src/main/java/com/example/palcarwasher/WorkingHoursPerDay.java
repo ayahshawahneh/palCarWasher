@@ -15,7 +15,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class WorkingHoursPerDay extends AppCompatActivity {
     CheckBox satBox;
@@ -182,9 +185,9 @@ public class WorkingHoursPerDay extends AppCompatActivity {
                 if ( isChecked )
                 {
 
-
+                    //satFlag=true;
                     satTable.setVisibility(View.VISIBLE);
-                    satFlag=true;
+
 
 
                 }
@@ -193,7 +196,7 @@ public class WorkingHoursPerDay extends AppCompatActivity {
 
 
                     satTable.setVisibility(View.GONE);
-                    satFlag=false;
+
 
             }
         });
@@ -672,9 +675,6 @@ public class WorkingHoursPerDay extends AppCompatActivity {
 
 
 
-        fieldValidation(satFlag,satOpen,satClose,satPartFlag,satPartOpen,satPartClose);
-
-
 
 
 
@@ -685,28 +685,169 @@ public class WorkingHoursPerDay extends AppCompatActivity {
     }
 
 
+    public void ocClickAndSubmit(View view) {
+
+        if(satTable.getVisibility()==View.VISIBLE)
+            satFlag=true;
+
+        else if(satTable.getVisibility()==View.GONE)
+            satFlag=false;
+
+        if(satPartTimeRow.getVisibility()==View.VISIBLE)
+            satPartFlag=true;
+
+        else if(satPartTimeRow.getVisibility()==View.GONE)
+            satPartFlag=false;
+
+        if(sunTable.getVisibility()==View.VISIBLE)
+            sunFlag=true;
+
+        else if(sunTable.getVisibility()==View.GONE)
+            sunFlag=false;
+
+        if(sunPartTimeRow.getVisibility()==View.VISIBLE)
+            sunPartFlag=true;
+
+        else if(sunPartTimeRow.getVisibility()==View.GONE)
+            sunPartFlag=false;
+
+
+        if(monTable.getVisibility()==View.VISIBLE)
+            monFlag=true;
+
+        else if(monTable.getVisibility()==View.GONE)
+            monFlag=false;
+
+        if(monPartTimeRow.getVisibility()==View.VISIBLE)
+            monPartFlag=true;
+
+        else if(monPartTimeRow.getVisibility()==View.GONE)
+            monPartFlag=false;
 
 
 
- void  fieldValidation(boolean flag,EditText open, EditText close,boolean flagPart, EditText openpart, EditText closepart){
 
+        if(tusTable.getVisibility()==View.VISIBLE)
+            tusFlag=true;
+
+        else if(tusTable.getVisibility()==View.GONE)
+            tusFlag=false;
+
+        if(tusPartTimeRow.getVisibility()==View.VISIBLE)
+            tusPartFlag=true;
+
+        else if(tusPartTimeRow.getVisibility()==View.GONE)
+            tusPartFlag=false;
+
+
+        if(wedTable.getVisibility()==View.VISIBLE)
+            wedFlag=true;
+
+        else if(wedTable.getVisibility()==View.GONE)
+            wedFlag=false;
+
+        if(wedPartTimeRow.getVisibility()==View.VISIBLE)
+            wedPartFlag=true;
+
+        else if(wedPartTimeRow.getVisibility()==View.GONE)
+            wedPartFlag=false;
+
+
+
+
+        if(thuTable.getVisibility()==View.VISIBLE)
+            thuFlag=true;
+
+        else if(thuTable.getVisibility()==View.GONE)
+            thuFlag=false;
+
+        if(thuPartTimeRow.getVisibility()==View.VISIBLE)
+            thuPartFlag=true;
+
+        else if(thuPartTimeRow.getVisibility()==View.GONE)
+            thuPartFlag=false;
+
+
+
+
+        if(friTable.getVisibility()==View.VISIBLE)
+            friFlag=true;
+
+        else if(friTable.getVisibility()==View.GONE)
+            friFlag=false;
+
+        if(friPartTimeRow.getVisibility()==View.VISIBLE)
+            friPartFlag=true;
+
+        else if(friPartTimeRow.getVisibility()==View.GONE)
+            friPartFlag=false;
+
+
+
+
+
+
+boolean d1,d2,d3,d4,d5,d6,d7;
+
+
+
+
+
+        d1=fieldValidation(satFlag,satOpen,satClose,satPartFlag,satPartOpen,satPartClose);
+        d2=fieldValidation(sunFlag,sunOpen,sunClose,sunPartFlag,sunPartOpen,sunPartClose);
+        d3=fieldValidation(monFlag,monOpen,monClose,monPartFlag,monPartOpen,monPartClose);
+        d4=fieldValidation(tusFlag,tusOpen,tusClose,tusPartFlag,tusPartOpen,tusPartClose);
+        d5=fieldValidation(wedFlag,wedOpen,wedClose,wedPartFlag,wedPartOpen,wedPartClose);
+        d6=fieldValidation(thuFlag,thuOpen,thuClose,thuPartFlag,thuPartOpen,thuPartClose);
+        d7=fieldValidation(friFlag,friOpen,friClose,friPartFlag,friPartOpen,friPartClose);
+
+if(d1&d2&d3&d4&d5&d6&d7==true)
+        Toast.makeText(this, "every thing is correct! ", Toast.LENGTH_LONG).show();
+
+    }
+
+
+
+
+
+
+boolean  fieldValidation(boolean flag,EditText open, EditText close,boolean flagPart, EditText openpart, EditText closepart){
+
+
+
+    String pattern = "hh:mm aa";
+    SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+    Date date1;
+    Date date2;
+    Date date11;
+    Date date22;
 
       if(flag){
-
-
-
 
           if(open.getText().toString().equals("")||close.getText().toString().equals("")){
 
               Toast.makeText(this, "Please fill the time correctly, there is missing fields!", Toast.LENGTH_LONG).show();
+         return false;
           }
 
 
 
-      //   else if(open.getText()<=close.getText()){
 
 
-       //  }
+              try {
+                   date1 = sdf.parse(open.getText().toString());
+                   date2 = sdf.parse(close.getText().toString());
+
+                  if(!date1.before(date2)) {
+                      Toast.makeText(this, " Opening time can't be in or after closing", Toast.LENGTH_LONG).show();
+
+                  return false;
+                  }
+              } catch (ParseException e){
+                  e.printStackTrace();
+              }
+
+
 
 
 
@@ -725,13 +866,44 @@ public class WorkingHoursPerDay extends AppCompatActivity {
           if(openpart.getText().toString().equals("")||closepart.getText().toString().equals("")){
 
               Toast.makeText(this, "Please fill the time correctly, there is missing fields in part time sections!", Toast.LENGTH_LONG).show();
-
+              return false;
           }
+
+
+
+
+          try {
+              date1 = sdf.parse(open.getText().toString());
+              date2 = sdf.parse(close.getText().toString());
+             date11 = sdf.parse(openpart.getText().toString());
+             date22 = sdf.parse(closepart.getText().toString());
+
+              if(!date11.before(date22)) {
+                  Toast.makeText(this, " Part time start can't be in or after the end part time", Toast.LENGTH_LONG).show();
+
+             return false;
+              }
+
+
+              if(!date11.after(date2)) {
+                  Toast.makeText(this, " Can't start part time at or before the main close time!", Toast.LENGTH_LONG).show();
+
+                return false;
+              }
+
+
+
+          } catch (ParseException e){
+              e.printStackTrace();
+          }
+
+
+
 
       }
 
 
-//return true;
+return true;
 
   }
 
@@ -765,7 +937,7 @@ public class WorkingHoursPerDay extends AppCompatActivity {
     public void showHourPicker(View v) {
        // EditText e=(EditText)v.getId();
        // View vi = getLayoutInflater().inflate(R.layout.activity_working_hours_per_day, null);
-
+        final EditText  editText = ( EditText ) v;
 
         final Calendar myCalender = Calendar.getInstance();
         int hour = myCalender.get(Calendar.HOUR_OF_DAY);
@@ -775,21 +947,44 @@ public class WorkingHoursPerDay extends AppCompatActivity {
         TimePickerDialog.OnTimeSetListener myTimeListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                if (view.isShown()) {
-                    myCalender.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                    myCalender.set(Calendar.MINUTE, minute);
-             // vi.setText( hourOfDay + ":" + minute);
+               int hour = hourOfDay;
+              int  minutes = minute;
+                String timeSet = "";
+                if (hour > 12) {
+                    hour -= 12;
+                    timeSet = "PM";
+                } else if (hour == 0) {
+                    hour += 12;
+                    timeSet = "AM";
+                } else if (hour == 12){
+                    timeSet = "PM";
+                }else{
+                    timeSet = "AM";
                 }
+
+                String min = "";
+
+                if (minutes < 10)
+                    min = "0" + minutes ;
+                else
+                    min = String.valueOf(minutes);
+
+
+
+                // Append in a StringBuilder
+                String aTime = new StringBuilder().append(hour).append(':')
+                        .append(min ).append(" ").append(timeSet).toString();
+
+                    editText.setText(aTime);
+
             }
         };
-        TimePickerDialog timePickerDialog = new TimePickerDialog(WorkingHoursPerDay.this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar, myTimeListener, hour, minute, true);
-        timePickerDialog.setTitle("Choose hour:");
+        TimePickerDialog timePickerDialog = new TimePickerDialog(WorkingHoursPerDay.this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar, myTimeListener, hour, minute, false);
+        timePickerDialog.setTitle("select time:");
+
         timePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         timePickerDialog.show();
     }
-
-
-
 
 
 

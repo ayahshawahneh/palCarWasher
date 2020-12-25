@@ -1515,6 +1515,7 @@
             android:background="@color/ic_launcher_background"
             android:fontFamily="@font/roboto_regular"
 
+            android:onClick="ocClickAndSubmit"
             android:padding="15dp"
             android:text="@string/confirm_and_submit"
             android:textColor="@android:color/white" />
