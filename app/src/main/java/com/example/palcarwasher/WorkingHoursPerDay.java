@@ -979,11 +979,11 @@ return true;
 
             }
         };
-        TimePickerDialog timePickerDialog = new TimePickerDialog(WorkingHoursPerDay.this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar, myTimeListener, hour, minute, false);
-        timePickerDialog.setTitle("select time:");
-
-        timePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        timePickerDialog.show();
+        TimePickerDialog timePickerDialog = new TimePickerDialog(WorkingHoursPerDay.this,R.style.DatePickerTheme, myTimeListener, hour, minute, false);
+        timePickerDialog.setTitle("Select Time:");
+        //timePickerDialog.getWindow().set;
+         timePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+         timePickerDialog.show();
     }
 
 
