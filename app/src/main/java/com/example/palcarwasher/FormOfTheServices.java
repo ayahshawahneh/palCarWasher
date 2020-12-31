@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,21 +29,22 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class FormOfTheServices extends AppCompatActivity {
+
+    DatabaseReference databaseReference;
+    String   ProviderId;
+
     LinearLayout parentLinearLayout;
-   /// View rowView = null;
+
     DatabaseReference vehicleReference;
     DatabaseReference serviceReference;
-   // EditText price;
-   // EditText description;
-
 
     Spinner vehicleSpinner;
-   // String vehicleSize;
+
     ArrayList<String> vehicleList = new ArrayList<String>();
     ArrayAdapter<String> vehicleArrayAdapter ;
 
 
-   // String service;
+
     Spinner serviceSpinner;
     ArrayList<String> serviceList = new ArrayList<>();
     ArrayAdapter<String> serviceArrayAdapter ;
@@ -49,7 +52,6 @@ public class FormOfTheServices extends AppCompatActivity {
 
     ArrayList<ServicesOfferedByServiceProviders> finalServicesList = new ArrayList<ServicesOfferedByServiceProviders>();
 
-   // ArrayList<Integer> countArray = new ArrayList<>();
 
    int count=0;
 
@@ -63,12 +65,12 @@ public class FormOfTheServices extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_of_the_services);
 
+       ProviderId=getIntent().getStringExtra("ProviderId");
 
 
+
+        ////////////////////////////////////////////////////////////////
         View mainView = getLayoutInflater().inflate(R.layout.activity_form_of_the_services, null);
-        //View parentView =new View();
-       // price=findViewById(R.id.price);
-       // description=findViewById(R.id.description);
 
         parentLinearLayout=(LinearLayout) findViewById(R.id.parent_linear_layout);
 /////////////////////////////////////
@@ -133,9 +135,6 @@ public class FormOfTheServices extends AppCompatActivity {
 
 
        onAddField(mainView);
-       //fillVehicleSpinner(mainView);
-      // fillServiceSpinner(mainView);
-
 
     }//oncreate
 
@@ -152,19 +151,10 @@ public class FormOfTheServices extends AppCompatActivity {
     public void onAddField(View v) {
         LayoutInflater inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
        View rowView=inflater.inflate(R.layout.add_new_service, null,false);
-        // Add the new row before the add field button.
 
         fillDynamicVehicleSpinner(rowView);
         fillDynamicServiceSpinner(rowView);
 
-       /* EditText price = (EditText)rowView.findViewById(R.id.price);
-        EditText description = (EditText)rowView.findViewById(R.id.description);
-        Spinner spinnerVehicle = (Spinner)rowView.findViewById(R.id.vehicleSpinner);
-        Spinner spinnerService = (Spinner)rowView.findViewById(R.id.serviceSpinner);*/
-
-       // LinearLayout addedRow=(LinearLayout)rowView.findViewById(R.id.form);
-        //addedRow.setId(count);
-        //countArray.add(count);
         count++;
       parentLinearLayout.addView(rowView, parentLinearLayout.getChildCount() - 2);
 
@@ -182,83 +172,17 @@ public class FormOfTheServices extends AppCompatActivity {
     public void onSubmit(View v) {
         if(checkIfValidAndRead()){
 
-            /*Intent intent = new Intent(MainActivity.this,ActivityCricketers.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("list",cricketersList);
-            intent.putExtras(bundle);
-            startActivity(intent);*/
+
+            sendData();
 
 
-            for(int i=0;i<finalServicesList.size();i++)
-                Log.v("DataOB",finalServicesList.get(i).getVehicleName()+" "+finalServicesList.get(i).getServiceName()+" "+finalServicesList.get(i).getPrice()+" "+finalServicesList.get(i).getDescription());
-
-
-            Toast.makeText(this, "Every thing is Correct!", Toast.LENGTH_LONG).show();
-
+            Intent intent = new Intent(getApplicationContext(),
+            WorkingHoursPerDay.class);
+            intent.putExtra("ProviderId", ProviderId);
+            startActivity(intent);
 
         }
     }
-
-
-/*
-    public void fillVehicleSpinner(View view){
-
-        vehicleSpinner = (Spinner) findViewById(R.id.vehicleSpinner);
-
-        vehicleSpinner.setAdapter(vehicleArrayAdapter);
-        vehicleArrayAdapter.notifyDataSetChanged();
-        vehicleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedVehicleSize = parent.getItemAtPosition(position).toString();
-                setVehicleSize(selectedVehicleSize);
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
-
-
-    }
-
-
-
-    public void fillServiceSpinner(View view){
-
-         serviceSpinner = (Spinner) findViewById(R.id.serviceSpinner);
-
-
-        serviceSpinner.setAdapter(serviceArrayAdapter);
-        serviceArrayAdapter.notifyDataSetChanged();
-        serviceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedService = parent.getItemAtPosition(position).toString();
-                setService(selectedService);
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
-
-
-    }*/
-
-
-
-
 
 
 
@@ -269,21 +193,6 @@ public class FormOfTheServices extends AppCompatActivity {
        vehicleSpinner.setAdapter(vehicleArrayAdapter);
         vehicleArrayAdapter.notifyDataSetChanged();
 
-
-        /*vehicleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedVehicleSize = parent.getItemAtPosition(position).toString();
-                setVehicleSize(selectedVehicleSize);
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
 
 
 
@@ -302,23 +211,6 @@ public class FormOfTheServices extends AppCompatActivity {
         serviceSpinner = v.findViewById(R.id.serviceSpinner);
         serviceSpinner.setAdapter(serviceArrayAdapter);
         serviceArrayAdapter.notifyDataSetChanged();
-       /* serviceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedService = parent.getItemAtPosition(position).toString();
-                setService(selectedService);
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
-
-
-
 
     }
 
@@ -387,6 +279,8 @@ public class FormOfTheServices extends AppCompatActivity {
 
 
                 }
+                sobsp.setProviderId(ProviderId);
+                sobsp.setDiscountOnOff(false);
                 finalServicesList.add(sobsp);
             }
 
@@ -420,9 +314,26 @@ public class FormOfTheServices extends AppCompatActivity {
 
 
 
+    void sendData() {
+
+        databaseReference = FirebaseDatabase.getInstance().getReference()
+                .child("PalCarWasher").child("ServicesOfferedByServiceProviders");
+        Intent intent = new Intent(FormOfTheServices.this, WorkingHoursPerDay.class);
+
+        for(int i=0;i<finalServicesList.size();i++){
+
+
+    String OfferId = databaseReference.push().getKey();
+     finalServicesList.get(i).setOfferId(OfferId);
+    databaseReference.push().setValue(finalServicesList.get(i));
 
 
 
+
+
+}
+
+    }
 
 
 

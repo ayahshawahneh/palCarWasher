@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -46,7 +47,7 @@ public class register extends AppCompatActivity {
     private String gender;
     private ProgressBar progressBar;
 
-
+    boolean flag=true;
 
 
     @Override
@@ -70,7 +71,8 @@ public class register extends AppCompatActivity {
         });
 
 
-
+        TextView text =(TextView) findViewById(R.id.terms);
+        text.setMovementMethod(LinkMovementMethod.getInstance());
 
 
         progressBar = findViewById(id.progressBar);
@@ -87,7 +89,7 @@ public class register extends AppCompatActivity {
         findViewById(id.btn_verfiy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                flag=true;
                 progressBar.setVisibility(View.VISIBLE);
                 String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
                 String number = PhoneNum.getText().toString().trim();
@@ -110,7 +112,7 @@ public class register extends AppCompatActivity {
 
 
 
-                boolean flag=true;
+
                 String []array = new String[]{fullName,password,number};
                 EditText []editArray =new EditText[]{FullName,Password,PhoneNum};
                 for (int i=0;i<array.length;i++){

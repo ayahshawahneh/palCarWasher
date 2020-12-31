@@ -3,6 +3,7 @@ package com.example.palcarwasher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -15,12 +16,18 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class WorkingHoursPerDay extends AppCompatActivity {
+
+    DatabaseReference databaseReference;
+
     CheckBox satBox;
     TableLayout satTable;
     TableRow satPartTimeRow;
@@ -141,8 +148,15 @@ public class WorkingHoursPerDay extends AppCompatActivity {
 
 
 
+    WorkingTimeOnSaturdy sat;
+    WorkingTimeOnSunday sun;
+    WorkingTimeOnMonday mon;
+    WorkingTimeOnTueseday tus;
+    WorkingTimeOnWednesday wed;
+    WorkingTimeOnThuresday thu;
+    WorkingTimeOnFriday fri ;
 
-
+String ProviderId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,15 +164,9 @@ public class WorkingHoursPerDay extends AppCompatActivity {
         setContentView(R.layout.activity_working_hours_per_day);
 
 
-        WorkingTimeOnSaturdy sat = new WorkingTimeOnSaturdy();
-        WorkingTimeOnSunday sun=new WorkingTimeOnSunday();
-        WorkingTimeOnMonday mon= new WorkingTimeOnMonday();
-        WorkingTimeOnTueseday tus=new WorkingTimeOnTueseday();
-        WorkingTimeOnWednesday wed =new WorkingTimeOnWednesday();
-        WorkingTimeOnThuresday thu= new WorkingTimeOnThuresday();
-        WorkingTimeOnFriday fri =new WorkingTimeOnFriday();
 
 
+         ProviderId=getIntent().getStringExtra("ProviderId");
 
 
 
@@ -210,7 +218,7 @@ public class WorkingHoursPerDay extends AppCompatActivity {
 
 
                 satPartTimeRow.setVisibility(View.VISIBLE);
-                satPartFlag=true;
+                //satPartFlag=true;
             }
         });
 
@@ -224,7 +232,7 @@ public class WorkingHoursPerDay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 satPartTimeRow.setVisibility(View.GONE);
-                satPartFlag=false;
+                //satPartFlag=false;
             }
         });
 
@@ -610,28 +618,6 @@ public class WorkingHoursPerDay extends AppCompatActivity {
 
 
 
-    /*    satOpen.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Calendar mcurrentTime = Calendar.getInstance();
-                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                int minute = mcurrentTime.get(Calendar.MINUTE);
-                TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(WorkingHoursPerDay.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        satOpen.setText( selectedHour + ":" + selectedMinute);
-                    }
-                }, hour, minute, true);//Yes 24 hour time
-                mTimePicker.setTitle("Select Time");
-                mTimePicker.show();
-
-            }
-        });*/
-
-
         sunOpen = (EditText)findViewById(R.id.sunOpen);
         sunClose =(EditText)findViewById(R.id.sunClose);
         sunPartOpen=(EditText)findViewById(R.id.sunPartOpen);
@@ -793,16 +779,56 @@ boolean d1,d2,d3,d4,d5,d6,d7;
 
 
 
-        d1=fieldValidation(satFlag,satOpen,satClose,satPartFlag,satPartOpen,satPartClose);
-        d2=fieldValidation(sunFlag,sunOpen,sunClose,sunPartFlag,sunPartOpen,sunPartClose);
-        d3=fieldValidation(monFlag,monOpen,monClose,monPartFlag,monPartOpen,monPartClose);
-        d4=fieldValidation(tusFlag,tusOpen,tusClose,tusPartFlag,tusPartOpen,tusPartClose);
-        d5=fieldValidation(wedFlag,wedOpen,wedClose,wedPartFlag,wedPartOpen,wedPartClose);
-        d6=fieldValidation(thuFlag,thuOpen,thuClose,thuPartFlag,thuPartOpen,thuPartClose);
-        d7=fieldValidation(friFlag,friOpen,friClose,friPartFlag,friPartOpen,friPartClose);
+        d1=fieldValidation("sat",satFlag,satOpen,satClose,satPartFlag,satPartOpen,satPartClose);
+        d2=fieldValidation("sun",sunFlag,sunOpen,sunClose,sunPartFlag,sunPartOpen,sunPartClose);
+        d3=fieldValidation("mon",monFlag,monOpen,monClose,monPartFlag,monPartOpen,monPartClose);
+        d4=fieldValidation("tus",tusFlag,tusOpen,tusClose,tusPartFlag,tusPartOpen,tusPartClose);
+        d5=fieldValidation("wed",wedFlag,wedOpen,wedClose,wedPartFlag,wedPartOpen,wedPartClose);
+        d6=fieldValidation("thu",thuFlag,thuOpen,thuClose,thuPartFlag,thuPartOpen,thuPartClose);
+        d7=fieldValidation("fri",friFlag,friOpen,friClose,friPartFlag,friPartOpen,friPartClose);
 
-if(d1&d2&d3&d4&d5&d6&d7==true)
-        Toast.makeText(this, "every thing is correct! ", Toast.LENGTH_LONG).show();
+if(d1&d2&d3&d4&d5&d6&d7){
+
+databaseReference = FirebaseDatabase.getInstance().getReference()
+          .child("PalCarWasher").child("WorkingTimeOnSaturdy");
+    databaseReference.push().setValue(sat);
+
+
+    databaseReference = FirebaseDatabase.getInstance().getReference()
+            .child("PalCarWasher").child("WorkingTimeOnSunday");
+    databaseReference.push().setValue(sun);
+
+
+    databaseReference = FirebaseDatabase.getInstance().getReference()
+            .child("PalCarWasher").child("WorkingTimeOnMonday");
+    databaseReference.push().setValue(mon);
+
+    databaseReference = FirebaseDatabase.getInstance().getReference()
+            .child("PalCarWasher").child("WorkingTimeOnTueseday");
+    databaseReference.push().setValue(tus);
+    databaseReference = FirebaseDatabase.getInstance().getReference()
+            .child("PalCarWasher").child("WorkingTimeOnWednesday");
+    databaseReference.push().setValue(wed);
+    databaseReference = FirebaseDatabase.getInstance().getReference()
+            .child("PalCarWasher").child("WorkingTimeOnThuresday");
+    databaseReference.push().setValue(thu);
+    databaseReference = FirebaseDatabase.getInstance().getReference()
+            .child("PalCarWasher").child("WorkingTimeOnFriday");
+    databaseReference.push().setValue(fri);
+
+
+    Intent intent = new Intent(WorkingHoursPerDay.this,SelectAddressMethod.class);
+    intent.putExtra("ProviderId", ProviderId);
+    startActivity(intent);
+
+    }
+     ///   Toast.makeText(this, "every thing is correct! ", Toast.LENGTH_LONG).show();
+
+
+
+
+
+
 
     }
 
@@ -811,7 +837,7 @@ if(d1&d2&d3&d4&d5&d6&d7==true)
 
 
 
-boolean  fieldValidation(boolean flag,EditText open, EditText close,boolean flagPart, EditText openpart, EditText closepart){
+boolean  fieldValidation(String day,boolean flag,EditText open, EditText close,boolean flagPart, EditText openpart, EditText closepart){
 
 
 
@@ -821,7 +847,7 @@ boolean  fieldValidation(boolean flag,EditText open, EditText close,boolean flag
     Date date2;
     Date date11;
     Date date22;
-
+    long difference ;
       if(flag){
 
           if(open.getText().toString().equals("")||close.getText().toString().equals("")){
@@ -843,6 +869,18 @@ boolean  fieldValidation(boolean flag,EditText open, EditText close,boolean flag
 
                   return false;
                   }
+
+
+                  difference = (date2.getTime() - date1.getTime()) / 1000;
+                  long hours = difference % (24 * 3600) / 3600; // Calculating Hours
+                  if(hours<1){
+
+                      Toast.makeText(this, " The opening time must be more than one hour", Toast.LENGTH_LONG).show();
+
+                      return false;
+                  }
+
+
               } catch (ParseException e){
                   e.printStackTrace();
               }
@@ -873,11 +911,11 @@ boolean  fieldValidation(boolean flag,EditText open, EditText close,boolean flag
 
 
           try {
+
               date1 = sdf.parse(open.getText().toString());
               date2 = sdf.parse(close.getText().toString());
-             date11 = sdf.parse(openpart.getText().toString());
-             date22 = sdf.parse(closepart.getText().toString());
-
+              date11 = sdf.parse(openpart.getText().toString());
+              date22 = sdf.parse(closepart.getText().toString());
               if(!date11.before(date22)) {
                   Toast.makeText(this, " Part time start can't be in or after the end part time", Toast.LENGTH_LONG).show();
 
@@ -893,6 +931,18 @@ boolean  fieldValidation(boolean flag,EditText open, EditText close,boolean flag
 
 
 
+              difference = (date22.getTime() - date11.getTime()) / 1000;
+              long hours = difference % (24 * 3600) / 3600; // Calculating Hours
+              if(hours<1){
+
+                  Toast.makeText(this, " The opening part time must be more than one hour", Toast.LENGTH_LONG).show();
+
+                  return false;
+              }
+
+
+
+
           } catch (ParseException e){
               e.printStackTrace();
           }
@@ -901,6 +951,54 @@ boolean  fieldValidation(boolean flag,EditText open, EditText close,boolean flag
 
 
       }
+    if(day.equals("sat")){
+
+        sat = new WorkingTimeOnSaturdy(ProviderId,open.getText().toString(), close.getText().toString(), openpart.getText().toString(),closepart.getText().toString());
+
+    }
+
+    else if(day.equals("sun")){
+
+        sun = new WorkingTimeOnSunday(ProviderId,open.getText().toString(), close.getText().toString(), openpart.getText().toString(),closepart.getText().toString());
+
+    }
+
+
+    else if(day.equals("mon")){
+
+        mon = new WorkingTimeOnMonday(ProviderId,open.getText().toString(), close.getText().toString(), openpart.getText().toString(),closepart.getText().toString());
+
+    }
+
+    else if(day.equals("tus")){
+
+        tus = new WorkingTimeOnTueseday(ProviderId,open.getText().toString(), close.getText().toString(), openpart.getText().toString(),closepart.getText().toString());
+
+    }
+
+
+
+    else if(day.equals("wed")){
+
+       wed = new WorkingTimeOnWednesday(ProviderId,open.getText().toString(), close.getText().toString(), openpart.getText().toString(),closepart.getText().toString());
+
+    }
+
+
+    else if(day.equals("thu")){
+
+        thu= new WorkingTimeOnThuresday(ProviderId,open.getText().toString(), close.getText().toString(), openpart.getText().toString(),closepart.getText().toString());
+
+    }
+
+
+    else if(day.equals("fri")){
+
+        fri = new WorkingTimeOnFriday(ProviderId,open.getText().toString(), close.getText().toString(), openpart.getText().toString(),closepart.getText().toString());
+
+    }
+
+
 
 
 return true;
@@ -914,22 +1012,6 @@ return true;
 
 
 
-  /*  public void onClick(View v) {
-        // TODO Auto-generated method stub
-        Calendar mcurrentTime = Calendar.getInstance();
-        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-        int minute = mcurrentTime.get(Calendar.MINUTE);
-        TimePickerDialog mTimePicker;
-        mTimePicker = new TimePickerDialog(AddReminder.this, new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                eReminderTime.setText( selectedHour + ":" + selectedMinute);
-            }
-        }, hour, minute, true);//Yes 24 hour time
-        mTimePicker.setTitle("Select Time");
-        mTimePicker.show();
-
-    }*/
 
 
 
@@ -943,8 +1025,17 @@ return true;
         int hour = myCalender.get(Calendar.HOUR_OF_DAY);
         int minute = myCalender.get(Calendar.MINUTE);
 
+         int TIME_PICKER_INTERVAL = 30;
 
-        TimePickerDialog.OnTimeSetListener myTimeListener = new TimePickerDialog.OnTimeSetListener() {
+
+        CustomTimePickerDialog.OnTimeSetListener myTimeListener = new TimePickerDialog.OnTimeSetListener() {
+
+
+
+
+
+
+
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                int hour = hourOfDay;
@@ -979,12 +1070,21 @@ return true;
 
             }
         };
-        TimePickerDialog timePickerDialog = new TimePickerDialog(WorkingHoursPerDay.this,R.style.DatePickerTheme, myTimeListener, hour, minute, false);
+        TimePickerDialog timePickerDialog = new CustomTimePickerDialog(WorkingHoursPerDay.this, myTimeListener, hour, minute, false);
         timePickerDialog.setTitle("Select Time:");
-        //timePickerDialog.getWindow().set;
+
          timePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
          timePickerDialog.show();
     }
+
+
+
+
+
+
+
+
+
 
 
 

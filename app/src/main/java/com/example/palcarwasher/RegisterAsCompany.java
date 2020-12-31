@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -36,6 +37,7 @@ public class RegisterAsCompany extends AppCompatActivity {
     private RadioButton Both;
     private EditText Email;
     private EditText Password;
+    private EditText Address;
     private EditText PhoneNum;
     private Spinner spinner;
     private TextView BirthdayDate;
@@ -45,12 +47,18 @@ public class RegisterAsCompany extends AppCompatActivity {
     private ProgressBar progressBar;
 
 
-
+    boolean flag=true;
+    boolean typeFlag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_as_company);
+
+        TextView text =(TextView) findViewById(R.id.termms);
+        text.setMovementMethod(LinkMovementMethod.getInstance());
+
+
 
         spinner = findViewById(R.id.spinnerCountries);
         spinner.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,
@@ -69,12 +77,12 @@ public class RegisterAsCompany extends AppCompatActivity {
 
 
 
-
         progressBar = findViewById(R.id.progressBar);
         PhoneNum = findViewById(R.id.phone_number);
         OwnerName = findViewById(R.id.et_name);
         CompanyName = findViewById(R.id.company_name);
         Email = findViewById(R.id.et_email);
+        Address=findViewById(R.id.address);
         Mobile = (RadioButton)findViewById(R.id.mobile);
         Stationary = (RadioButton)findViewById(R.id.stationary);
         Male = (RadioButton)findViewById(R.id.male);
@@ -95,7 +103,8 @@ public class RegisterAsCompany extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
 
-
+                flag=true;
+                typeFlag = true;
 
                 String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
                 String number = PhoneNum.getText().toString().trim();
@@ -104,10 +113,14 @@ public class RegisterAsCompany extends AppCompatActivity {
                 String password = Password.getText().toString();
                 String companyName = CompanyName.getText().toString();
                 String Birthdaydate = BirthdayDate.getText().toString();
+                String address = Address.getText().toString();
 
 
-                if(Mobile.isChecked())
+                if(Mobile.isChecked()){
                     companyType="mobile";
+                    typeFlag=false;
+                }
+
 
                 else if(Stationary.isChecked())
                     companyType="stationary";
@@ -115,6 +128,10 @@ public class RegisterAsCompany extends AppCompatActivity {
                     else {
                     companyType="both";
                 }
+
+
+
+
 
 
 
@@ -131,7 +148,7 @@ public class RegisterAsCompany extends AppCompatActivity {
 
 
 
-                boolean flag=true;
+
                 String []array = new String[]{companyName,ownerName,password,number};
                 EditText []editArray =new EditText[]{CompanyName,OwnerName,Password,PhoneNum};
                 for (int i=0;i<array.length;i++){
@@ -150,6 +167,17 @@ public class RegisterAsCompany extends AppCompatActivity {
                         editArray[i].requestFocus();
 
                     }
+
+
+                    if(typeFlag && address.isEmpty()){
+                        flag=false;
+                        progressBar.setVisibility(View.GONE);
+                        Address.setError("You have to fill it!");
+                        editArray[i].requestFocus();
+
+                    }
+
+
                 }
                 if(!flag) return;
 
@@ -336,7 +364,7 @@ public class RegisterAsCompany extends AppCompatActivity {
         Email = findViewById(R.id.et_email);
         Password = findViewById(R.id.et_password);
         BirthdayDate = findViewById(R.id.birthday_date);
-
+        Address=findViewById(R.id.address);
 
 
         spinner = findViewById(R.id.spinnerCountries);
@@ -351,7 +379,7 @@ public class RegisterAsCompany extends AppCompatActivity {
         String password = Password.getText().toString();
         String companyName = CompanyName.getText().toString();
         String Birthdaydate = BirthdayDate.getText().toString();
-
+        String address = Address.getText().toString();
 
         String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
         String PhoneNumber ="+" + code + number;
@@ -366,6 +394,7 @@ public class RegisterAsCompany extends AppCompatActivity {
         intent.putExtra("Birthdaydate", Birthdaydate);
         intent.putExtra("companyType", companyType);
         intent.putExtra("Gender",Gender);
+        intent.putExtra("Address", address);
         startActivity(intent);
 
     }

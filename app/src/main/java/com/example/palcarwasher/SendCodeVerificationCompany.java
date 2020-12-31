@@ -24,12 +24,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 public class SendCodeVerificationCompany extends AppCompatActivity {
-
+DatabaseReference databaseReference;
     private String verificationId;
     private FirebaseAuth mAuth;
     private EditText editText;
     private ProgressBar progressBar;
-
+     String ProviderId;
 
 
 
@@ -169,20 +169,23 @@ public class SendCodeVerificationCompany extends AppCompatActivity {
                     String Gender = getIntent().getStringExtra("Gender");
                     String companyName = getIntent().getStringExtra("companyname");
                     String companyType = getIntent().getStringExtra("companyType");
+                    String address = getIntent().getStringExtra("Address");
                     Intent intent = new Intent(getApplicationContext(),
-                            insideOurProjectCompany.class);
+                            LaundaryLicencePicture.class);
+
+
+                    databaseReference = FirebaseDatabase.getInstance().getReference()
+                            .child("PalCarWasher").child("ServiceProvider");
 
 
 
-                    intent.putExtra("phonenumber", PhoneNumber);
-                    intent.putExtra("ownername", ownerName);
-                    intent.putExtra("companyname", companyName);
-                    intent.putExtra("email", email);
-                    intent.putExtra("password", password);
-                    intent.putExtra("Birthdaydate", Birthdaydate);
-                    intent.putExtra("companyType", companyType);
-                    intent.putExtra("Gender",Gender);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    ProviderId = databaseReference.push().getKey();
+                    //(String providerId, String companyName, String companyType, String logo, String name, String email, String password, String phoneNumber, String address, String gender, String bankAccount, String workingStatus)
+                    ServiceProvider company = new ServiceProvider( ProviderId, companyName, companyType,null, ownerName, email, password, PhoneNumber,address,Gender,null,null);
+                    databaseReference.push().setValue(company);
+
+                   // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra("ProviderId", ProviderId);
                     startActivity(intent);
 
                 }else {
@@ -194,6 +197,8 @@ public class SendCodeVerificationCompany extends AppCompatActivity {
             }
         });
     }
+
+
 
 
 

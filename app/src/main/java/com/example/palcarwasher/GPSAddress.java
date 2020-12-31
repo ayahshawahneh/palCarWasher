@@ -6,9 +6,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -21,18 +23,24 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class GPSAddress extends FragmentActivity implements OnMapReadyCallback {
 
     Location currentLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
+    String latitudeX;
+    String longitudeY;
+    DatabaseReference databaseReference;
+    String ProviderId;
     private static final int REQUEST_CODE = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_g_p_s_address);
-
+        ProviderId=getIntent().getStringExtra("ProviderId");
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         fetchLastLocation();
     }
@@ -53,6 +61,9 @@ public class GPSAddress extends FragmentActivity implements OnMapReadyCallback {
                     currentLocation = location;
                     Toast.makeText(getApplicationContext(), currentLocation.getLatitude()+""+
                             currentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
+                   latitudeX=currentLocation.getLatitude()+"";
+                   longitudeY=currentLocation.getLongitude()+"";
+
                     SupportMapFragment supportMapFragment=(SupportMapFragment)getSupportFragmentManager()
                             .findFragmentById(R.id.google_map);
                     supportMapFragment.getMapAsync(GPSAddress.this);
@@ -84,7 +95,7 @@ public class GPSAddress extends FragmentActivity implements OnMapReadyCallback {
                     fetchLastLocation();
                 }
                 else {
-                    Toast.makeText(this,"This app requiers permissioon to be granted in order to work properly",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"This app required permission to be granted in order to work properly",Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 break;
@@ -92,4 +103,28 @@ public class GPSAddress extends FragmentActivity implements OnMapReadyCallback {
 
 
     }
+
+    public void onClickSaveLocation(View view){
+
+        databaseReference = FirebaseDatabase.getInstance().getReference()
+                .child("PalCarWasher").child("ProviderLocation");
+
+         Intent intent = new Intent(GPSAddress.this,UploadLogo.class);
+      //  Intent intent = new Intent(GPSAddress.this, MainActivity.class);
+
+
+
+
+            String locationId = databaseReference.push().getKey();
+             ProviderLocation pl=new ProviderLocation(locationId,ProviderId,latitudeX,longitudeY);
+            databaseReference.push().setValue(pl);
+
+
+        intent.putExtra("ProviderId", ProviderId);
+        startActivity(intent);
+
+    }
+
+
+
 }

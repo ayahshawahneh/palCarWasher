@@ -73,7 +73,7 @@ public class ServicesOfferedByServiceProviders {
         this.price = price;
     }
 
-    public boolean isDiscountOnOff() {
+    public boolean getDiscountOnOff() {
         return discountOnOff;
     }
 

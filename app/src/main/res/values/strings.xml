@@ -67,7 +67,25 @@
     <string name="monday">Monday</string>
     <string name="wednesday">Wednesday</string>
 
+
+    <string name="save_location">Save location</string>
     <string name="map_key" translatable="false">AIzaSyA6PuOAmal2_WM4IWo8Ekj8_PtXOUdC19o</string>
+    <string name="address">Address</string>
 
 
+    <string name="linktosite">By clicking on register,you will agreed to our terms and that you have read our
+         <a href="https://privacyterms.io/view/7f5WZeKN-KY2xxTrG-KXXPZA/">Terms and Conditions</a>
+    </string>
+    <string name="you_must_upload_a_picture_of_your_laundry_licence_here">You must upload a picture of your laundry licence here :</string>
+    <string name="upload_logo_for_you_company">Upload logo for you company !</string>
+    <string name="select_picture">select Picture</string>
+    <string name="next">Next</string>
+    <string name="first_name">First Name</string>
+    <string name="second_name">Second Name</string>
+    <string name="third_name">Third Name</string>
+    <string name="fourth_name">Fourth Name</string>
+    <string name="account_number">Account number</string>
+    <string name="bank_account_information">Bank Account Information:</string>
+    <string name="id_number">ID Number</string>
+    <string name="verify_your_account">Verify Your Account</string>
 </resources>
