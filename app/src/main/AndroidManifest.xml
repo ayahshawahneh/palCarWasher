@@ -21,7 +21,9 @@
         <activity android:name=".UploadLogo"/>
 
         <activity android:name=".LaundaryLicencePicture" />
-        <activity android:name=".BankAccountInformation"/> >
+        <activity android:name=".BankAccountInformation"/>
+
+
 
         <activity android:name=".SendServicesToFirebase" />
         <activity android:name=".WorkingHoursPerDay" />
@@ -29,19 +31,20 @@
         <activity android:name=".insideOurProjectCompany" />
         <activity android:name=".SendCodeVerificationCompany" />
         <activity android:name=".RegisterAsCompany" />
+
         <activity android:name=".sendCodeVrification" />
         <activity android:name=".insideOurProject" />
         <activity android:name=".register" />
-        <activity android:name=".login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".login"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
+
+        <activity android:name=".MainActivity" >  <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
-
-
-        <activity android:name=".MainActivity" />
         <activity android:name=".BeforGPS" />
         <activity android:name=".GPSAddress" />
         <activity android:name=".ManuallyAddress" />

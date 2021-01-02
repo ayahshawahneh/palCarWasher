@@ -76,7 +76,7 @@ verify.setOnClickListener(new View.OnClickListener() {
         accountNumber=AccountNumber.getText().toString();
         idNumber=IdNumber.getText().toString();
         bankName =SpinnerBankName.getSelectedItem().toString();
-
+        Error.setVisibility(View.GONE);
 
 
         String []array = new String[]{firstName,secondName,thirdName,fourthName,accountNumber,idNumber,bankName};
@@ -86,8 +86,9 @@ verify.setOnClickListener(new View.OnClickListener() {
             if(array[i].equals(bankName)&&SpinnerBankName.getSelectedItem().equals("Bank Name")){
 
                     flag=false;
-                    editArray[i].setError("You have to to choose bank name!");
-                    editArray[i].requestFocus();
+                editArray[i].setVisibility(View.VISIBLE);
+                editArray[i].setError("You have to to choose bank name!");
+                editArray[i].requestFocus();
 
 
             }
@@ -101,11 +102,11 @@ verify.setOnClickListener(new View.OnClickListener() {
             }
 
 
-            if(!flag) return;
-            else
-                sendDataAndNext();
-        }
 
+        }
+        if(!flag) return;
+        else
+            sendDataAndNext();
     }
 });
 

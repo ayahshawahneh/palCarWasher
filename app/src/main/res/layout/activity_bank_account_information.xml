@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-    <LinearLayout
+<LinearLayout
 
-        android:orientation="vertical"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".BankAccountInformation">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context=".BankAccountInformation">
 
 
     <TextView
@@ -25,20 +26,21 @@
         android:textColor="#009688"
         android:textSize="30sp"
         android:textStyle="bold" />
-        <EditText
-            android:id="@+id/first_name"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:autofillHints=""
-            android:background="@drawable/et_custom"
-            android:fontFamily="@font/roboto_regular"
-            android:hint="@string/first_name"
-            android:inputType="text"
-            android:padding="15dp"
-            android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/first_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:autofillHints=""
+        android:background="@drawable/et_custom"
+        android:fontFamily="@font/roboto_regular"
+        android:hint="@string/first_name"
+        android:inputType="text"
+        android:padding="15dp"
+        android:textSize="15sp" />
 
 
     <EditText
@@ -55,7 +57,6 @@
         android:inputType="text"
         android:padding="15dp"
         android:textSize="15sp" />
-
 
 
     <EditText
@@ -112,20 +113,16 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
-        android:padding="15dp"
-        android:fontFamily="@font/roboto_regular"
-
         android:autofillHints=""
         android:background="@drawable/et_custom"
 
+        android:fontFamily="@font/roboto_regular"
         android:hint="@string/id_number"
+
         android:inputType="number"
+        android:padding="15dp"
 
         android:textSize="15sp" />
-
-
-
-
 
 
     <TableRow
@@ -134,23 +131,28 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp">
+
         <Spinner
             android:id="@+id/spinnerBankName"
             android:layout_width="match_parent"
             android:layout_height="50dp"
 
-            android:padding="15dp"
+            android:layout_weight="1"
             android:fontFamily="@font/roboto_regular"
 
 
-            />
+            android:padding="15dp" />
 
         <EditText
             android:id="@+id/error"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#FFFFFF"
+            android:enabled="false"
             android:focusable="false"
-            android:focusableInTouchMode="false"/>
+            android:focusableInTouchMode="false"
+            android:visibility="gone" />
     </TableRow>
 
     <Button
@@ -158,14 +160,14 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
-        android:text="@string/verify_your_account"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/btn_custom"
         android:fontFamily="@font/roboto_regular"
+        android:text="@string/verify_your_account"
 
         android:textColor="@android:color/white" />
-    </LinearLayout>
+</LinearLayout>
 
 
 

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +32,7 @@ public class RegisterAsCompany extends AppCompatActivity {
 
     private EditText CompanyName;
     private EditText OwnerName;
-    private String companyType;
+
     private RadioButton Mobile;
     private RadioButton Stationary;
     private RadioButton Both;
@@ -45,8 +46,8 @@ public class RegisterAsCompany extends AppCompatActivity {
     private RadioButton Female;
     private String Gender;
     private ProgressBar progressBar;
-
-
+    EditText Error;
+    String companyType;
     boolean flag=true;
     boolean typeFlag = true;
 
@@ -91,8 +92,8 @@ public class RegisterAsCompany extends AppCompatActivity {
         BirthdayDate = findViewById(R.id.birthday_date);
         Male = (RadioButton)findViewById(R.id.male);
         Female = (RadioButton)findViewById(R.id.female);
-
-
+        Error=findViewById(R.id.error);
+        companyType=null;
 
         setDatePicker(BirthdayDate);
 
@@ -100,7 +101,7 @@ public class RegisterAsCompany extends AppCompatActivity {
         findViewById(R.id.btn_verfiy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Error.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
 
                 flag=true;
@@ -125,7 +126,7 @@ public class RegisterAsCompany extends AppCompatActivity {
                 else if(Stationary.isChecked())
                     companyType="stationary";
 
-                    else {
+                    else if(Both.isChecked()){
                     companyType="both";
                 }
 
@@ -160,11 +161,12 @@ public class RegisterAsCompany extends AppCompatActivity {
                         editArray[i].requestFocus();
 
                     }
-                    if(companyType.isEmpty()) {
+                    if(!Mobile.isChecked()&&!Stationary.isChecked()&&!Both.isChecked()) {
                         flag=false;
                         progressBar.setVisibility(View.GONE);
-                        Both.setError("You have to fill it!");
-                        editArray[i].requestFocus();
+                      //  Error.setVisibility(View.VISIBLE);
+                        Both.setError("You have to choose one!");
+                        Both.requestFocus();
 
                     }
 
@@ -179,7 +181,7 @@ public class RegisterAsCompany extends AppCompatActivity {
 
 
                 }
-                if(!flag) return;
+
 
 
 
@@ -215,7 +217,7 @@ public class RegisterAsCompany extends AppCompatActivity {
                     return;
 
                 }
-
+                if(!flag) return;
 
                 String PhoneNumber ="+" + code + number;
 
@@ -223,6 +225,7 @@ public class RegisterAsCompany extends AppCompatActivity {
 
 
             }
+
         });
 
 
