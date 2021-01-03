@@ -49,6 +49,7 @@
     <string name="currency_type">Currency Type</string>
     <string name="vehicle_size">Vehicle Size</string>
     <string name="service_type">Service Type</string>
+    <string name="company_type">Company Type</string>
     <string name="price">Price</string>
     <string name="add_new_service">Add New Service</string>
     <string name="confirm_and_submit">Confirm and Submit</string>

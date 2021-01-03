@@ -1,35 +1,25 @@
 package com.example.palcarwasher;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ActivityOptions;
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Toast;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class WalletActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_wallet);
 
 
-        BottomNavigationView bottomNav = (BottomNavigationView)findViewById(R.id.bottom_navigation);
-        bottomNav.setSelectedItemId(R.id.nav_home);
-        startActivity(new Intent(getApplicationContext(), ActivityHome.class));
-        overridePendingTransition(0,0);
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setSelectedItemId(R.id.nav_wallet);
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -37,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
 
                     case R.id.nav_home:
-                        startActivity(new Intent(getApplicationContext(), ActivityHome.class));
+                        startActivity(new Intent(getApplicationContext(),ActivityHome.class));
                         overridePendingTransition(0,0);
                         return true;
 
@@ -50,8 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     case R.id.nav_wallet:
-                        startActivity(new Intent(getApplicationContext(),WalletActivity.class));
-                        overridePendingTransition(0,0);
+
                         return true;
 
 
@@ -69,12 +58,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
-
-
-
-
-
 }
