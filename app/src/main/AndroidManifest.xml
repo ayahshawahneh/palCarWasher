@@ -18,7 +18,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ServiceDetailsActivity"></activity>
+        <activity android:name=".CompanyDetailsActivity" />
+        <activity android:name=".TestActivityHome">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".WalletActivity" />
         <activity android:name=".OrdersActivity" />
         <activity android:name=".ActivityHome" />
@@ -35,13 +44,7 @@
         <activity android:name=".insideOurProject" />
         <activity android:name=".register" />
         <activity android:name=".login" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".BeforGPS" />
         <activity android:name=".GPSAddress" />
         <activity android:name=".ManuallyAddress" />

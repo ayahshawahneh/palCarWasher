@@ -12,7 +12,7 @@
     <string name="register">Register</string>
     <string name="re_type_password">Re-type Password</string>
     <string name="your_name">Full Name</string>
-    <string name="phone_number">Phone Number</string>
+
     <string name="register_as_customer">Register as customer</string>
     <string name="register_as_company">Register as company</string>
     <string name="did_you_forget_your_password">Did you forget your password?</string>
@@ -28,7 +28,7 @@
     <string name="tap_here_to_edit_your_phone_number">Tap here to edit your phon number</string>
     <string name="pal_car_washer" />
     <string name="pal_car_washer_logo">PAL CAR WASHER</string>
-    <string name="company_name">Company Name</string>
+
     <string name="owner_name">Owner Name</string>
     <string name="stationary">Stationary</string>
     <string name="mobile">Mobile</string>
@@ -71,7 +71,6 @@
 
     <string name="save_location">Save location</string>
     <string name="map_key" translatable="false">AIzaSyA6PuOAmal2_WM4IWo8Ekj8_PtXOUdC19o</string>
-    <string name="address">Address</string>
 
 
     <string name="linktosite">By clicking on register,you will agreed to our terms and that you have read our
@@ -93,4 +92,9 @@
     <string name="orders">Orders</string>
     <string name="wallet">Wallet</string>
     <string name="profile">Profile</string>
+    <string name="company_logo">company Logo</string>
+    <string name="company_name">Company Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="address">Address</string>
+    <string name="company_owner">Company Owner</string>
 </resources>

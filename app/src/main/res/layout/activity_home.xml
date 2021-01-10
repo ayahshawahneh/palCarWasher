@@ -4,62 +4,75 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".ActivityHome">
 
-<LinearLayout
-
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-   >
-
-
-
-
-
-    <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp">
-
-
-        <Spinner
-            android:id="@+id/compTypeSpinner"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:prompt="@string/company_type"
-            android:spinnerMode="dialog"
-            android:layout_weight="0"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="15dp"
-
-            />
-
-
-        <Spinner
-            android:id="@+id/vehicleSpinner"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:prompt="@string/vehicle_type"
-            android:spinnerMode="dialog"
-            android:layout_weight="0"
-            android:layout_marginEnd="15dp"
-            />
-
-
-
-
-
-
-
-    </TableRow>
 
     <ScrollView
 
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation">
+
+
+
+        <LinearLayout
+            android:id="@+id/parent_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+
+            <Spinner
+                android:id="@+id/compTypeSpinner"
+                android:layout_width="180dp"
+                android:layout_height="50dp"
+                android:prompt="@string/company_type"
+                android:spinnerMode="dialog"
+                android:layout_weight="0"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="15dp"
+
+                />
+
+
+            <Spinner
+                android:id="@+id/vehicleSpinner"
+                android:layout_width="180dp"
+                android:layout_height="50dp"
+                android:prompt="@string/vehicle_type"
+                android:spinnerMode="dialog"
+                android:layout_weight="0"
+                android:layout_marginEnd="15dp"
+                />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:id="@+id/providers_adapter"
+
+                />
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:id="@+id/sobsp_adapter"
+
+                />
+
+        </TableRow>
 
 
 
@@ -67,12 +80,22 @@
 
 
 
+
+
+
+
+        </LinearLayout>
 
     </ScrollView>
 
 
 
-</LinearLayout>
+
+
+
+
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

@@ -74,7 +74,7 @@ public class FormOfTheServices extends AppCompatActivity {
 
         parentLinearLayout=(LinearLayout) findViewById(R.id.parent_linear_layout);
 /////////////////////////////////////
-        vehicleList.add("Vehicle Size");
+ vehicleList.add("Vehicle Size");
         vehicleReference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
                 .child("VehicleType");
         Query query=vehicleReference.orderByChild("size");
