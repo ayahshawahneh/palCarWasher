@@ -1,27 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+
+    <ImageView
+        android:id="@+id/button2"
+        android:layout_width="257dp"
+        android:layout_height="133dp"
+        android:layout_gravity="center"
+
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/ic_launcher_foreground" />
 
     <TextView
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="-1dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="0dp"
         android:fontFamily="@font/spicy_rice"
+        android:gravity="center"
         android:text="@string/app_name"
         android:textAlignment="center"
-        android:textSize="50sp" />
+        android:textColor="@color/progressBarColor"
+        android:textSize="45sp" />
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="331dp"
+        android:layout_height="wrap_content"
 
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/dekko"
+        android:text="@string/login"
+        android:textAlignment="textStart"
+        android:textSize="38sp"
+        android:textStyle="bold"
+
+        />
     <EditText
         android:id="@+id/phone_number"
         android:layout_width="match_parent"
@@ -32,7 +54,7 @@
         android:padding="15dp"
         android:inputType="phone"
         android:fontFamily="@font/roboto_regular"
-        android:layout_above="@id/et_password"
+
         android:background="@drawable/et_custom"
         android:textSize="15sp"
         android:autofillHints="" />
@@ -48,7 +70,7 @@
         android:padding="15dp"
         android:fontFamily="@font/roboto_regular"
         android:inputType="textPassword"
-        android:layout_centerInParent="true"
+
         android:background="@drawable/et_custom"
         android:textSize="15sp"
         android:autofillHints="" />
@@ -57,8 +79,7 @@
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_password"
-        android:layout_centerHorizontal="true"
+
         android:layout_marginLeft="20dp"
         android:layout_marginTop="14dp"
         android:layout_marginRight="20dp"
@@ -72,37 +93,43 @@
         android:layout_width="229dp"
         android:layout_height="44dp"
 
-        android:layout_below="@+id/btn_login"
-        android:layout_alignParentStart="true"
+
         android:layout_marginStart="34dp"
         android:layout_marginTop="24dp"
 
-        android:layout_marginBottom="95dp"
+        android:layout_marginBottom="30dp"
         android:fontFamily="@font/roboto_regular"
         android:text="@string/did_you_forget_your_password"
         android:textSize="15sp"
         android:visibility="visible" />
+    <TextView
+        android:id="@+id/have_account"
+        android:layout_width="342dp"
+        android:layout_height="wrap_content"
 
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:fontFamily="@font/roboto_regular"
+        android:padding="15dp"
+        android:text="@string/you_don_t_have_an_account"
+        android:textSize="15sp" />
     <TableRow
 
         android:id="@+id/table_row"
-        android:layout_width="wrap_content"
-        android:layout_height="71dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
 
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="33dp"
-        android:weightSum="2">
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center">
 
 
         <Button
             android:id="@+id/reg_as_customer"
-            android:layout_width="0dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
             android:layout_weight="1"
@@ -112,7 +139,7 @@
 
         <Button
             android:id="@+id/reg_as_company"
-            android:layout_width="0dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#75bd93"
@@ -121,35 +148,8 @@
 
     </TableRow>
 
-    <TextView
-        android:id="@+id/have_account"
-        android:layout_width="342dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/table_row"
-        android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginBottom="6dp"
-        android:fontFamily="@font/roboto_regular"
-        android:padding="15dp"
-        android:text="@string/you_don_t_have_an_account"
-        android:textSize="15sp" />
 
-    <TextView
-        android:id="@+id/login"
-        android:layout_width="331dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/phone_number"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="12dp"
-        android:fontFamily="@font/dekko"
-        android:text="@string/login"
-        android:textAlignment="textStart"
-        android:textSize="38sp"
-        android:textStyle="bold"
 
-        />
-</RelativeLayout>
+
+</LinearLayout>
 

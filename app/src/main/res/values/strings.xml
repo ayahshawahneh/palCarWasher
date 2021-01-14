@@ -97,4 +97,10 @@
     <string name="phone_number">Phone Number</string>
     <string name="address">Address</string>
     <string name="company_owner">Company Owner</string>
+    <string name="save_modification">Save Modification</string>
+    <string name="edit_my_information">Edit My Information :</string>
+    <string name="full_name">Full Name</string>
+    <string name="birthday_date2">Birthday Date :</string>
+    <string name="click_to_back">Click To Back</string>
+    <string name="full_name2">Full Name:</string>
 </resources>

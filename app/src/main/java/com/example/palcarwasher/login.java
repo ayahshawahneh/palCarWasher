@@ -3,7 +3,9 @@ package com.example.palcarwasher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -26,11 +28,37 @@ public class login extends AppCompatActivity {
     private EditText PhoneNumber;
     private EditText Password;
 
-
+    SharedPreferences sharedpreferences;
+    int autoSave;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+       /* //////////////////////
+
+       sharedpreferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        int j = sharedpreferences.getInt("key", 0);
+
+        //Default is 0 so autologin is disabled
+       if(j > 0){
+
+            Intent activity = new Intent(getApplicationContext(), ActivityHome.class);
+            startActivity(activity);
+        }
+
+
+
+        *//////////////////
+
+
+
+
+
+
+
+
 
         //welcome logo:
         LayoutInflater myinflater = getLayoutInflater();
@@ -121,7 +149,15 @@ public class login extends AppCompatActivity {
                         //Toast.makeText(getApplicationContext(),customer.getPassword(),Toast.LENGTH_LONG).show();
                         if(Password.getText().toString().equals(customer.getPassword())){
                             Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(login.this,insideOurProject.class);
+                           /////////////
+                            autoSave = 1;
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+                            editor.putInt("key", autoSave);
+                            editor.apply();
+                            //////////////////////////
+                            Intent intent = new Intent(login.this,ActivityHome.class);
+                            String customerId=customer.getCustomerId();
+                            intent.putExtra("customerId",customerId.toString());//new
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                         }

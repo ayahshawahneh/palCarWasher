@@ -17,20 +17,21 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ServiceDetailsActivity"></activity>
-        <activity android:name=".CompanyDetailsActivity" />
-        <activity android:name=".TestActivityHome">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        android:theme="@style/AppTheme">
+        <activity android:name=".AppRate"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
+        <activity android:name=".EditCustomerProfile" />
+        <activity android:name=".ServiceDetailsActivity" />
+        <activity android:name=".CompanyDetailsActivity" />
+        <activity android:name=".TestActivityHome" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".WalletActivity" />
         <activity android:name=".OrdersActivity" />
-        <activity android:name=".ActivityHome" />
+        <activity android:name=".ActivityHome"/>
+
+
+
         <activity android:name=".UploadLogo" />
         <activity android:name=".LaundaryLicencePicture" />
         <activity android:name=".BankAccountInformation" />
@@ -43,7 +44,13 @@
         <activity android:name=".sendCodeVrification" />
         <activity android:name=".insideOurProject" />
         <activity android:name=".register" />
-        <activity android:name=".login" />
+
+        <activity android:name=".login">   <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+    </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".BeforGPS" />
         <activity android:name=".GPSAddress" />

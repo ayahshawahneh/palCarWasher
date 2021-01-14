@@ -3,5 +3,12 @@
     <color name="colorPrimary">#5c9c87</color>
     <color name="colorPrimaryDark">#36664e</color>
     <color name="colorAccent">#75bd93</color>
-<color name="progressBarColor">#131313</color>
+    <color name="progressBarColor">#131313</color>
+    <color name="gray">#ACABA0</color>
+    <color name="darkYellow">#ECDD5C</color>
+    <color name="backg">#FF86D3C5</color>
+    <color name="white">#EBF9FBFB</color>
+    <color name="stronggreen">#FF64A867</color>
+
+
     </resources>

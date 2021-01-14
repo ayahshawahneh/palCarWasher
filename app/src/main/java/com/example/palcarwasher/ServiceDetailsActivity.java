@@ -5,14 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentValues;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -40,13 +47,17 @@ public class ServiceDetailsActivity extends AppCompatActivity {
     List<ServicesOfferedByServiceProviders> sobspList;
     SobspDetailsAdapter sobspDetailsAdapter;
     DatabaseReference databaseReference;
+   String providerId;
+    ArrayList<String> finalServicesList = new ArrayList<String>();
+    List<String> selectedid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_details);
 
 /////////////////////////////////////////////////
-        final String providerId=getIntent().getStringExtra("providerId");
+     providerId=getIntent().getStringExtra("providerId");
         String  companyName=getIntent().getStringExtra("companyName");
         String  companyType=getIntent().getStringExtra("companyType");
         String  logo=getIntent().getStringExtra("logo");
@@ -126,8 +137,14 @@ CompanyName.setText(companyName);
 
 
 
-            sobspDetailsAdapter=new SobspDetailsAdapter(sobspList);
+                sobspDetailsAdapter=new SobspDetailsAdapter(sobspList);
+                selectedid =  sobspDetailsAdapter.getSelectedSobsp();
             Sobsp_checkBox_recycler_view.setAdapter(sobspDetailsAdapter);
+
+
+
+
+
             }
 
             @Override
@@ -142,7 +159,25 @@ CompanyName.setText(companyName);
 
 
 
+Next=findViewById(R.id.next);
+Next.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(ServiceDetailsActivity.this, selectedid.get(0), Toast.LENGTH_LONG).show();
+    }
+});
+
+
+
+
 
 
     }
+
+
+
+
+
+
+
 }

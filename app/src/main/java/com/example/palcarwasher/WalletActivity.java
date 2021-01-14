@@ -10,12 +10,14 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class WalletActivity extends AppCompatActivity {
+    String customerId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wallet);
 
+        customerId=getIntent().getStringExtra("customerId");
 
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
@@ -27,13 +29,18 @@ public class WalletActivity extends AppCompatActivity {
                 switch (item.getItemId()){
 
                     case R.id.nav_home:
-                        startActivity(new Intent(getApplicationContext(),ActivityHome.class));
+
+                        Intent intent = new Intent(WalletActivity.this,ActivityHome.class);
+                        intent.putExtra("customerId",customerId.toString());//new
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
 
 
                     case R.id.nav_orders:
-                        startActivity(new Intent(getApplicationContext(), OrdersActivity.class));
+                        Intent intent1 = new Intent(WalletActivity.this,OrdersActivity.class);
+                        intent1.putExtra("customerId",customerId.toString());//new
+                        startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
 
@@ -45,7 +52,9 @@ public class WalletActivity extends AppCompatActivity {
 
 
                     case R.id.nav_profile:
-                        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                        Intent intent2 = new Intent(WalletActivity.this,ProfileActivity.class);
+                        intent2.putExtra("customerId",customerId.toString());//new
+                        startActivity(intent2);
                         overridePendingTransition(0,0);
                         return true;
 

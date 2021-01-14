@@ -11,11 +11,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class OrdersActivity extends AppCompatActivity {
 
+    String customerId;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orders);
 
+        customerId=getIntent().getStringExtra("customerId");
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setSelectedItemId(R.id.nav_orders);
@@ -26,7 +31,10 @@ public class OrdersActivity extends AppCompatActivity {
                 switch (item.getItemId()){
 
                     case R.id.nav_home:
-                        startActivity(new Intent(getApplicationContext(), ActivityHome.class));
+
+                        Intent intent = new Intent(OrdersActivity.this,ActivityHome.class);
+                        intent.putExtra("customerId",customerId.toString());//new
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
 
@@ -38,13 +46,17 @@ public class OrdersActivity extends AppCompatActivity {
 
 
                     case R.id.nav_wallet:
-                        startActivity(new Intent(getApplicationContext(),WalletActivity.class));
+                        Intent intent2 = new Intent(OrdersActivity.this,WalletActivity.class);
+                        intent2.putExtra("customerId",customerId.toString());//new
+                        startActivity(intent2);
                         overridePendingTransition(0,0);
                         return true;
 
 
                     case R.id.nav_profile:
-                        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                        Intent intent1 = new Intent(OrdersActivity.this,ProfileActivity.class);
+                        intent1.putExtra("customerId",customerId.toString());//new
+                        startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
 

@@ -20,10 +20,8 @@ public class TestActivityHome extends AppCompatActivity {
 
 
     RecyclerView recyclerView;
-
     List<ServiceProvider> providerList;
     ProviderAdapter providerAdapter;
-    DatabaseReference databaseReference;
     SobspAdapter sobspAdapter;
     DatabaseReference databaseReference2;
 
@@ -51,8 +49,8 @@ public class TestActivityHome extends AppCompatActivity {
 
 
         providerList=new ArrayList<>();
-        databaseReference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServiceProvider");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference2= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServiceProvider");
+        databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds: dataSnapshot.getChildren())
@@ -81,8 +79,6 @@ public class TestActivityHome extends AppCompatActivity {
             }
         });
 
-        //Log.v("DataOB",providerList.get(2).getCompanyName());
-        //Toast.makeText(this, providerList.get(2).getCompanyName(), Toast.LENGTH_LONG).show();
-        //  Toast.makeText(this, "iam from test home activity", Toast.LENGTH_LONG).show();
+
     }
 }

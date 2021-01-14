@@ -9,29 +9,19 @@
     tools:context=".ActivityHome">
 
 
-    <ScrollView
-
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navigation">
-
-
-
-        <LinearLayout
-            android:id="@+id/parent_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-
-
+        android:orientation="vertical">
 
 
 
         <TableRow
+            android:id="@+id/spinners_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="15dp"
+            >
 
 
             <Spinner
@@ -57,38 +47,23 @@
                 android:layout_marginEnd="15dp"
                 />
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone"
-                android:id="@+id/providers_adapter"
 
-                />
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone"
-                android:id="@+id/sobsp_adapter"
-
-                />
 
         </TableRow>
 
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+
+            >
 
 
+        </androidx.recyclerview.widget.RecyclerView>
 
 
-
-
-
-
-
-        </LinearLayout>
-
-    </ScrollView>
-
-
+    </LinearLayout>
 
 
 

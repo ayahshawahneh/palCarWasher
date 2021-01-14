@@ -2,7 +2,9 @@ package com.example.palcarwasher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
@@ -24,16 +26,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.concurrent.TimeUnit;
 
 public class sendCodeVrification extends AppCompatActivity {
-
+    DatabaseReference databaseReference;
     private String verificationId;
     private FirebaseAuth mAuth;
     private EditText editText;
     private ProgressBar progressBar;
 
+
+
    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_code_vrification);
+
+
+
 
         mAuth = FirebaseAuth.getInstance();
         mAuth.setLanguageCode("en");
@@ -156,7 +163,49 @@ public class sendCodeVrification extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            progressBar.setVisibility(View.GONE);
+
+try {
+    databaseReference = FirebaseDatabase.getInstance().getReference()
+            .child("PalCarWasher").child("Customer");
+
+    final String phonenumber = getIntent().getStringExtra("phonenumber");
+    String fullname = getIntent().getStringExtra("fullname");
+    String email = getIntent().getStringExtra("email");
+    String password = getIntent().getStringExtra("password");
+    String Birthdaydate = getIntent().getStringExtra("Birthdaydate");
+    String gender = getIntent().getStringExtra("gender");
+
+    final String CustomerId = databaseReference.push().getKey();
+  //  Toast.makeText(sendCodeVrification.this,fullname+CustomerId+"iam here"
+           // ,Toast.LENGTH_LONG).show();
+    Customer customer = new Customer(CustomerId, fullname, phonenumber, password, email, Birthdaydate, gender, null);
+    databaseReference.push().setValue(customer);
+
+
+    Intent intent = new Intent(sendCodeVrification.this, ActivityHome.class);
+    intent.putExtra("customerId", CustomerId);
+    // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    startActivity(intent);
+
+}catch (Exception exp){
+
+    Toast.makeText(sendCodeVrification.this,exp.getMessage()
+            ,Toast.LENGTH_LONG).show();
+
+}
+
+
+                        }
+
+
+
+
+
+
+
+
+
+                           /*{ progressBar.setVisibility(View.GONE);
 
                             String phonenumber = getIntent().getStringExtra("phonenumber");
                             String fullname = getIntent().getStringExtra("fullname");
@@ -166,7 +215,7 @@ public class sendCodeVrification extends AppCompatActivity {
                             String gender = getIntent().getStringExtra("gender");
 
                             Intent intent = new Intent(getApplicationContext(),
-                                    insideOurProject.class);
+                                   ActivityHome.class);
                             //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             intent.putExtra("phonenumber", phonenumber);
                             intent.putExtra("fullname", fullname);
@@ -177,7 +226,8 @@ public class sendCodeVrification extends AppCompatActivity {
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 
-                        }else {
+                        }*/
+                        else {
                             Toast.makeText(sendCodeVrification.this,"incorrect code "
                                     ,Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);

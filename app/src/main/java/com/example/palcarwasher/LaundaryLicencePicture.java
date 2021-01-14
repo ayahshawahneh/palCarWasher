@@ -83,7 +83,7 @@ public class LaundaryLicencePicture extends AppCompatActivity {
         }
 
         else
-            Toast.makeText(getApplicationContext(),"You have to add laundry licence picture", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"You have to add laundry licence picture!", Toast.LENGTH_LONG).show();
     }
 
 

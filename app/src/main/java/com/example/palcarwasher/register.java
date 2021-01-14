@@ -150,9 +150,9 @@ public class register extends AppCompatActivity {
                 }
 
 
-                    String[] numberArray= number.split("");
+                   /* String[] numberArray= number.split("");
                       if(numberArray[0].equals("0"))
-                       number = number.substring(1);
+                       number = number.substring(1);*/
 
 
 
