@@ -49,7 +49,7 @@ public class RegisterAsCompany extends AppCompatActivity {
     EditText Error;
     String companyType;
     boolean flag=true;
-    boolean typeFlag = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +105,6 @@ public class RegisterAsCompany extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
                 flag=true;
-                typeFlag = true;
 
                 String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
                 String number = PhoneNum.getText().toString().trim();
@@ -116,17 +115,22 @@ public class RegisterAsCompany extends AppCompatActivity {
                 String Birthdaydate = BirthdayDate.getText().toString();
                 String address = Address.getText().toString();
 
+                boolean typeFlag=false;
 
                 if(Mobile.isChecked()){
                     companyType="mobile";
-                    typeFlag=false;
+
                 }
 
 
-                else if(Stationary.isChecked())
+                else if(Stationary.isChecked()){
+                    typeFlag=true;
                     companyType="stationary";
+                }
+
 
                     else if(Both.isChecked()){
+                    typeFlag=true;
                     companyType="both";
                 }
 
@@ -177,7 +181,7 @@ public class RegisterAsCompany extends AppCompatActivity {
                         Address.setError("You have to fill it!");
                         editArray[i].requestFocus();
 
-                    }
+                    }else  Address.setError(null);
 
 
                 }
@@ -205,18 +209,22 @@ public class RegisterAsCompany extends AppCompatActivity {
                     return;
                 }
 
-                String[] numberArray= number.split("");
-                if(numberArray[0].equals("0"))
+
+
+                if(number.length() ==10 && number.startsWith("0") )
                     number = number.substring(1);
 
 
-                if (number.length() != 9){
+
+                else if (number.length() != 9){
                     progressBar.setVisibility(View.GONE);
                     PhoneNum.setError("number must be 9 digit");
                     PhoneNum.requestFocus();
                     return;
 
                 }
+
+
                 if(!flag) return;
 
                 String PhoneNumber ="+" + code + number;

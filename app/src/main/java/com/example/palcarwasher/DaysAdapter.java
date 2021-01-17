@@ -1,5 +1,6 @@
 package com.example.palcarwasher;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysHolder> {
@@ -31,24 +33,25 @@ GridView gridView;
 List<Calendar> dayList;
 String providerId;
 
-//String start,end,partStart,partEnd;
+
 DatabaseReference reference;
 List<Date> slotTimeList=new ArrayList<Date>();
 List<String> stringSlotList=new ArrayList<String>();
+
+List<String> finalSelections=new ArrayList <String>();
+List<String> finalSelectionsDB=new ArrayList <String>();
+List<String> finalSlots=new ArrayList <String>();
 int count=0;
 int row_index;
-    public DaysAdapter(List<Calendar> dayList, String providerId) {
-        this.dayList = dayList;
-        this.providerId = providerId;
-
-    }
-
 
     public DaysAdapter( List<Calendar> dayList, String providerId,GridView gridView) {
         this.gridView = gridView;
         this.dayList = dayList;
         this.providerId = providerId;
+
+
     }
+
 
     @NonNull
     @Override
@@ -62,7 +65,9 @@ int row_index;
 
         final  Calendar dayItem = dayList.get(position);
         SimpleDateFormat dateFormat= new SimpleDateFormat("EEE dd/MM");
-        String toDate=dateFormat.format(dayItem.getTime());
+        SimpleDateFormat dateFormat2= new SimpleDateFormat("EEE dd/MM/YYYY");
+        final String toDate2=dateFormat2.format(dayItem.getTime());
+        final String toDate=dateFormat.format(dayItem.getTime());
         holder.dayButton.setText(toDate);
 
         slotTimeList.clear();
@@ -72,6 +77,8 @@ int row_index;
         String databaseChild=null;
 
         if (count==0) {
+            finalSelections.add(toDate);
+            finalSelectionsDB.add(toDate2);
           holder.dayButton.setBackgroundResource(R.color.colorAccent);
             if (dayName.equals("Friday")) {
 
@@ -125,7 +132,11 @@ count++;
                 slotTimeList.clear();
                 stringSlotList.clear();
      //////////////////////////////////
-
+                finalSelections.clear();
+                finalSelections.add(toDate);
+                finalSelectionsDB.clear();
+                finalSelectionsDB.add(toDate2);
+///////////////////
 
 
                 row_index=position;
@@ -186,10 +197,13 @@ count++;
         if(row_index==position){
             holder.dayButton.setBackgroundResource(R.color.colorAccent);
 
+
         }
         else
         {
             holder.dayButton.setBackgroundResource(R.color.gray);
+
+
 
         }
 
@@ -202,7 +216,9 @@ count++;
 
 
 
-
+    public List <String> getFinalSelections(){ return finalSelections; }
+    public List <String> getFinalSelectionsDB(){ return finalSelectionsDB; }
+    public List <String> getFinalSlots(){ return finalSlots; }
 
 
 
@@ -327,11 +343,18 @@ count++;
 
 
 
-
-
 /////////////////////////////////////////////////////////
 
 public class GridViewAdapter extends BaseAdapter {
+        int index;
+    public HashMap<Integer, Boolean> hashMapSelected;
+
+    public GridViewAdapter() {
+        hashMapSelected = new HashMap<>();
+        for (int i = 0; i < stringSlotList.size(); i++)
+            hashMapSelected.put(i, false);
+    }
+
     @Override
     public int getCount() {
         return stringSlotList.size();
@@ -349,17 +372,62 @@ public class GridViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.time_slot_button,parent,false);
-        Button timeSlotButton= view.findViewById(R.id.time_slot);
+        final Button timeSlotButton= view.findViewById(R.id.time_slot);
       //  final Date timeSlotItem=slotTimeList.get(position);
-        String slotItem = stringSlotList.get(position);
-
+        final String slotItem = stringSlotList.get(position);
+        finalSlots.add(slotItem);
         timeSlotButton.setText(slotItem);
+
+        timeSlotButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                finalSlots.clear();
+                finalSlots.add(slotItem);
+
+                makeAllUnselect(position);
+                notifyDataSetChanged();
+
+
+
+            }
+        });
+
+        if (hashMapSelected.get(position)) {
+            timeSlotButton.setBackgroundResource(R.drawable.btn_custom3);
+
+
+
+        } else {
+            timeSlotButton.setBackgroundResource(R.drawable.btn_custom2);
+
+        }
+
         return view;
     }
+
+
+    public void makeAllUnselect(int position) {
+        hashMapSelected.put(position, true);
+        for (int i = 0; i < hashMapSelected.size(); i++) {
+            if (i != position)
+                hashMapSelected.put(i, false);
+        }
+    }
+
+
+
 }
+
+
+
+
+
+
 
 /////////////////////////////////////////////
 }

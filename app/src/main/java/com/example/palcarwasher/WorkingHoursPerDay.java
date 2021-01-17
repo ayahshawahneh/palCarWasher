@@ -848,7 +848,8 @@ boolean  fieldValidation(String day,boolean flag,EditText open, EditText close,b
     Date date11;
     Date date22;
     long difference ;
-      if(flag){
+
+    if(flag){
 
           if(open.getText().toString().equals("")||close.getText().toString().equals("")){
 
@@ -871,8 +872,9 @@ boolean  fieldValidation(String day,boolean flag,EditText open, EditText close,b
                   }
 
 
-                  difference = (date2.getTime() - date1.getTime()) / 1000;
-                  long hours = difference % (24 * 3600) / 3600; // Calculating Hours
+                  difference = (date2.getTime() - date1.getTime()) ;
+                double hours =difference/(1000 * 60 * 60);
+                 // long hours = difference % (24 * 3600) / 3600; // Calculating Hours
                   if(hours<1){
 
                       Toast.makeText(this, " The opening time must be more than one hour", Toast.LENGTH_LONG).show();

@@ -18,14 +18,14 @@
     <string name="did_you_forget_your_password">Did you forget your password?</string>
     <string name="you_don_t_have_an_account">You don\'t have an account?</string>
     <string name="todo">TODO</string>
-    <string name="verfiy_your_phone">verfiy your phone</string>
+    <string name="verfiy_your_phone">verify your phone</string>
     <string name="choose_your_country">choose your country</string>
     <string name="birthday_date">Birthday Date</string>
     <string name="gender">Gender</string>
     <string name="female">Female</string>
     <string name="male">Male</string>
     <string name="enter_the_code_that_was_send">Enter the code that was sent :</string>
-    <string name="tap_here_to_edit_your_phone_number">Tap here to edit your phon number</string>
+    <string name="tap_here_to_edit_your_phone_number">Tap here to edit your phone number</string>
     <string name="pal_car_washer" />
     <string name="pal_car_washer_logo">PAL CAR WASHER</string>
 
@@ -103,4 +103,7 @@
     <string name="birthday_date2">Birthday Date :</string>
     <string name="click_to_back">Click To Back</string>
     <string name="full_name2">Full Name:</string>
+    <string name="address_optional_for_mobile_washing">Address(Optional For Mobile Washing)</string>
+    <string name="save_selection">Save Selection</string>
+    <string name="select_arrival_time">Select Arrival Time</string>
 </resources>

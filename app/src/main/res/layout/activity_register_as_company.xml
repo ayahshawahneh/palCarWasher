@@ -183,7 +183,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/et_custom"
             android:fontFamily="@font/roboto_regular"
-            android:hint="@string/address"
+            android:hint="@string/address_optional_for_mobile_washing"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:padding="15dp"

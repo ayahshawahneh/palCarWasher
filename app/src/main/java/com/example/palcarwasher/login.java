@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -27,7 +29,7 @@ public class login extends AppCompatActivity {
     private Button Login;
     private EditText PhoneNumber;
     private EditText Password;
-
+    private Spinner spinner;
     SharedPreferences sharedpreferences;
     int autoSave;
     @Override
@@ -54,8 +56,10 @@ public class login extends AppCompatActivity {
 
 
 
-
-
+        spinner = findViewById(R.id.spinnerCountries);
+        spinner.setAdapter(new ArrayAdapter<String>(this,android.R
+                .layout.simple_spinner_dropdown_item,
+                CountryData.countryNames));
 
 
 
@@ -65,7 +69,7 @@ public class login extends AppCompatActivity {
         View myView = myinflater.inflate(R.layout.palcarwasherwelcomelogo, null);
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.FILL,0,0);
-        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(myView);
         toast.show();
         //end welcome logo
@@ -102,6 +106,7 @@ public class login extends AppCompatActivity {
            public void onClick(View v) {
                String phonenum=PhoneNumber.getText().toString();
                String password=Password.getText().toString();
+               String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
                if(phonenum.isEmpty()){
                    //Toast.makeText(getApplicationContext(),"Please Enter your Phone number",Toast.LENGTH_LONG).show();
                    PhoneNumber.setError("Please Enter your Phone number");
@@ -124,8 +129,21 @@ public class login extends AppCompatActivity {
                    return;
 
                }
+
+
+
+               if(phonenum.length() ==10 &&phonenum.startsWith("0") )
+                   phonenum= phonenum.substring(1);
+
+
+               if (phonenum.length() != 9) {
+                   PhoneNumber.setError("number must be 9 digit");
+                   PhoneNumber.requestFocus();
+                   return;
+               }
+
                else {
-                   String phoneNumberr = "+" + phonenum;
+                   String phoneNumberr = "+" + code+ phonenum;
                    isexist1( phoneNumberr);
                }
            }
@@ -150,10 +168,7 @@ public class login extends AppCompatActivity {
                         if(Password.getText().toString().equals(customer.getPassword())){
                             Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_LONG).show();
                            /////////////
-                            autoSave = 1;
-                            SharedPreferences.Editor editor = sharedpreferences.edit();
-                            editor.putInt("key", autoSave);
-                            editor.apply();
+
                             //////////////////////////
                             Intent intent = new Intent(login.this,ActivityHome.class);
                             String customerId=customer.getCustomerId();

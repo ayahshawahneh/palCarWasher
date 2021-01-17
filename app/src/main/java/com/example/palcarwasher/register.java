@@ -150,13 +150,12 @@ public class register extends AppCompatActivity {
                 }
 
 
-                   /* String[] numberArray= number.split("");
-                      if(numberArray[0].equals("0"))
-                       number = number.substring(1);*/
+                if(number.length() ==10 && number.startsWith("0") )
+                    number = number.substring(1);
 
 
 
-                if (number.length() != 9){
+                else if (number.length() != 9){
                     progressBar.setVisibility(View.GONE);
                     PhoneNum.setError("number must be 9 digit");
                     PhoneNum.requestFocus();

@@ -3,7 +3,7 @@ package com.example.palcarwasher;
 public class CountryData {
     public static final String[] countryNames =
             {
-                    "+970   Palestine","+972   Israel","+962    Jordan","+961   Lebanon ",
+                    "+970   Palestine","+962    Jordan","+961   Lebanon ",
                     "+963   Syria","+966   Saudi","+20    Egypt", "+212    Morocco ",
                     "+973   Bahrain", "+964    Iraq", "Algeria  213",
                     "+216   Tunisia","+974  Qatar","+971    UAE","+968  Amman",
@@ -12,7 +12,7 @@ public class CountryData {
 
     public static final String[] countryAreaCodes =
             {
-                    "970","972","962","961","963",
+                    "970","962","961","963",
                     "966","20","212","973",
                     "964","213","216","974",
                     "971","968","965","249","252"
