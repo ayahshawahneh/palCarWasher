@@ -55,7 +55,7 @@ public class ActivityHome extends AppCompatActivity {
     DatabaseReference databaseReference2;
 
    String selectedCompanyType;
-     String selectedVehicle;
+   String selectedVehicle;
    String customerId;
 
 
@@ -64,10 +64,10 @@ public class ActivityHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-    customerId=getIntent().getStringExtra("customerId");
-        Toast.makeText(getApplicationContext(),customerId, Toast.LENGTH_LONG).show();
+    //customerId=getIntent().getStringExtra("customerId");
+       // Toast.makeText(getApplicationContext(),customerId, Toast.LENGTH_LONG).show();
 
-        //customerId="-MPQBYHkwU501cMmJC3p";
+        customerId="-MPQBYHkwU501cMmJC3p";
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setSelectedItemId(R.id.nav_home);
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -203,7 +203,7 @@ public class ActivityHome extends AppCompatActivity {
 
 
 
-                providerAdapter=new ProviderAdapter(providerList,selectedVehicle);
+                providerAdapter=new ProviderAdapter(providerList,selectedVehicle,selectedCompanyType);
                 recyclerView.setAdapter(providerAdapter);
             }
 
@@ -309,7 +309,7 @@ final  List<ServiceProvider> providerList;
 
                 ;
 
-                providerAdapter=new ProviderAdapter(providerList,selecteVehicle);
+                providerAdapter=new ProviderAdapter(providerList,selecteVehicle,selectedCompanyType);
                 recyclerView.setAdapter(providerAdapter);
             }
 

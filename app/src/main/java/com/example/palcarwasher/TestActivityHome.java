@@ -33,7 +33,7 @@ public class TestActivityHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_home);
-
+/*
         final String selectedCompanyType="stationary";
         final String selectedVehicle="Car(5-pass)";
 
@@ -79,6 +79,6 @@ public class TestActivityHome extends AppCompatActivity {
             }
         });
 
-
+*/
     }
 }

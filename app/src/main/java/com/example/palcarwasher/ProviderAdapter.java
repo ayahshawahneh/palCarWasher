@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,12 +39,15 @@ List<ServicesOfferedByServiceProviders> sobspList;
 Context context;
 int servicCount;
 final String selectedVehicle;
+final String selectedCompanyType;
+
+String ratingLevel;
 
 
-
-    public ProviderAdapter(List<ServiceProvider> providersList, String selectedVehicle) {
+    public ProviderAdapter(List<ServiceProvider> providersList, String selectedVehicle,String selectedCompanyType) {
         this.providersList = providersList;
         this.selectedVehicle = selectedVehicle;
+        this.selectedCompanyType= selectedCompanyType;
     }
 
 
@@ -65,6 +69,50 @@ final String selectedVehicle;
         final ServiceProvider providerItem=providersList.get(position);
 
         holder.companyName.setText(providerItem.getCompanyName());
+        //////////*************************************
+       DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
+                .child("Evaluation");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<String> reservedTimeSlots = new ArrayList<String>();
+                if (snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Evaluation ev = dataSnapshot.getValue(Evaluation.class);
+
+                        if (ev.getProviderId().equals(providerItem.getProviderId()) ) {
+
+                            ratingLevel=ev.getEvaluationLevel();
+                            holder.rate.setRating(Float.parseFloat(ratingLevel));
+
+
+                            }
+
+
+
+
+
+                        }
+
+                    }//if exist
+
+
+
+
+
+
+        }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
 
      ////////////////////////////////////////////////////////////////
 
@@ -105,8 +153,7 @@ final String selectedVehicle;
                 false );
 
         servicCount=0;
-        DatabaseReference databaseReference2;
-        databaseReference2= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServicesOfferedByServiceProviders");
+       DatabaseReference databaseReference2= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServicesOfferedByServiceProviders");
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -128,7 +175,7 @@ final String selectedVehicle;
                 }
 
                 layoutManager.setInitialPrefetchItemCount(sobspList.size());
-                SobspAdapter subItemAdapter = new SobspAdapter(sobspList,providerItem,selectedVehicle);
+                SobspAdapter subItemAdapter = new SobspAdapter(sobspList,providerItem,selectedVehicle,selectedCompanyType);
 
                 holder.sobspRecyclerView.setLayoutManager(layoutManager);
                 holder.sobspRecyclerView.setAdapter(subItemAdapter);
@@ -154,20 +201,19 @@ final String selectedVehicle;
     holder.companyLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-           String providerId= providerItem.getProviderId();
-           String companyNamee =providerItem.getCompanyName();
-           String companyType =providerItem.getCompanyType();
-           String logo =providerItem.getLogo();
-           String name=providerItem.getName();
-           String email= providerItem.getEmail();
-           String password=providerItem.getPassword();
-           String phoneNumber=providerItem.getPhoneNumber();
-           String address =providerItem.getAddress();
-           String gender =providerItem.getGender();
-           String bankAccount=providerItem.getBankAccount();
-           String workingStatus=providerItem.getWorkingStatus();
-
-
+                String providerId= providerItem.getProviderId();
+                String companyNamee =providerItem.getCompanyName();
+                String companyType =providerItem.getCompanyType();
+                String logo =providerItem.getLogo();
+                String name=providerItem.getName();
+                String email= providerItem.getEmail();
+                String password=providerItem.getPassword();
+                String phoneNumber=providerItem.getPhoneNumber();
+                String address =providerItem.getAddress();
+                String gender =providerItem.getGender();
+                String bankAccount=providerItem.getBankAccount();
+                String workingStatus=providerItem.getWorkingStatus();
+                String rating =holder.rate.getRating()+"";
 
                 Intent intent=new Intent(view.getContext(),CompanyDetailsActivity.class);
                 intent.putExtra("providerId", providerId);
@@ -182,14 +228,10 @@ final String selectedVehicle;
                 intent.putExtra("gender",gender);
                 intent.putExtra("bankAccount", bankAccount);
                 intent.putExtra("workingStatus", workingStatus);
+                intent.putExtra("rating", rating);
                 view.getContext().startActivity(intent);
 
 
-              /*Intent intent=new Intent(view.getContext(),CompanyDetailsActivity.class);
-                Bundle bundle=new Bundle();
-                bundle.putSerializable("key", (Serializable) providerItem);
-                intent.putExtras(bundle);
-                view.getContext().startActivity(intent);*/
             }
         });
 
@@ -210,8 +252,7 @@ final String selectedVehicle;
                 String gender =providerItem.getGender();
                 String bankAccount=providerItem.getBankAccount();
                 String workingStatus=providerItem.getWorkingStatus();
-
-
+                String rating =holder.rate.getRating()+"";
 
                 Intent intent=new Intent(view.getContext(),CompanyDetailsActivity.class);
                 intent.putExtra("providerId", providerId);
@@ -226,6 +267,7 @@ final String selectedVehicle;
                 intent.putExtra("gender",gender);
                 intent.putExtra("bankAccount", bankAccount);
                 intent.putExtra("workingStatus", workingStatus);
+                intent.putExtra("rating", rating);
                 view.getContext().startActivity(intent);
 
 
@@ -245,6 +287,13 @@ final String selectedVehicle;
     }
 
 
+
+
+
+
+
+
+
     @Override
     public int getItemCount() {
         return providersList.size();
@@ -253,12 +302,14 @@ final String selectedVehicle;
     public class providerHolder extends RecyclerView.ViewHolder{
             ImageView companyLogo;
             TextView companyName;
+            RatingBar rate;
             RecyclerView sobspRecyclerView;
 
         public providerHolder(@NonNull View itemView) {
             super(itemView);
             companyLogo=itemView.findViewById(R.id.company_logo_logo);
             companyName=itemView.findViewById(R.id.company_name_name);
+            rate=itemView.findViewById(R.id.ratingBar);
             sobspRecyclerView=itemView.findViewById(R.id.sobsp_recycler_view);
         }
     }

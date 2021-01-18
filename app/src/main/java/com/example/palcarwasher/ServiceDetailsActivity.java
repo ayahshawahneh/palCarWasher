@@ -11,6 +11,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -40,8 +42,12 @@ public class ServiceDetailsActivity extends AppCompatActivity {
     RecyclerView recyclerViewsSecond;
     ServiceProvider providerItem;
     String selectedVehicle;
+    String selectedCompanyType;
     TextView CompanyName;
     ImageView CompanyLogo;
+    TextView TotalPrice;
+    double totalPrice;
+
     RecyclerView Sobsp_checkBox_recycler_view;
     Button Next;
     List<ServicesOfferedByServiceProviders> sobspList;
@@ -50,6 +56,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
    String providerId;
     ArrayList<String> finalServicesList = new ArrayList<String>();
     List<String> selectedid;
+    Button b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +77,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         String  bankAccount=getIntent().getStringExtra("bankAccount");
         String  workingStatus=getIntent().getStringExtra("workingStatus");
         selectedVehicle=getIntent().getStringExtra("selectedVehicle");
+        selectedCompanyType=getIntent().getStringExtra("selectedCompanyType");
        providerItem =new ServiceProvider(providerId,companyName,companyType,logo,name,email,password,phoneNumber,address,gender,bankAccount,workingStatus);
 
 
@@ -80,7 +88,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
 
        CompanyName =findViewById(R.id.company_name_name);
        CompanyLogo=findViewById(R.id.company_logo_logo);
-
+        TotalPrice=findViewById(R.id.total_price);
 
 CompanyName.setText(companyName);
 
@@ -137,8 +145,9 @@ CompanyName.setText(companyName);
 
 
 
-                sobspDetailsAdapter=new SobspDetailsAdapter(sobspList);
+                sobspDetailsAdapter=new SobspDetailsAdapter(sobspList,TotalPrice);
                 selectedid =  sobspDetailsAdapter.getSelectedSobsp();
+                totalPrice=sobspDetailsAdapter.getTotalPrice();
             Sobsp_checkBox_recycler_view.setAdapter(sobspDetailsAdapter);
 
 
@@ -158,12 +167,59 @@ CompanyName.setText(companyName);
 
 
 
+        b=findViewById(R.id.select);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialogTimSlot cdd=new AlertDialogTimSlot(ServiceDetailsActivity.this,b,providerId);
+
+                cdd.show();
+                Window window = cdd.getWindow();
+                window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+            }
+        });
+
+
+
+
 
 Next=findViewById(R.id.next);
 Next.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        Toast.makeText(ServiceDetailsActivity.this, selectedid.get(0), Toast.LENGTH_LONG).show();
+
+        if(selectedid.size()==0&&b.getText().equals("Select Arrival Time"))
+            Toast.makeText(ServiceDetailsActivity.this,"You have to select service and Arrival Time!", Toast.LENGTH_LONG).show();
+
+        else  if(b.getText().equals("Select Arrival Time")){
+
+            Toast.makeText(ServiceDetailsActivity.this,"You have to select Arrival Time!", Toast.LENGTH_LONG).show();}
+        else if(selectedid.size()==0)
+                Toast.makeText(ServiceDetailsActivity.this,"You have to select Service!", Toast.LENGTH_LONG).show();
+
+
+        else{
+            Toast.makeText(ServiceDetailsActivity.this,"Successfully!", Toast.LENGTH_LONG).show();
+            //Toast.makeText(ServiceDetailsActivity.this, selectedid.get(0), Toast.LENGTH_LONG).show();
+
+
+            String selectedArrivalTime=b.getText()+"";
+
+
+            if(selectedCompanyType.equals("mobile")){
+
+                //go to find my location then payment method
+            }
+
+            else
+            {
+                //go to payment method
+            }
+
+
+        }
+
     }
 });
 

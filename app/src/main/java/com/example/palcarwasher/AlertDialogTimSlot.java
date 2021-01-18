@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,12 +32,13 @@ String FinalSelectionDB;
 List <String> finalSelections;
 List<String> finalSelectionsDB;
 List<String> finalSlots;
-
+String providerId;
     public Activity activity;
-    public AlertDialogTimSlot(Activity a,Button b ) {
+    public AlertDialogTimSlot(Activity a,Button b,String providerId ) {
         super(a);
         this.activity = a;
         this.selectArrivalTime=b;
+        this.providerId=providerId;
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ List<String> finalSlots;
 
 
 
-        String providerId="-MPq8uV089ZVlR0gDrnW";
+       // String providerId="-MPq8uV089ZVlR0gDrnW";
 
         gridView=findViewById(R.id.timeSlot_gridView);
 
@@ -84,14 +86,28 @@ List<String> finalSlots;
     public void onClick(View v) {
 
 
-if(v.getId()==R.id.save){
-   // Log.v("DataOB",finalSelection);
+if(v.getId()==R.id.save) {
+    // Log.v("DataOB",finalSelection);
+    if (finalSelections.size()==0 || finalSlots.size()==0)
+        Toast.makeText(getContext(), "You have to select arrival time!", Toast.LENGTH_LONG).show();
 
- selectArrivalTime.setText(finalSelections.get(0)+" "+finalSlots.get(0));
-    dismiss();
+    else {
+        selectArrivalTime.setText(finalSelectionsDB.get(0) + " " + finalSlots.get(0));
+        dismiss();
+    }
 }
 
 
+    }
 
+
+
+    public List<String> getAllFinalSelection(){
+
+        List<String>all=new ArrayList<String>();
+        all.add(finalSelections.get(0));
+        all.add(finalSelectionsDB.get(0));
+
+        return all;
     }
 }

@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CompanyDetailsActivity">
+    tools:context=".CompanyDetailsActivity"
+    android:background="@drawable/border4"
+    android:layout_margin="10dp">
 
 
 
@@ -16,131 +18,148 @@
             android:id="@+id/company_logo2"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-
+android:layout_marginTop="20dp"
             android:src="@drawable/ic_baseline_person_24" />
 
+    <TextView
+        android:id="@+id/company_name22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/bevan"
+        android:text="@string/company_name"
+        android:textColor="@color/design_default_color_secondary_variant"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize=".5"
+        android:layout_marginTop="10dp"
+        style="?android:attr/ratingBarStyleIndicator"
+        android:theme="@style/RatingBar"
+android:layout_gravity="center"
+
+        />
+
+
+
+
+<TableLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_gravity="center">
+
         <TextView
-            android:id="@+id/company_name22"
+
             android:layout_width="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:text="@string/company_owner"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:layout_weight="1"
 
-            android:layout_height="66dp"
+            android:textColor="@color/design_default_color_secondary_variant"
+            />
 
-            android:fontFamily="@font/aclonica"
-            android:padding="20dp"
-            android:text="@string/company_name"
-            android:layout_gravity="center"
+        <TextView
+            android:id="@+id/company_owner"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="Ayah shawahne"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:layout_marginStart="40dp"
+            android:layout_weight="1"/>
 
-            android:textSize="20sp"
+
+    </TableRow>
+
+
+
+
+
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="30dp"
+        android:layout_gravity="center">
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/phone_number"
+            android:textColor="@color/design_default_color_secondary_variant"
+            android:textSize="19sp"
             android:textStyle="bold" />
 
-
-
-
-
-
-
-        <TableRow
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/company_phone_number"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="30dp"
-            android:layout_marginTop="30dp">
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/company_owner"
-                android:textSize="19sp"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:textColor="@color/colorPrimary"
-                />
-
-            <TextView
-                android:id="@+id/company_owner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ayah shawahne"
-                android:textSize="19sp"
-                android:textStyle="bold"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"/>
+            android:text="059111111111"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:layout_marginStart="40dp"
+            android:layout_weight="1"/>
 
 
-        </TableRow>
+    </TableRow>
 
 
 
 
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="30dp"
+        android:layout_gravity="center">
 
 
-        <TableRow
-            android:layout_width="match_parent"
+        <TextView
+
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="30dp">
+            android:layout_weight="1"
+            android:text="@string/address"
+            android:textColor="@color/design_default_color_secondary_variant"
+            android:textSize="19sp"
+            android:textStyle="bold" />
 
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/phone_number"
-                android:textColor="@color/colorPrimary"
-                android:textSize="19sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/company_phone_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="05912345678"
-                android:textSize="19sp"
-                android:textStyle="bold"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"/>
-
-
-        </TableRow>
-
-
-
-
-
-        <TableRow
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/company_address"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp">
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/address"
-                android:textSize="19sp"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:textColor="@color/colorPrimary"
-                />
-
-            <TextView
-                android:id="@+id/company_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Jenin"
-                android:textSize="19sp"
-                android:textStyle="bold"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"/>
+            android:text="05912ddddddddddddddddd345678"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:layout_marginStart="40dp"
+            android:layout_weight="1"/>
 
 
-        </TableRow>
+    </TableRow>
+
+
+
+</TableLayout>
+
 
 
 

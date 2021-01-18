@@ -41,8 +41,10 @@ List<String> stringSlotList=new ArrayList<String>();
 List<String> finalSelections=new ArrayList <String>();
 List<String> finalSelectionsDB=new ArrayList <String>();
 List<String> finalSlots=new ArrayList <String>();
+//public String reservedItem;
 int count=0;
 int row_index;
+//List<String> reservedTimeSlots =new ArrayList<String>();
 
     public DaysAdapter( List<Calendar> dayList, String providerId,GridView gridView) {
         this.gridView = gridView;
@@ -78,44 +80,44 @@ int row_index;
 
         if (count==0) {
             finalSelections.add(toDate);
-            finalSelectionsDB.add(toDate2);
-          holder.dayButton.setBackgroundResource(R.color.colorAccent);
+         finalSelectionsDB.add(toDate2);
+          holder.dayButton.setBackgroundResource(R.drawable.btn_custom);
             if (dayName.equals("Friday")) {
 
                 databaseChild = "WorkingTimeOnFriday";
-                getFromDatabase(databaseChild);
+                getFromDatabase(databaseChild,toDate2);
             }
           else if (dayName.equals("Saturday")) {
                 databaseChild = "WorkingTimeOnSaturdy";
-                getFromDatabase(databaseChild);
+                getFromDatabase(databaseChild,toDate2);
             }
 
 
             else if (dayName.equals("Sunday")) {
                 databaseChild = "WorkingTimeOnSunday";
-                getFromDatabase(databaseChild);
+                getFromDatabase(databaseChild,toDate2);
             }
 
 
             else if (dayName.equals("Monday")) {
                 databaseChild = "WorkingTimeOnMonday";
-                getFromDatabase(databaseChild);
+                getFromDatabase(databaseChild,toDate2);
             }
 
 
             else if (dayName.equals("Tuesday")) {
                 databaseChild = "WorkingTimeOnTueseday";
-                getFromDatabase(databaseChild);
+                getFromDatabase(databaseChild,toDate2);
             }
 
             else if (dayName.equals("Wednesday")) {
                 databaseChild = "WorkingTimeOnWednesday";
-                getFromDatabase(databaseChild);
+                getFromDatabase(databaseChild,toDate2);
             }
 
             else  {
                 databaseChild = "WorkingTimeOnThuresday";
-                getFromDatabase(databaseChild);
+                getFromDatabase(databaseChild,toDate2);
             }
 
         }else holder.dayButton.setBackgroundResource(R.color.gray);
@@ -132,6 +134,7 @@ count++;
                 slotTimeList.clear();
                 stringSlotList.clear();
      //////////////////////////////////
+                finalSlots.clear();
                 finalSelections.clear();
                 finalSelections.add(toDate);
                 finalSelectionsDB.clear();
@@ -142,60 +145,48 @@ count++;
                 row_index=position;
                 notifyDataSetChanged();
 
+
+
+
+
                     String databaseChild=null;
                     if(dayName.equals("Friday")){
 
                         databaseChild="WorkingTimeOnFriday";
-                        getFromDatabase(databaseChild);
+                        getFromDatabase(databaseChild,toDate2);
                     }
                     else if(dayName.equals("Saturday")) {
                         databaseChild="WorkingTimeOnSaturdy";
-                        getFromDatabase(databaseChild);}
+                        getFromDatabase(databaseChild,toDate2);}
 
 
                     else if(dayName.equals("Sunday")) {
                         databaseChild="WorkingTimeOnSunday";
-                        getFromDatabase(databaseChild);}
+                        getFromDatabase(databaseChild,toDate2);}
 
 
                     else if(dayName.equals("Monday")) {
                         databaseChild="WorkingTimeOnMonday";
-                        getFromDatabase(databaseChild);}
+                        getFromDatabase(databaseChild,toDate2);}
 
 
                     else if(dayName.equals("Tuesday")){
                         databaseChild="WorkingTimeOnTueseday";
-                        getFromDatabase(databaseChild);}
+                        getFromDatabase(databaseChild,toDate2);}
 
                     else if(dayName.equals("Wednesday")) {
                         databaseChild="WorkingTimeOnWednesday";
-                        getFromDatabase(databaseChild);}
+                        getFromDatabase(databaseChild,toDate2);}
 
                     else {
                         databaseChild="WorkingTimeOnThuresday";
-                        getFromDatabase(databaseChild);}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                        getFromDatabase(databaseChild,toDate2);}
 
             }
         });
 
         if(row_index==position){
-            holder.dayButton.setBackgroundResource(R.color.colorAccent);
+            holder.dayButton.setBackgroundResource(R.drawable.btn_custom);
 
 
         }
@@ -237,10 +228,11 @@ count++;
 
    }
  //////////////////****************************************************************************
-   void getFromDatabase(String databaseChild){
+   void getFromDatabase(String databaseChild, final String fullDate){
 
+     //  final List<String> reservedTimeSlots=getReservedTimeSlots();
 
-
+     //  reservedTimeSlots.add("Sun 24/01/2021 01:00 PM-02:00 PM");
        reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
                .child(databaseChild);
 
@@ -283,9 +275,10 @@ count++;
                                while (dif < dateObj2.getTime()) {
                                    Date slot = new Date(dif);
                                    Date nextSlot =new Date( dif + 3600000);
-                                   String fullSlot = sdf.format(slot)+"-"+sdf.format(nextSlot);
+                                   if(!nextSlot.after(dateObj2))
+                                   { String fullSlot = sdf.format(slot)+"-"+sdf.format(nextSlot);
                                    stringSlotList.add(fullSlot);
-                                   slotTimeList.add(slot);
+                                   slotTimeList.add(slot);}
                                    dif += 3600000;
                                }
 
@@ -297,7 +290,11 @@ count++;
                                    long dif2 = dateObj11.getTime();
                                    while (dif2 < dateObj22.getTime()) {
                                        Date slot = new Date(dif2);
-                                       slotTimeList.add(slot);
+                                       Date nextSlot =new Date( dif2 + 3600000);
+                                       if(!nextSlot.after(dateObj22))
+                                       { String fullSlot = sdf.format(slot)+"-"+sdf.format(nextSlot);
+                                           stringSlotList.add(fullSlot);
+                                           slotTimeList.add(slot);}
                                        dif2 += 3600000;
                                    }
 
@@ -308,9 +305,22 @@ count++;
                            } catch (ParseException e) {
                                e.printStackTrace();
                            }
+getReservedTimeSlots(fullDate);
+/*if(reservedTimeSlots.size()!=0) {
+    for (int i = 0; i < stringSlotList.size(); i++) {
+        String fullTimeSlot=fullDate+" "+stringSlotList.get(i);
+        Log.v("DataOB",fullTimeSlot);
+        for (int j = 1; j < reservedTimeSlots.size(); j++) {
+            if (fullTimeSlot.equals(reservedTimeSlots.get(j)))
+                stringSlotList.remove(i);
 
 
-                           gridView.setAdapter(new GridViewAdapter() );
+
+        }
+    }
+}*/
+
+                       //    gridView.setAdapter(new GridViewAdapter() );
 
                        }
 
@@ -340,7 +350,64 @@ count++;
 
 
  /////////////////////////////***********************************************************
+//List<String>
 
+
+void getReservedTimeSlots(final String fullDate){
+
+   //reservedTimeSlots.clear();
+    reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
+            .child("Orders");
+    reference.addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            List<String> reservedTimeSlots = new ArrayList<String>();
+            if (snapshot.exists()) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Orders order = dataSnapshot.getValue(Orders.class);
+
+                    if (order.getProviderId().equals(providerId) && order.getStatus().equals("confirmed")) {
+
+
+                            for (int i = 0; i < stringSlotList.size(); i++) {
+                                String fullTimeSlot=fullDate+" "+stringSlotList.get(i);
+
+                              //  Log.v("DataOB",fullTimeSlot);
+                                if (fullTimeSlot.equals(order.getFullTime()))
+
+                                    stringSlotList.remove(i);
+
+
+
+                            }
+                      //  Log.v("DataOB",order.getFullTime());
+
+
+
+
+
+                    }// if
+
+                }
+            }
+
+
+
+            gridView.setAdapter(new GridViewAdapter() );
+
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    });
+
+
+//Log.v("DataOB",reservedTimeSlots.get(0));
+
+//return reservedTimeSlots2;
+}
 
 
 /////////////////////////////////////////////////////////
@@ -378,7 +445,7 @@ public class GridViewAdapter extends BaseAdapter {
         final Button timeSlotButton= view.findViewById(R.id.time_slot);
       //  final Date timeSlotItem=slotTimeList.get(position);
         final String slotItem = stringSlotList.get(position);
-        finalSlots.add(slotItem);
+       // finalSlots.add(slotItem);
         timeSlotButton.setText(slotItem);
 
         timeSlotButton.setOnClickListener(new View.OnClickListener() {

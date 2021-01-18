@@ -2,7 +2,7 @@ package com.example.palcarwasher;
 
 public class Evaluation {
 
-    private String orderId;
+    private String ProviderId;
     private String evaluationLevel;
     private String comment;
 
@@ -11,19 +11,19 @@ public class Evaluation {
     }
 
 
-    public Evaluation(String orderId, String evaluationLevel, String comment) {
-        this.orderId = orderId;
+    public Evaluation(String providerId, String evaluationLevel, String comment) {
+        ProviderId = providerId;
         this.evaluationLevel = evaluationLevel;
         this.comment = comment;
     }
 
 
-    public String getOrderId() {
-        return orderId;
+    public String getProviderId() {
+        return ProviderId;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
+    public void setProviderId(String providerId) {
+        ProviderId = providerId;
     }
 
     public String getEvaluationLevel() {

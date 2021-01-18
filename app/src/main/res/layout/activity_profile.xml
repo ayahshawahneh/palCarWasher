@@ -1,19 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".ProfileActivity"
-android:background="@android:color/holo_green_light">
+    <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         android:background="#edece4"
+    tools:context=".ProfileActivity"
+       >
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/profile"
-    android:textSize="30sp"
-    android:layout_centerInParent="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/editProfile"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="Edit My Profile"
+                android:background="@drawable/btn_custom"
+
+                />
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:id="@+id/appRate"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="App Rate"
+
+                android:background="@drawable/btn_custom"/>
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:id="@+id/itemLogout"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="@drawable/btn_custom"
+                android:text="Log out" />
+        </LinearLayout>
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -25,4 +61,4 @@ android:background="@android:color/holo_green_light">
         app:itemTextColor="@color/colorPrimary"
         app:menu="@menu/bottom_navigation" />
 
-</RelativeLayout>
+    </RelativeLayout>

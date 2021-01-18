@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +30,7 @@ public class CompanyDetailsActivity extends AppCompatActivity {
     TextView companyOwner;
     TextView companyPhoneNumber;
     TextView companyAddress;
-
+    RatingBar rate ;
 
 
 
@@ -60,8 +61,9 @@ public class CompanyDetailsActivity extends AppCompatActivity {
         String  gender=getIntent().getStringExtra("gender");
         String  bankAccount=getIntent().getStringExtra("bankAccount");
         String  workingStatus=getIntent().getStringExtra("workingStatus");
+        String  rating=getIntent().getStringExtra("rating");
 
-  ServiceProvider fetchProvider=new ServiceProvider(providerId,companyName,companyType,logo,name,email,password,phoneNumber,address,gender,bankAccount,workingStatus);
+ // ServiceProvider fetchProvider=new ServiceProvider(providerId,companyName,companyType,logo,name,email,password,phoneNumber,address,gender,bankAccount,workingStatus);
 
 
 
@@ -72,13 +74,13 @@ public class CompanyDetailsActivity extends AppCompatActivity {
         companyOwner=findViewById(R.id.company_owner);
         companyPhoneNumber=findViewById(R.id.company_phone_number);
         companyAddress=findViewById(R.id.company_address);
-
+        rate=findViewById(R.id.ratingBar);
 
         CompanyName.setText(companyName);
         companyOwner.setText(name);
         companyPhoneNumber.setText(phoneNumber);
         companyAddress.setText(address);
-
+        rate.setRating(Float.parseFloat(rating));
 
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();

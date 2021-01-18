@@ -51,10 +51,10 @@ public class AppRate extends AppCompatActivity {
                 RatingText.setText(" Your Rating is "+ratingBar1.getRating());
 
                 if(ratingBar1.getRating() > 3.5){
-                    Toast.makeText(getApplicationContext(), "     ^ _ ^ \n Thank You", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "     ^ _ ^\n\nThank You", Toast.LENGTH_SHORT).show();
                 }
                 else
-                    Toast.makeText(getApplicationContext(), " - _ - \n oky!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "- _ -\n\nOky !", Toast.LENGTH_SHORT).show();
 
                 RatingButton.setEnabled(false);
                 ratingBar1.setEnabled(false);

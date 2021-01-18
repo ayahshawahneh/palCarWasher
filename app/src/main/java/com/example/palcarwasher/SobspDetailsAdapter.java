@@ -23,14 +23,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SobspDetailsAdapter extends RecyclerView.Adapter<SobspDetailsAdapter.serviceDetailesHolder>{
-    List<ServicesOfferedByServiceProviders> sobspList;
-
+List<ServicesOfferedByServiceProviders> sobspList;
+TextView  TotalPrice;
 
  List<String> finalSobspList=new ArrayList<>();
 
-
-    public SobspDetailsAdapter(List<ServicesOfferedByServiceProviders> sobspList) {
+double totalPrice=0;
+    public SobspDetailsAdapter(List<ServicesOfferedByServiceProviders> sobspList,TextView  TotalPrice) {
         this.sobspList = sobspList;
+       this.TotalPrice=TotalPrice;
 
     }
 
@@ -58,8 +59,12 @@ public class SobspDetailsAdapter extends RecyclerView.Adapter<SobspDetailsAdapte
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     finalSobspList.add(offerId);
+                    totalPrice+=Double.parseDouble(sobspItem.getPrice());
+                    TotalPrice.setText(totalPrice+"");
                 }else{
                     finalSobspList.remove(offerId);
+                    totalPrice-=Double.parseDouble(sobspItem.getPrice());
+                    TotalPrice.setText(totalPrice+"");
                 }
             }
         });
@@ -80,7 +85,7 @@ public class SobspDetailsAdapter extends RecyclerView.Adapter<SobspDetailsAdapte
       return finalSobspList;
     }
 
-
+public  double getTotalPrice(){return  totalPrice;}
 
 
     public class serviceDetailesHolder extends RecyclerView.ViewHolder{

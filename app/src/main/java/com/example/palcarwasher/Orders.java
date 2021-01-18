@@ -1,35 +1,48 @@
 package com.example.palcarwasher;
 
-public class Orders {
+import java.util.List;
 
+public class Orders {
+    private String providerId;
     private String orderId;
     private String customerId;
     private String visaId;
     private String orderType;
     private String cleanAddress;
     private String paymentType;
-    private String date;
-    private String time;
+   // private String date;
+    private String fullTime;
     private String status;
     private String totalPrice;
+
+    List<String> offerIds;
 
 
 
     public Orders() {
     }
 
-
-    public Orders(String orderId, String customerId, String visaId, String orderType, String cleanAddress, String paymentType, String date, String time, String status, String totalPrice) {
+    public Orders(String providerId, String orderId, String customerId, String visaId, String orderType, String cleanAddress, String paymentType, String fullTime, String status, String totalPrice, List<String> offerIds) {
+        this.providerId = providerId;
         this.orderId = orderId;
         this.customerId = customerId;
         this.visaId = visaId;
         this.orderType = orderType;
         this.cleanAddress = cleanAddress;
         this.paymentType = paymentType;
-        this.date = date;
-        this.time = time;
+        this.fullTime = fullTime;
         this.status = status;
         this.totalPrice = totalPrice;
+        this.offerIds = offerIds;
+    }
+
+
+    public String getProviderId() {
+        return providerId;
+    }
+
+    public void setProviderId(String providerId) {
+        this.providerId = providerId;
     }
 
     public String getOrderId() {
@@ -80,20 +93,12 @@ public class Orders {
         this.paymentType = paymentType;
     }
 
-    public String getDate() {
-        return date;
+    public String getFullTime() {
+        return fullTime;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
+    public void setFullTime(String fullTime) {
+        this.fullTime = fullTime;
     }
 
     public String getStatus() {
@@ -110,5 +115,13 @@ public class Orders {
 
     public void setTotalPrice(String totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public List<String> getOfferIds() {
+        return offerIds;
+    }
+
+    public void setOfferIds(List<String> offerIds) {
+        this.offerIds = offerIds;
     }
 }

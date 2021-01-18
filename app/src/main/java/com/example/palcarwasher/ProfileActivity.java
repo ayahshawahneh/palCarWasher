@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +28,9 @@ public class ProfileActivity extends AppCompatActivity {
     Intent intentToEditCustomerProfile;
 
 
-
+    Button itemLogout;
+    Button appRate;
+    Button editProfile;
 
 
 
@@ -34,6 +38,8 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+
 
         customerId=getIntent().getStringExtra("customerId");
 
@@ -85,35 +91,80 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
 
-/////////////////////////////////////////////////////////////////////////////////////////
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("Customer");
-        Query query = reference.orderByChild("customerId").equalTo(customerId );
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
 
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Customer customer = snapshot.getValue(Customer.class);
-                        intentToEditCustomerProfile = new Intent(ProfileActivity.this, EditCustomerProfile.class);
-                        intentToEditCustomerProfile.putExtra("phonenumber", customer.getPhoneNumber());
-                        intentToEditCustomerProfile.putExtra("fullname", customer.getName());
-                        intentToEditCustomerProfile.putExtra("email", customer.getEmail());
-                        intentToEditCustomerProfile.putExtra("password",customer.getPassword() );
-                        intentToEditCustomerProfile.putExtra("Birthdaydate", customer.getBirthday());
-                        intentToEditCustomerProfile.putExtra("gender", customer.getGender());
-                        intentToEditCustomerProfile.putExtra("Id", customer.getCustomerId());
+
+        itemLogout = findViewById(R.id.itemLogout);
+        appRate = findViewById(R.id.appRate);
+        editProfile = findViewById(R.id.editProfile);
+
+
+
+////////////////////////////////////////////////////////////
+
+    editProfile.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("Customer");
+            Query query = reference.orderByChild("customerId").equalTo(customerId );
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    if (dataSnapshot.exists()) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Customer customer = snapshot.getValue(Customer.class);
+                            intentToEditCustomerProfile = new Intent(ProfileActivity.this, EditCustomerProfile.class);
+                            intentToEditCustomerProfile.putExtra("phonenumber", customer.getPhoneNumber());
+                            intentToEditCustomerProfile.putExtra("fullname", customer.getName());
+                            intentToEditCustomerProfile.putExtra("email", customer.getEmail());
+                            intentToEditCustomerProfile.putExtra("password",customer.getPassword() );
+                            intentToEditCustomerProfile.putExtra("Birthdaydate", customer.getBirthday());
+                            intentToEditCustomerProfile.putExtra("gender", customer.getGender());
+                            intentToEditCustomerProfile.putExtra("Id", customer.getCustomerId());
+                            startActivity(intentToEditCustomerProfile);
+                        }
 
                     }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
                 }
-            }
+            });
 
+
+        }
+    });
+
+////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+        appRate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this,AppRate.class);
+                startActivity(intent);
+            }
+        });
+        itemLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(ProfileActivity.this,login.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
 
@@ -123,47 +174,12 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.customer_profile_menu, menu);
-        return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id =item.getItemId();
-        if(id == R.id.itemLogout)
-        {
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(ProfileActivity.this,login.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
-        if(id == R.id.appRate){
-            Intent intent = new Intent(ProfileActivity.this,AppRate.class);
-            startActivity(intent);
 
-        }
-        if(id == R.id.editProfile){
 
-            startActivity(intentToEditCustomerProfile);
 
-        }
 
-        return true;
-    }
 
 
 

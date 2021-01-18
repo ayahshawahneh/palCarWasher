@@ -106,4 +106,10 @@
     <string name="address_optional_for_mobile_washing">Address(Optional For Mobile Washing)</string>
     <string name="save_selection">Save Selection</string>
     <string name="select_arrival_time">Select Arrival Time</string>
+    <string name="total_price">TOTAL PRICE:</string>
+    <string name="_0_0">0.0</string>
+    <string name="dolarSign">$</string>
+    <string name="how_would_you_rate_our_app_experience">How Would You Rate Our App Experience ?</string>
+    <string name="your_rating_will_appear_here">Your Rating will Appear Here</string>
+    <string name="submit">submit</string>
 </resources>
