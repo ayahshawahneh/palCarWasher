@@ -26,8 +26,8 @@ public class UploadLogo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_logo);
-        ProviderId=getIntent().getStringExtra("ProviderId");
-
+      ProviderId=getIntent().getStringExtra("ProviderId");
+//ProviderId="-MQDk-zuzZ_PA6XBf5NF";
         //go to gallary to select picture
         UploadPic=(Button)findViewById(R.id.UploadPic);
         mStorage = FirebaseStorage.getInstance().getReference();// the root

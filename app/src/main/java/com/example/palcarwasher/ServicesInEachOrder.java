@@ -1,20 +1,20 @@
 package com.example.palcarwasher;
 
+import java.util.List;
+
 public class ServicesInEachOrder {
 
     private String orderId;
-    private String offerId;
+    private List<String> offerId;
 
 
     public ServicesInEachOrder() {
     }
 
-
-    public ServicesInEachOrder(String orderId, String offerId) {
+    public ServicesInEachOrder(String orderId, List<String> offerId) {
         this.orderId = orderId;
         this.offerId = offerId;
     }
-
 
     public String getOrderId() {
         return orderId;
@@ -24,11 +24,11 @@ public class ServicesInEachOrder {
         this.orderId = orderId;
     }
 
-    public String getOfferId() {
+    public List<String> getOfferId() {
         return offerId;
     }
 
-    public void setOfferId(String offerId) {
+    public void setOfferId(List<String> offerId) {
         this.offerId = offerId;
     }
 }

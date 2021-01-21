@@ -10,11 +10,10 @@ public class Orders {
     private String orderType;
     private String cleanAddress;
     private String paymentType;
-   // private String date;
     private String fullTime;
     private String status;
     private String totalPrice;
-
+    private String vehicleSize;
     List<String> offerIds;
 
 
@@ -22,7 +21,7 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(String providerId, String orderId, String customerId, String visaId, String orderType, String cleanAddress, String paymentType, String fullTime, String status, String totalPrice, List<String> offerIds) {
+    public Orders(String providerId, String orderId, String customerId, String visaId, String orderType, String cleanAddress, String paymentType, String fullTime, String status, String totalPrice, String vehicleSize, List<String> offerIds) {
         this.providerId = providerId;
         this.orderId = orderId;
         this.customerId = customerId;
@@ -33,9 +32,9 @@ public class Orders {
         this.fullTime = fullTime;
         this.status = status;
         this.totalPrice = totalPrice;
+        this.vehicleSize = vehicleSize;
         this.offerIds = offerIds;
     }
-
 
     public String getProviderId() {
         return providerId;
@@ -123,5 +122,13 @@ public class Orders {
 
     public void setOfferIds(List<String> offerIds) {
         this.offerIds = offerIds;
+    }
+
+    public String getVehicleSize() {
+        return vehicleSize;
+    }
+
+    public void setVehicleSize(String vehicleSize) {
+        this.vehicleSize = vehicleSize;
     }
 }

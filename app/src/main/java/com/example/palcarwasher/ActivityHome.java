@@ -64,7 +64,7 @@ public class ActivityHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-    //customerId=getIntent().getStringExtra("customerId");
+  //customerId=getIntent().getStringExtra("customerId");
        // Toast.makeText(getApplicationContext(),customerId, Toast.LENGTH_LONG).show();
 
         customerId="-MPQBYHkwU501cMmJC3p";
@@ -186,7 +186,7 @@ public class ActivityHome extends AppCompatActivity {
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+providerList.clear();
                 for(DataSnapshot ds: dataSnapshot.getChildren())
                 {
 
@@ -203,7 +203,7 @@ public class ActivityHome extends AppCompatActivity {
 
 
 
-                providerAdapter=new ProviderAdapter(providerList,selectedVehicle,selectedCompanyType);
+                providerAdapter=new ProviderAdapter(providerList,selectedVehicle,selectedCompanyType,customerId);
                 recyclerView.setAdapter(providerAdapter);
             }
 
@@ -293,6 +293,7 @@ final  List<ServiceProvider> providerList;
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                providerList.clear();
                 for(DataSnapshot ds: dataSnapshot.getChildren())
                 {
 
@@ -309,7 +310,7 @@ final  List<ServiceProvider> providerList;
 
                 ;
 
-                providerAdapter=new ProviderAdapter(providerList,selecteVehicle,selectedCompanyType);
+                providerAdapter=new ProviderAdapter(providerList,selecteVehicle,selectedCompanyType,customerId);
                 recyclerView.setAdapter(providerAdapter);
             }
 

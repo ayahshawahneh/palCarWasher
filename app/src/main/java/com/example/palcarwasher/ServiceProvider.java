@@ -14,13 +14,13 @@ public class ServiceProvider {
     private String gender;
     private String bankAccount;
     private String workingStatus;
-
+    private String evaluationLevel;
 
     public ServiceProvider() {
     }
 
 
-    public ServiceProvider(String providerId, String companyName, String companyType, String logo, String name, String email, String password, String phoneNumber, String address, String gender, String bankAccount, String workingStatus) {
+    public ServiceProvider(String providerId, String companyName, String companyType, String logo, String name, String email, String password, String phoneNumber, String address, String gender, String bankAccount, String workingStatus, String evaluationLevel) {
         this.providerId = providerId;
         this.companyName = companyName;
         this.companyType = companyType;
@@ -33,7 +33,9 @@ public class ServiceProvider {
         this.gender = gender;
         this.bankAccount = bankAccount;
         this.workingStatus = workingStatus;
+        this.evaluationLevel = evaluationLevel;
     }
+
 
     public String getProviderId() {
         return providerId;
@@ -129,5 +131,13 @@ public class ServiceProvider {
 
     public void setWorkingStatus(String workingStatus) {
         this.workingStatus = workingStatus;
+    }
+
+    public String getEvaluationLevel() {
+        return evaluationLevel;
+    }
+
+    public void setEvaluationLevel(String evaluationLevel) {
+        this.evaluationLevel = evaluationLevel;
     }
 }

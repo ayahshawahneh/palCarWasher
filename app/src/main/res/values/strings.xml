@@ -112,4 +112,21 @@
     <string name="how_would_you_rate_our_app_experience">How Would You Rate Our App Experience ?</string>
     <string name="your_rating_will_appear_here">Your Rating will Appear Here</string>
     <string name="submit">submit</string>
+    <string name="go_to_map">Go to Map</string>
+    <string name="now_we_need_your_company_location">Now we need your company location :</string>
+    <string name="cash">Cash</string>
+    <string name="paypal">PayPal</string>
+    <string name="select_payment_method">Select Payment Method</string>
+    <string name="edit_my_profile">Edit My Profile</string>
+    <string name="app_rate">App Rate</string>
+    <string name="logout">Logout</string>
+    <string name="account">Account</string>
+    <string name="order_id">Order ID:</string>
+    <string name="vehicle_size2">Vehicle Size:</string>
+    <string name="services">Services:</string>
+    <string name="payment_type">Payment Type:</string>
+    <string name="order_type">Order Type:</string>
+    <string name="cleaning_address">Cleaning Address:</string>
+    <string name="cancel_this_order">Cancel this Order</string>
+    <string name="data_amp_time"><![CDATA[Data & Time:]]></string>
 </resources>

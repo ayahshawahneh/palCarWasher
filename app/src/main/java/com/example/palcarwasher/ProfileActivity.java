@@ -10,6 +10,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,9 +30,9 @@ public class ProfileActivity extends AppCompatActivity {
     Intent intentToEditCustomerProfile;
 
 
-    Button itemLogout;
-    Button appRate;
-    Button editProfile;
+    TableRow itemLogout;
+    TableRow appRate;
+    TableRow  editProfile;
 
 
 

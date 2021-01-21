@@ -17,12 +17,13 @@ public class SobspAdapter extends RecyclerView.Adapter<SobspAdapter.SobspViewHol
     ServiceProvider providerItem ;
     String selectedVehicle;
     String selectedCompanyType;
-
-    public SobspAdapter(List<ServicesOfferedByServiceProviders> sobspList, ServiceProvider providerItem, String selectedVehicle,String selectedCompanyType) {
+    String customerId;
+    public SobspAdapter(List<ServicesOfferedByServiceProviders> sobspList, ServiceProvider providerItem, String selectedVehicle,String selectedCompanyType,String customerId) {
         this.sobspList = sobspList;
         this.providerItem = providerItem;
         this.selectedVehicle = selectedVehicle;
         this.selectedCompanyType=selectedCompanyType;
+        this.customerId=customerId;
     }
 
 
@@ -66,7 +67,7 @@ public class SobspAdapter extends RecyclerView.Adapter<SobspAdapter.SobspViewHol
                 String gender2 =providerItem.getGender();
                 String bankAccount2=providerItem.getBankAccount();
                 String workingStatus2=providerItem.getWorkingStatus();
-
+                String evaluationLevel=providerItem.getEvaluationLevel();
            Intent intent=new Intent(view.getContext(),ServiceDetailsActivity.class);
 
 
@@ -82,9 +83,10 @@ public class SobspAdapter extends RecyclerView.Adapter<SobspAdapter.SobspViewHol
                 intent.putExtra("gender",gender2);
                 intent.putExtra("bankAccount", bankAccount2);
                 intent.putExtra("workingStatus", workingStatus2);
-
+                intent.putExtra("evaluationLevel",evaluationLevel);
                 intent.putExtra("selectedVehicle",selectedVehicle);
                 intent.putExtra("selectedCompanyType",selectedCompanyType);
+                intent.putExtra("customerId", customerId);
                 view.getContext().startActivity(intent);
 
 

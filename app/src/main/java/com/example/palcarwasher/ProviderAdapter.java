@@ -42,12 +42,13 @@ final String selectedVehicle;
 final String selectedCompanyType;
 
 String ratingLevel;
+String customerId;
 
-
-    public ProviderAdapter(List<ServiceProvider> providersList, String selectedVehicle,String selectedCompanyType) {
+    public ProviderAdapter(List<ServiceProvider> providersList, String selectedVehicle,String selectedCompanyType,String customerId) {
         this.providersList = providersList;
         this.selectedVehicle = selectedVehicle;
         this.selectedCompanyType= selectedCompanyType;
+        this.customerId=customerId;
     }
 
 
@@ -71,14 +72,14 @@ String ratingLevel;
         holder.companyName.setText(providerItem.getCompanyName());
         //////////*************************************
        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
-                .child("Evaluation");
+                .child("ServiceProvider");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<String> reservedTimeSlots = new ArrayList<String>();
                 if (snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Evaluation ev = dataSnapshot.getValue(Evaluation.class);
+                    ServiceProvider ev = dataSnapshot.getValue(ServiceProvider.class);
 
                         if (ev.getProviderId().equals(providerItem.getProviderId()) ) {
 
@@ -175,7 +176,7 @@ String ratingLevel;
                 }
 
                 layoutManager.setInitialPrefetchItemCount(sobspList.size());
-                SobspAdapter subItemAdapter = new SobspAdapter(sobspList,providerItem,selectedVehicle,selectedCompanyType);
+                SobspAdapter subItemAdapter = new SobspAdapter(sobspList,providerItem,selectedVehicle,selectedCompanyType,customerId);
 
                 holder.sobspRecyclerView.setLayoutManager(layoutManager);
                 holder.sobspRecyclerView.setAdapter(subItemAdapter);
@@ -229,6 +230,7 @@ String ratingLevel;
                 intent.putExtra("bankAccount", bankAccount);
                 intent.putExtra("workingStatus", workingStatus);
                 intent.putExtra("rating", rating);
+                intent.putExtra("customerId", customerId);
                 view.getContext().startActivity(intent);
 
 
@@ -268,6 +270,7 @@ String ratingLevel;
                 intent.putExtra("bankAccount", bankAccount);
                 intent.putExtra("workingStatus", workingStatus);
                 intent.putExtra("rating", rating);
+                intent.putExtra("customerId", customerId);
                 view.getContext().startActivity(intent);
 
 

@@ -18,9 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ActivityTester"/>
-        <activity android:name=".SelectArrivalTimeActivity"/>
-
+        <activity android:name=".SelectPaymentMethodActivity"></activity>
+        <activity android:name=".CleanAddressForCustomerActivity" />
+        <activity android:name=".ActivityTester" />
+        <activity android:name=".SelectArrivalTimeActivity" />
         <activity android:name=".AppRate" />
         <activity android:name=".EditCustomerProfile" />
         <activity android:name=".ServiceDetailsActivity" />
@@ -36,7 +37,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".UploadLogo" />
         <activity android:name=".LaundaryLicencePicture" />
         <activity android:name=".BankAccountInformation" />

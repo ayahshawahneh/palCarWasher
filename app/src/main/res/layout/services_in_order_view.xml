@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        >
+
+
+
+
+        <TextView
+            android:id="@+id/service_name10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="Internal and external washing and polishing with polishing"
+            android:textAlignment="textStart"
+            android:textSize="15sp"
+
+            android:layout_weight="2"
+            />
+        <TextView
+            android:id="@+id/price10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="10$"
+            android:layout_gravity="right"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginStart="5dp"
+            android:layout_weight="0"
+
+            />
+    </TableRow>
+    <TextView
+        android:id="@+id/description10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Internal and external washing and polishing with polishing"
+        android:textAlignment="textStart"
+        android:textSize="15sp"
+        android:layout_weight="0"
+        />
+</LinearLayout>

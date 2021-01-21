@@ -16,7 +16,7 @@ public class SelectAddressMethod extends AppCompatActivity {
 
      ProviderId=getIntent().getStringExtra("ProviderId");
         Button byGps = (Button)findViewById(R.id.Bygps);
-        Button Manually = (Button)findViewById(R.id.manually);
+
 
         byGps.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,14 +30,7 @@ public class SelectAddressMethod extends AppCompatActivity {
         });
 
 
-        Manually.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toManually = new Intent(SelectAddressMethod.this,ManuallyAddress.class);
-        toManually.putExtra("ProviderId", ProviderId);
-                startActivity(toManually);
-            }
-        });
+
 
 
     }

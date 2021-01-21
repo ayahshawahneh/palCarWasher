@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -76,12 +77,14 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         String  gender=getIntent().getStringExtra("gender");
         String  bankAccount=getIntent().getStringExtra("bankAccount");
         String  workingStatus=getIntent().getStringExtra("workingStatus");
+        String  evaluationLevel=getIntent().getStringExtra("evaluationLevel");
+        final String  customerId=getIntent().getStringExtra("customerId");
         selectedVehicle=getIntent().getStringExtra("selectedVehicle");
         selectedCompanyType=getIntent().getStringExtra("selectedCompanyType");
-       providerItem =new ServiceProvider(providerId,companyName,companyType,logo,name,email,password,phoneNumber,address,gender,bankAccount,workingStatus);
+       providerItem =new ServiceProvider(providerId,companyName,companyType,logo,name,email,password,phoneNumber,address,gender,bankAccount,workingStatus,evaluationLevel);
 
 
-    Log.v("DataOB",providerId);
+   // Log.v("DataOB",providerId);
 
 
 ////////////////////////////////////////////////
@@ -210,6 +213,10 @@ Next.setOnClickListener(new View.OnClickListener() {
             if(selectedCompanyType.equals("mobile")){
 
                 //go to find my location then payment method
+                Intent i =new Intent(ServiceDetailsActivity.this,CleanAddressForCustomerActivity.class);
+                i.putExtra("customerId",customerId);
+                startActivity(i);
+
             }
 
             else

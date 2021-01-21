@@ -35,7 +35,7 @@ public class insideOurProjectCompany extends AppCompatActivity {
 
         String ProviderId = databaseReference.push().getKey();
                                                //(String providerId, String companyName, String companyType, String logo, String name, String email, String password, String phoneNumber, String address, String gender, String bankAccount, String workingStatus)
-        ServiceProvider company = new ServiceProvider( ProviderId, companyName, companyType,null, ownerName, email, password, PhoneNumber,null,Gender,null,null);
+        ServiceProvider company = new ServiceProvider( ProviderId, companyName, companyType,null, ownerName, email, password, PhoneNumber,null,Gender,null,null,"0");
         databaseReference.push().setValue(company);
 
         findViewById(R.id.bu_logout).setOnClickListener(new View.OnClickListener() {
