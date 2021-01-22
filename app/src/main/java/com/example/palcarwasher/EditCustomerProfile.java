@@ -39,7 +39,7 @@ public class EditCustomerProfile extends AppCompatActivity {
         PhoneNumber = (TextView)findViewById(R.id.phoneNub);
         Password = (EditText) findViewById(R.id.passwordd);
         Modify = (Button)findViewById(R.id.Modify);
-        back = (ImageView)findViewById(R.id.backkkkkk);
+       // back = (ImageView)findViewById(R.id.backkkkkk);
 
 
         final String phonenumber = getIntent().getStringExtra("phonenumber");
@@ -106,13 +106,13 @@ public class EditCustomerProfile extends AppCompatActivity {
 
             }
         });
-        back.setOnClickListener(new View.OnClickListener() {
+       /* back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent toCustomerProfile = new Intent(EditCustomerProfile.this,ProfileActivity.class);
                 startActivity(toCustomerProfile);
             }
-        });
+        });*/
 
 
 

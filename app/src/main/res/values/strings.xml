@@ -129,4 +129,10 @@
     <string name="cleaning_address">Cleaning Address:</string>
     <string name="cancel_this_order">Cancel this Order</string>
     <string name="data_amp_time"><![CDATA[Data & Time:]]></string>
+    <string name="click_back_to_return">Click Back to Return</string>
+    <string name="apply">Apply</string>
+    <string name="price_descending">Price Descending</string>
+    <string name="price_ascending">Price Ascending</string>
+    <string name="ratting">Rating</string>
+    <string name="filter_view_according_to">Filter View according to:</string>
 </resources>

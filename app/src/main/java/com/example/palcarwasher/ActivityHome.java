@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,15 +16,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,7 +39,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ActivityHome extends AppCompatActivity {
@@ -59,6 +71,10 @@ public class ActivityHome extends AppCompatActivity {
    String customerId;
 
 
+   FloatingActionButton floatingActionButton ;
+   FloatingActionButton floatingButtonFilter ;
+   String filtering;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +82,9 @@ public class ActivityHome extends AppCompatActivity {
 
   //customerId=getIntent().getStringExtra("customerId");
        // Toast.makeText(getApplicationContext(),customerId, Toast.LENGTH_LONG).show();
+
+        filtering ="none";
+
 
         customerId="-MPQBYHkwU501cMmJC3p";
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
@@ -186,7 +205,7 @@ public class ActivityHome extends AppCompatActivity {
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-providerList.clear();
+                    providerList.clear();
                 for(DataSnapshot ds: dataSnapshot.getChildren())
                 {
 
@@ -213,17 +232,42 @@ providerList.clear();
             }
         });
 
+/////////////////////////////////////////////////////////
+        floatingActionButton=findViewById(R.id.floating_location);
 
 
+////////////////////////////////////////////////////////
        compTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             @Override
             public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
 
+                filtering ="none";
+
+
                 selectedCompanyType =  compTypeSpinner.getSelectedItem()+"";
-                changeView(selectedVehicle,selectedCompanyType );
+                changeView(selectedVehicle,selectedCompanyType,filtering );
+
+////////........................
+                if(selectedCompanyType.equals("stationary")){
+                    floatingActionButton.setVisibility(View.VISIBLE);
+                    floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent =new Intent(ActivityHome.this,ShowAllCompanyOnMap.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
+                else{
+
+                    floatingActionButton.setVisibility(View.GONE);
 
 
+                }
+
+
+//////////////////////...............................
 
 
 
@@ -244,9 +288,12 @@ providerList.clear();
             @Override
             public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
 
+
+                filtering ="none";
+
                 selectedVehicle =  vehicleSpinner.getSelectedItem()+"";
 
-                changeView(selectedVehicle,selectedCompanyType );
+                changeView(selectedVehicle,selectedCompanyType,filtering );
 
 
             }
@@ -269,6 +316,22 @@ providerList.clear();
 
 
 
+floatingButtonFilter=findViewById(R.id.floating_filter);
+floatingButtonFilter.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+
+        AlertDialogFilter cdd=new AlertDialogFilter();
+
+        cdd.show();
+        Window window = cdd.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+
+
+
+    }
+});
 
 
 
@@ -282,7 +345,7 @@ providerList.clear();
 
     }
 
-    void changeView(final String selecteVehicle, final String selecteCompanyType ){
+    void changeView(final String selecteVehicle, final String selecteCompanyType, final String filter ){
 
 
 final  List<ServiceProvider> providerList;
@@ -308,7 +371,48 @@ final  List<ServiceProvider> providerList;
                 }
 
 
-                ;
+                if(filter.equals("ascending")){
+
+                    Toast.makeText(ActivityHome.this,"" +
+                            "lateron!", Toast.LENGTH_LONG).show();
+
+                }
+
+                else if(filter.equals("descending")){
+
+
+                    Toast.makeText(ActivityHome.this,"" +
+                            "lateron!", Toast.LENGTH_LONG).show();
+
+                }
+
+              else if(filter.equals("rating")){
+
+                    Collections.sort(providerList, new Comparator<ServiceProvider>()
+                    {
+                        @Override
+                        public int compare(ServiceProvider o1, ServiceProvider o2) {
+                          //  Double rate1 = Double.valueOf(o1.getEvaluationLevel());
+                          //  Double rate2 = Double.valueOf(o2.getEvaluationLevel());
+                          /*  if (rate1.compareTo(rate2) < 0) {
+                                return 1;
+                            } else if (rate1.compareTo(rate2) > 0) {
+                                return -1;
+                            } else {
+                                return 0;
+                            }*/
+
+                          //  return rate1 > rate2 ? 1 : (rate1 < rate2 ) ? -1 : 0;
+
+
+                            return Double.compare(  Double.parseDouble(o1.getEvaluationLevel()),Double.parseDouble(o2.getEvaluationLevel()) );
+                        }
+
+
+                    });
+
+
+                }
 
                 providerAdapter=new ProviderAdapter(providerList,selecteVehicle,selectedCompanyType,customerId);
                 recyclerView.setAdapter(providerAdapter);
@@ -326,6 +430,154 @@ final  List<ServiceProvider> providerList;
 
 
     }
+
+
+
+
+    public class AlertDialogFilter extends Dialog implements
+            android.view.View.OnClickListener {
+
+
+        RadioButton ratting;
+        RadioButton ascending;
+        RadioButton descending;
+        Button aply;
+
+
+        String selection;
+
+        public AlertDialogFilter( ) {
+            super(ActivityHome.this);
+
+        }
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            setContentView(R.layout.filter_view_home_activity);
+
+
+
+
+            ratting=findViewById(R.id.ratting);
+            ascending=findViewById(R.id.ascending);
+            descending=findViewById(R.id.descending);
+            aply=findViewById(R.id.aply);
+
+
+           if(ratting.isChecked())filtering="rating";
+           else if(ascending.isChecked())filtering="ascending";
+           else if(descending.isChecked())filtering="descending";
+
+
+           aply.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            changeView(selectedVehicle,selectedCompanyType,filtering);
+            dismiss();
+
+        }
+
+
+
+
+        void changeView(final String selecteVehicle, final String selecteCompanyType, final String filter ){
+
+
+            final  List<ServiceProvider> providerList;
+
+            providerList=new ArrayList<>();
+
+            databaseReference2= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServiceProvider");
+            databaseReference2.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    providerList.clear();
+                    for(DataSnapshot ds: dataSnapshot.getChildren())
+                    {
+
+                        final ServiceProvider prov=ds.getValue(ServiceProvider.class);
+                        if(prov.getCompanyType().equals(selecteCompanyType)||prov.getCompanyType().equals("both")){
+
+
+                            providerList.add(prov);
+
+                        }
+
+                    }
+
+
+                    if(filter.equals("ascending")){
+
+                        Toast.makeText(ActivityHome.this,"" +
+                                "lateron!", Toast.LENGTH_LONG).show();
+
+                    }
+
+                    else if(filter.equals("descending")){
+
+
+                        Toast.makeText(ActivityHome.this,"" +
+                                "lateron!", Toast.LENGTH_LONG).show();
+
+                    }
+
+                    else if(filter.equals("rating")){
+
+                        Collections.sort(providerList, new Comparator<ServiceProvider>()
+                        {
+                            @Override
+                            public int compare(ServiceProvider o1, ServiceProvider o2) {
+                                //  Double rate1 = Double.valueOf(o1.getEvaluationLevel());
+                                //  Double rate2 = Double.valueOf(o2.getEvaluationLevel());
+                          /*  if (rate1.compareTo(rate2) < 0) {
+                                return 1;
+                            } else if (rate1.compareTo(rate2) > 0) {
+                                return -1;
+                            } else {
+                                return 0;
+                            }*/
+
+                                //  return rate1 > rate2 ? 1 : (rate1 < rate2 ) ? -1 : 0;
+
+
+                                return Double.compare(  Double.parseDouble(o1.getEvaluationLevel()),Double.parseDouble(o2.getEvaluationLevel()) );
+                            }
+
+
+                        });
+
+
+                    }
+
+                    providerAdapter=new ProviderAdapter(providerList,selecteVehicle,selectedCompanyType,customerId);
+                    recyclerView.setAdapter(providerAdapter);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    throw databaseError.toException();
+                }
+            });
+
+
+
+
+
+
+        }
+
+
+
+    }
+
+
+
+
+
+
 
 
 

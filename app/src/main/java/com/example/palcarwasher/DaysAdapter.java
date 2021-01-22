@@ -68,6 +68,7 @@ int row_index;
         final  Calendar dayItem = dayList.get(position);
         SimpleDateFormat dateFormat= new SimpleDateFormat("EEE dd/MM");
         SimpleDateFormat dateFormat2= new SimpleDateFormat("EEE dd/MM/YYYY");
+
         final String toDate2=dateFormat2.format(dayItem.getTime());
         final String toDate=dateFormat.format(dayItem.getTime());
         holder.dayButton.setText(toDate);
@@ -255,6 +256,11 @@ count++;
 
                            String format = "hh:mm aa";
                            SimpleDateFormat sdf = new SimpleDateFormat(format);
+                           Calendar currentTimeCal= Calendar.getInstance();
+                           String currentTi=sdf.format(currentTimeCal.getTime());
+
+
+                        Date currentTime =null;
 
                            Date dateObj1 = null;
                            Date dateObj2 = null;
@@ -264,6 +270,7 @@ count++;
                            try {
                                dateObj1 = sdf.parse(start);
                                dateObj2 = sdf.parse(end);
+                             currentTime=sdf.parse(currentTi);
 
 
 
@@ -272,13 +279,18 @@ count++;
 
                                slotTimeList.clear();
                                long dif = dateObj1.getTime();
+                               long currentPlus30=currentTime.getTime()+1800000;
+
                                while (dif < dateObj2.getTime()) {
                                    Date slot = new Date(dif);
+
+                                 if(slot.after(new Date(currentPlus30))){
                                    Date nextSlot =new Date( dif + 3600000);
-                                   if(!nextSlot.after(dateObj2))
-                                   { String fullSlot = sdf.format(slot)+"-"+sdf.format(nextSlot);
-                                   stringSlotList.add(fullSlot);
-                                   slotTimeList.add(slot);}
+                                        if(!nextSlot.after(dateObj2))
+                                            { String fullSlot = sdf.format(slot)+"-"+sdf.format(nextSlot);
+                                            stringSlotList.add(fullSlot);
+                                             slotTimeList.add(slot);}
+                                 }
                                    dif += 3600000;
                                }
 
@@ -288,13 +300,15 @@ count++;
                                dateObj22 = sdf.parse(partEnd);
                                if(partStart!=null){
                                    long dif2 = dateObj11.getTime();
+
                                    while (dif2 < dateObj22.getTime()) {
                                        Date slot = new Date(dif2);
                                        Date nextSlot =new Date( dif2 + 3600000);
+                                       if(slot.after(new Date(currentPlus30))){
                                        if(!nextSlot.after(dateObj22))
                                        { String fullSlot = sdf.format(slot)+"-"+sdf.format(nextSlot);
                                            stringSlotList.add(fullSlot);
-                                           slotTimeList.add(slot);}
+                                           slotTimeList.add(slot);}}
                                        dif2 += 3600000;
                                    }
 

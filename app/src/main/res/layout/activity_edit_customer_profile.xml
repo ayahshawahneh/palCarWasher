@@ -279,16 +279,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/allerta"
-            android:text="@string/click_to_back"
+            android:text="@string/click_back_to_return"
             android:textStyle="bold" />
 
 
-        <ImageView
-            android:id="@+id/backkkkkk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            app:srcCompat="@drawable/ic_arrow_right" />
     </TableRow>
 
 </RelativeLayout>
