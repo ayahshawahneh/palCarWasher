@@ -50,7 +50,7 @@ public class ServicesInOrderAdapter extends RecyclerView.Adapter<ServicesInOrder
                 {
                     ServicesOfferedByServiceProviders sobspItem=ds.getValue(ServicesOfferedByServiceProviders.class);
                     if(sobspItem.getOfferId().equals(offerIdItem)) {
-                       holder.service.setText(position+1+"-"+sobspItem.getServiceName());
+                       holder.service.setText(position+1+"- "+sobspItem.getServiceName());
                         holder.price.setText(sobspItem.getPrice()+"$");
                         holder.des.setText("  "+sobspItem.getDescription());
                     }

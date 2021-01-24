@@ -16,6 +16,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -30,14 +35,28 @@ public class CompanyDetailsActivity extends AppCompatActivity {
     TextView companyOwner;
     TextView companyPhoneNumber;
     TextView companyAddress;
+    TextView numOrders;
     RatingBar rate ;
 
-
+    int count =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_details);
+
+
+        companyLogo=findViewById(R.id.company_logo2);
+        CompanyName= findViewById(R.id.company_name22);
+        companyOwner=findViewById(R.id.company_owner);
+        companyPhoneNumber=findViewById(R.id.company_phone_number);
+        companyAddress=findViewById(R.id.company_address);
+        rate=findViewById(R.id.ratingBar);
+        numOrders=findViewById(R.id.number_of_orders);
+
+
+
+if(getIntent().getStringExtra("companyName") != null){
 
 
 
@@ -68,22 +87,16 @@ public class CompanyDetailsActivity extends AppCompatActivity {
 
 
 
-
-        companyLogo=findViewById(R.id.company_logo2);
-        CompanyName= findViewById(R.id.company_name22);
-        companyOwner=findViewById(R.id.company_owner);
-        companyPhoneNumber=findViewById(R.id.company_phone_number);
-        companyAddress=findViewById(R.id.company_address);
-        rate=findViewById(R.id.ratingBar);
-
-        CompanyName.setText(companyName);
-        companyOwner.setText(name);
-        companyPhoneNumber.setText(phoneNumber);
-        companyAddress.setText(address);
-        rate.setRating(Float.parseFloat(rating));
+    CompanyName.setText(companyName);
+    companyOwner.setText(name);
+    companyPhoneNumber.setText(phoneNumber);
+    companyAddress.setText(address);
+    rate.setRating(Float.parseFloat(rating));
 
 
-        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+
+
+    FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         StorageReference storageReference = firebaseStorage.getReference();
 
         StorageReference imageRef1 = storageReference.child("logo/"+providerId);
@@ -102,6 +115,114 @@ public class CompanyDetailsActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+        ///////////////...................................////////////////////////////
+}else{
+final String providerID= getIntent().getStringExtra("providerId");
+DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServiceProvider");
+    databaseReference.addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            if (dataSnapshot.exists()) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                    final ServiceProvider s = ds.getValue(ServiceProvider.class);
+
+                    if(s.getProviderId().equals(providerID)){
+                        CompanyName.setText(s.getCompanyName());
+                        companyOwner.setText(s.getName());
+                        companyPhoneNumber.setText(s.getPhoneNumber());
+                        companyAddress.setText(s.getAddress());
+                        rate.setRating(Float.parseFloat(s.getEvaluationLevel()));
+
+
+                    }
+
+
+                }
+
+
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+            throw databaseError.toException();
+        }
+    });
+
+
+
+
+    FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+    StorageReference storageReference = firebaseStorage.getReference();
+
+    StorageReference imageRef1 = storageReference.child("logo/"+providerID);
+    long MAXBYTE = 1024*1024;
+    imageRef1.getBytes(MAXBYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        @Override
+        public void onSuccess(byte[] bytes) {
+            // convert byte to Bitmap :
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+            companyLogo.setImageBitmap(bitmap);
+
+        }
+    }).addOnFailureListener(new OnFailureListener() {
+        @Override
+        public void onFailure(@NonNull Exception e) {
+
+        }
+    });
+
+
+
+
+}//else
+
+
+
+
+
+
+
+      DatabaseReference  databaseReference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("Orders");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                count=0;
+                if(dataSnapshot.exists()) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                        final Orders o = ds.getValue(Orders.class);
+                        if (o.getProviderId().equals(getIntent().getStringExtra("providerId"))) {
+
+                            count++;
+
+
+
+                        }
+
+                    }
+                }
+
+
+                numOrders.setText(count+"");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+
+
+
+
+
+
+
 
     }
 

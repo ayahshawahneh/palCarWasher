@@ -135,4 +135,6 @@
     <string name="price_ascending">Price Ascending</string>
     <string name="ratting">Rating</string>
     <string name="filter_view_according_to">Filter View according to:</string>
+    <string name="status">Status:</string>
+    <string name="show_more_details">Show more details</string>
 </resources>

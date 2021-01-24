@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+
     tools:context=".OrdersActivity">
 
 
@@ -35,7 +36,7 @@
             android:id="@+id/recyclerview_orders"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="7dp"
+            android:layout_margin="5dp"
 
             >
 

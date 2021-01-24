@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ShowAllCompanyOnMap"></activity>
+        <activity android:name=".ActivityOrderDetailsForm"></activity>
+        <activity android:name=".ShowAllCompanyOnMap" />
         <activity android:name=".SelectPaymentMethodActivity" />
         <activity android:name=".CleanAddressForCustomerActivity" />
         <activity android:name=".ActivityTester" />

@@ -1,8 +1,9 @@
 package com.example.palcarwasher;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Orders {
+public class Orders implements Serializable {
     private String providerId;
     private String orderId;
     private String customerId;

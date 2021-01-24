@@ -85,7 +85,7 @@ public class OrdersActivity extends AppCompatActivity {
 
 
         recyclerView=findViewById(R.id.recyclerview_orders);
-        recyclerView.setHasFixedSize(true);
+        //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
