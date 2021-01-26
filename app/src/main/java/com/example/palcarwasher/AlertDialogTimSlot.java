@@ -24,15 +24,15 @@ public class AlertDialogTimSlot extends Dialog implements
     List<Calendar> daysList;
     DaysAdapter daysAdapter;
     GridView gridView;
-Button selectArrivalTime;
-Button save;
+    Button selectArrivalTime;
+    Button save;
 
-String finalSelection;
-String FinalSelectionDB;
-List <String> finalSelections;
-List<String> finalSelectionsDB;
-List<String> finalSlots;
-String providerId;
+    String finalSelection;
+    String FinalSelectionDB;
+    List <String> finalSelections;
+    List<String> finalSelectionsDB;
+    List<String> finalSlots;
+    String providerId;
     public Activity activity;
     public AlertDialogTimSlot(Activity a,Button b,String providerId ) {
         super(a);
@@ -48,7 +48,7 @@ String providerId;
 
 
 
-       // String providerId="-MPq8uV089ZVlR0gDrnW";
+        // String providerId="-MPq8uV089ZVlR0gDrnW";
 
         gridView=findViewById(R.id.timeSlot_gridView);
 
@@ -86,16 +86,16 @@ String providerId;
     public void onClick(View v) {
 
 
-if(v.getId()==R.id.save) {
-    // Log.v("DataOB",finalSelection);
-    if (finalSelections.size()==0 || finalSlots.size()==0)
-        Toast.makeText(getContext(), "You have to select arrival time!", Toast.LENGTH_LONG).show();
+        if(v.getId()==R.id.save) {
+            // Log.v("DataOB",finalSelection);
+            if (finalSelections.size()==0 || finalSlots.size()==0)
+                Toast.makeText(getContext(), "You have to select arrival time!", Toast.LENGTH_LONG).show();
 
-    else {
-        selectArrivalTime.setText(finalSelectionsDB.get(0) + " " + finalSlots.get(0));
-        dismiss();
-    }
-}
+            else {
+                selectArrivalTime.setText(finalSelectionsDB.get(0) + " " + finalSlots.get(0));
+                dismiss();
+            }
+        }
 
 
     }

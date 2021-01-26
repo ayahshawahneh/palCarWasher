@@ -3,233 +3,215 @@
 <LinearLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="4dp"
-
+    android:layout_marginBottom="15dp"
     android:orientation="vertical"
-android:layout_marginBottom="15dp"
-    android:background="@drawable/border4"
+    android:background="@drawable/border7"
+    android:padding="4dp"
 
     >
 
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/border7">
 
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="55dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:srcCompat="@drawable/ic_baseline_person_24" />
+
+        <TextView
+            android:id="@+id/company_name10"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_marginStart="27dp"
+            android:layout_weight="1"
+            android:textColor="#000"
+            android:paddingTop="10dp"
+            android:text="@string/company_name"
+            android:textAlignment="textStart"
+
+            android:textSize="22sp"
+
+            />
+
+
+    </TableRow>
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TableRow
-            android:layout_height="55dp"
             android:layout_width="match_parent"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="10dp"
+            android:layout_height="40dp"
             android:layout_marginStart="10dp"
-            android:background="@drawable/border6">
-
-            <ImageView
-                android:id="@+id/imageLogo"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:layout_weight="0"
-
-                app:srcCompat="@drawable/ic_baseline_person_24" />
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/shodow_border">
 
             <TextView
-                android:id="@+id/company_name10"
+
                 android:layout_width="wrap_content"
-                android:layout_height="55dp"
-                android:fontFamily="@font/bevan"
-                android:text="@string/company_name"
+                android:layout_height="40dp"
+                android:layout_marginStart="5dp"
+                android:layout_weight="0"
+                android:paddingTop="8dp"
+                android:text="@string/status"
                 android:textAlignment="textStart"
                 android:textColor="#000"
-                android:textSize="20sp"
-                android:layout_marginStart="27dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/status10"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:paddingTop="8dp"
-                />
-
-
-
-
+                android:paddingTop="7dp"
+                android:text="cancelled"
+                android:textColor="@color/design_default_color_secondary_variant"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </TableRow>
 
 
-
-
-        <TableLayout
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
 
-            <TableRow
+            android:background="@drawable/shodow_border">
+
+
+            <ImageView
+
+                android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/shodow_border">
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0"
-                    android:paddingTop="8dp"
-                    android:text="@string/status"
-                    android:textAlignment="textStart"
-                    android:textColor="#000"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/status10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:textColor="@color/colorPrimary"
-                    android:paddingTop="7dp"
-                    android:layout_weight="1"
-                    android:text="cancelled"
-                    android:layout_marginStart="8dp"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    />
-
-            </TableRow>
+                android:layout_marginEnd="15dp"
+                android:layout_weight="0"
+                android:padding="3dp"
+                app:srcCompat="@drawable/ic_baseline_date_range_24" />
 
 
-
-
-
-
-
-
-
-
-
-            <TableRow
+            <TextView
+                android:id="@+id/date_time10"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:paddingTop="9dp"
+                android:text="20202020"
+                android:textAlignment="textStart"
+                android:textColor="@color/design_default_color_secondary_variant"
+                android:textSize="16sp" />
 
-                android:background="@drawable/shodow_border">
-
-
-                <ImageView
-
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_weight="0"
-                    android:padding="3dp"
-                    app:srcCompat="@drawable/ic_baseline_date_range_24" />
+        </TableRow>
 
 
-                <TextView
-                    android:id="@+id/date_time10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_weight="1"
-                    android:text="20202020"
-                    android:paddingTop="9dp"
-                    android:textAlignment="textStart"
-                    android:textSize="16sp"
-                    android:layout_marginStart="8dp"
-                    />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
 
-            </TableRow>
+            android:background="@drawable/shodow_border">
 
+            <TextView
 
-            <TableRow
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
-
-                android:background="@drawable/shodow_border">
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="@string/order_type"
-                    android:textAlignment="textStart"
-                    android:textColor="#000"
-                    android:textSize="16sp"
-                    android:layout_weight="0"
-                    android:paddingTop="9dp"
-                    android:layout_marginStart="5dp"
-                    />
+                android:layout_marginStart="5dp"
+                android:layout_weight="0"
+                android:paddingTop="9dp"
+                android:text="@string/order_type"
+                android:textAlignment="textStart"
+                android:textColor="#000"
+                android:textSize="16sp" />
 
 
-
-                <TextView
-                    android:id="@+id/order_type10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:paddingTop="9dp"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_weight="1"
-                    android:text="Mobile"
-                    android:textAlignment="textStart"
-                    android:textSize="16sp"
-                    android:layout_marginStart="8dp"
-                    />
-
-            </TableRow>
-            <TableRow
+            <TextView
+                android:id="@+id/order_type10"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:paddingTop="9dp"
+                android:text="Mobile"
+                android:textAlignment="textStart"
+                android:textColor="@color/design_default_color_secondary_variant"
+                android:textSize="16sp" />
 
-                android:background="@drawable/shodow_border">
+        </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
 
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="@string/total_price"
-                    android:textAlignment="textStart"
-                    android:textColor="#000"
-                    android:textSize="16sp"
-                    android:layout_weight="0"
-                    android:paddingTop="8dp"
-                    android:layout_marginStart="5dp"
-                    />
+            android:background="@drawable/shodow_border">
 
 
+            <TextView
 
-                <TextView
-                    android:id="@+id/total_price10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_weight="1"
-                    android:text="40$"
-                    android:layout_marginStart="8dp"
-                    android:paddingTop="8dp"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp"
-                    />
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="5dp"
+                android:layout_weight="0"
+                android:paddingTop="8dp"
+                android:text="@string/total_price"
+                android:textAlignment="textStart"
+                android:textColor="#000"
+                android:textSize="16sp" />
 
-            </TableRow>
 
-        </TableLayout>
-        <Button
-            android:id="@+id/show_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="9dp"
-            android:layout_marginBottom="12dp"
-            android:padding="10dp"
-            android:background="@drawable/btn_custom2"
-            android:text="@string/show_more_details"
-            android:textColor=" #FFF"
+            <TextView
+                android:id="@+id/total_price10"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:paddingTop="8dp"
+                android:text="40$"
+                android:textAlignment="textStart"
+                android:textColor="@color/design_default_color_secondary_variant"
+                android:textSize="18sp" />
 
-            />
-    </LinearLayout>
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/show_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/btn_custom"
+        android:padding="10dp"
+        android:text="@string/show_more_details"
+        android:textColor=" #FFF"
+
+        />
+</LinearLayout>

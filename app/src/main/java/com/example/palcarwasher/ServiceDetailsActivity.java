@@ -30,10 +30,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +49,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
     TextView CompanyName;
     ImageView CompanyLogo;
     TextView TotalPrice;
-    double totalPrice;
+    String totalPrice;
 
     RecyclerView Sobsp_checkBox_recycler_view;
     Button Next;
@@ -150,7 +152,7 @@ CompanyName.setText(companyName);
 
                 sobspDetailsAdapter=new SobspDetailsAdapter(sobspList,TotalPrice);
                 selectedid =  sobspDetailsAdapter.getSelectedSobsp();
-                totalPrice=sobspDetailsAdapter.getTotalPrice();
+
             Sobsp_checkBox_recycler_view.setAdapter(sobspDetailsAdapter);
 
 
@@ -191,6 +193,7 @@ Next=findViewById(R.id.next);
 Next.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
+        totalPrice = TotalPrice.getText()+"";
 
         if(selectedid.size()==0&&b.getText().equals("Select Arrival Time"))
             Toast.makeText(ServiceDetailsActivity.this,"You have to select service and Arrival Time!", Toast.LENGTH_LONG).show();
@@ -203,18 +206,23 @@ Next.setOnClickListener(new View.OnClickListener() {
 
 
         else{
-            Toast.makeText(ServiceDetailsActivity.this,"Successfully!", Toast.LENGTH_LONG).show();
+       //   Toast.makeText(ServiceDetailsActivity.this,totalPrice+"", Toast.LENGTH_LONG).show();
             //Toast.makeText(ServiceDetailsActivity.this, selectedid.get(0), Toast.LENGTH_LONG).show();
 
 
-            String selectedArrivalTime=b.getText()+"";
+            final String selectedArrivalTime=b.getText()+"";
 
 
             if(selectedCompanyType.equals("mobile")){
 
                 //go to find my location then payment method
+
+                Orders order =new Orders(providerId,null,customerId,
+                        null,selectedCompanyType,null,null,selectedArrivalTime,
+                        "confirmed",totalPrice+"",selectedVehicle,selectedid);
+
                 Intent i =new Intent(ServiceDetailsActivity.this,CleanAddressForCustomerActivity.class);
-                i.putExtra("customerId",customerId);
+                i.putExtra("order",(Serializable) order);
                 startActivity(i);
 
             }
@@ -222,6 +230,46 @@ Next.setOnClickListener(new View.OnClickListener() {
             else
             {
                 //go to payment method
+
+////////////////////////////////
+                databaseReference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ProviderLocation");
+
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                final ProviderLocation s = dataSnapshot.getValue(ProviderLocation.class);
+                                if (s.providerId.equals(providerId)) {
+
+
+                                   // Toast.makeText(ServiceDetailsActivity.this,s.latitudeX + "," + s.longitudeY, Toast.LENGTH_LONG).show();
+
+                                Orders order = new Orders(providerId, null, customerId,
+                                        null, selectedCompanyType, s.latitudeX + "," + s.longitudeY, null, selectedArrivalTime,
+                                        "confirmed", totalPrice + "", selectedVehicle, selectedid);
+
+                                Intent i = new Intent(ServiceDetailsActivity.this, SelectPaymentMethodActivity.class);
+                                i.putExtra("order", (Serializable) order);
+                                startActivity(i);
+
+
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        throw databaseError.toException();
+                    }
+                });
+
+///////////////////////////////////
+
+
+
             }
 
 

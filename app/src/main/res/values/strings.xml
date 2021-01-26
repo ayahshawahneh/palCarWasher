@@ -137,4 +137,7 @@
     <string name="filter_view_according_to">Filter View according to:</string>
     <string name="status">Status:</string>
     <string name="show_more_details">Show more details</string>
+    <string name="amount">Amount</string>
+    <string name="take_the_order">Take the Order</string>
+    <string name="confirm_order">Confirm Order</string>
 </resources>

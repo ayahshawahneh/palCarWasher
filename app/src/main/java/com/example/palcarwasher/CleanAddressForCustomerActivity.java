@@ -29,8 +29,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Serializable;
+
 public class CleanAddressForCustomerActivity  extends FragmentActivity implements OnMapReadyCallback {
     Location currentLocation;
+    Orders order;
     String x;
     String y;
     FusedLocationProviderClient fusedLocationProviderClient;
@@ -42,7 +45,11 @@ String customerId;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clean_address_for_customer);
 
-        customerId=getIntent().getStringExtra("customerId");
+
+        order=(Orders) getIntent().getSerializableExtra("order");
+
+
+        customerId=order.getCustomerId();
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         fetchLastLocation();
@@ -134,11 +141,9 @@ String customerId;
     public void onClickSaveLocation(View view){
 
 
-
+        order.setCleanAddress(x+","+y);
         Intent intent = new Intent(CleanAddressForCustomerActivity.this,SelectPaymentMethodActivity.class);
-        intent.putExtra("customerId",customerId);
-        intent.putExtra("cleanAddressX",x);
-        intent.putExtra("cleanAddressY",y);
+        intent.  putExtra("order",(Serializable) order);
         startActivity(intent);
 
     }

@@ -249,9 +249,9 @@ public class ActivityHome extends AppCompatActivity {
                 changeView(selectedVehicle,selectedCompanyType,filtering );
 
 ////////........................
-                if(selectedCompanyType.equals("stationary")){
+             if(selectedCompanyType.equals("stationary")){
                     floatingActionButton.setVisibility(View.VISIBLE);
-                    floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                 floatingActionButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Intent intent =new Intent(ActivityHome.this,ShowAllCompanyOnMap.class);
@@ -370,8 +370,7 @@ final  List<ServiceProvider> providerList;
 
                 }
 
-
-                if(filter.equals("ascending")){
+  /*   if(filter.equals("ascending")){
 
                     Toast.makeText(ActivityHome.this,"" +
                             "lateron!", Toast.LENGTH_LONG).show();
@@ -391,7 +390,7 @@ final  List<ServiceProvider> providerList;
                     Collections.sort(providerList, new Comparator<ServiceProvider>()
                     {
                         @Override
-                        public int compare(ServiceProvider o1, ServiceProvider o2) {
+                        public int compare(ServiceProvider o1, ServiceProvider o2) {*/
                           //  Double rate1 = Double.valueOf(o1.getEvaluationLevel());
                           //  Double rate2 = Double.valueOf(o2.getEvaluationLevel());
                           /*  if (rate1.compareTo(rate2) < 0) {
@@ -405,14 +404,14 @@ final  List<ServiceProvider> providerList;
                           //  return rate1 > rate2 ? 1 : (rate1 < rate2 ) ? -1 : 0;
 
 
-                            return Double.compare(  Double.parseDouble(o1.getEvaluationLevel()),Double.parseDouble(o2.getEvaluationLevel()) );
+                     /*       return Double.compare(  Double.parseDouble(o1.getEvaluationLevel()),Double.parseDouble(o2.getEvaluationLevel()) );
                         }
 
 
                     });
 
 
-                }
+                }*/
 
                 providerAdapter=new ProviderAdapter(providerList,selecteVehicle,selectedCompanyType,customerId);
                 recyclerView.setAdapter(providerAdapter);
@@ -475,7 +474,7 @@ final  List<ServiceProvider> providerList;
         @Override
         public void onClick(View v) {
 
-            changeView(selectedVehicle,selectedCompanyType,filtering);
+            //changeView(selectedVehicle,selectedCompanyType,filtering);
             dismiss();
 
         }
@@ -509,7 +508,7 @@ final  List<ServiceProvider> providerList;
                     }
 
 
-                    if(filter.equals("ascending")){
+              /*      if(filter.equals("ascending")){
 
                         Toast.makeText(ActivityHome.this,"" +
                                 "lateron!", Toast.LENGTH_LONG).show();
@@ -529,7 +528,7 @@ final  List<ServiceProvider> providerList;
                         Collections.sort(providerList, new Comparator<ServiceProvider>()
                         {
                             @Override
-                            public int compare(ServiceProvider o1, ServiceProvider o2) {
+                            public int compare(ServiceProvider o1, ServiceProvider o2) {*/
                                 //  Double rate1 = Double.valueOf(o1.getEvaluationLevel());
                                 //  Double rate2 = Double.valueOf(o2.getEvaluationLevel());
                           /*  if (rate1.compareTo(rate2) < 0) {
@@ -543,14 +542,14 @@ final  List<ServiceProvider> providerList;
                                 //  return rate1 > rate2 ? 1 : (rate1 < rate2 ) ? -1 : 0;
 
 
-                                return Double.compare(  Double.parseDouble(o1.getEvaluationLevel()),Double.parseDouble(o2.getEvaluationLevel()) );
+                         /*       return Double.compare(  Double.parseDouble(o1.getEvaluationLevel()),Double.parseDouble(o2.getEvaluationLevel()) );
                             }
 
 
                         });
 
 
-                    }
+                    }*/
 
                     providerAdapter=new ProviderAdapter(providerList,selecteVehicle,selectedCompanyType,customerId);
                     recyclerView.setAdapter(providerAdapter);

@@ -10,7 +10,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/border7"
     android:layout_margin="3dp"
-    tools:context=".ActivityOrderDetailsForm">
+    tools:context=".ActivityFinalOrderToDB">
 
 
 
@@ -46,7 +46,7 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="50dp"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
 
@@ -81,40 +81,6 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <TableRow
-                android:layout_height="50dp"
-                android:layout_width="match_parent"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/shodow_border">
-
-                <TextView
-
-                    android:layout_width="27dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0"
-                    android:paddingTop="8dp"
-                    android:text="@string/status"
-                    android:textAlignment="textStart"
-                    android:textColor="#000"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/status10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:textColor="@color/design_default_color_secondary_variant"
-                    android:paddingTop="8dp"
-                    android:layout_weight="1"
-                    android:text="cancelled"
-                    android:layout_marginStart="8dp"
-                    android:textSize="20sp"
-                    />
-
-            </TableRow>
 
 
 
@@ -436,18 +402,18 @@
 
         </TableLayout>
         <Button
-            android:id="@+id/cancel_button10"
+            android:id="@+id/confirm_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="9dp"
             android:layout_marginBottom="12dp"
             android:padding="10dp"
-            android:background="@drawable/btn_custom2"
-            android:text="@string/cancel_this_order"
+            android:background="@drawable/btn_custom"
+            android:text="@string/confirm_order"
             android:textColor=" #FFF"
-            android:visibility="gone"
-           />
+
+            />
     </LinearLayout>
 
 

@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class OrdersActivity extends AppCompatActivity {
@@ -107,7 +108,7 @@ public class OrdersActivity extends AppCompatActivity {
                             //  Log.v("DataOB",o.getOfferIds().get(1)) ;
 
                             ordersList.add(o);
-
+                            Collections.reverse(ordersList);
                         }
 
                     }

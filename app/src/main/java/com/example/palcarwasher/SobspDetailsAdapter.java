@@ -85,7 +85,7 @@ double totalPrice=0;
       return finalSobspList;
     }
 
-public  double getTotalPrice(){return  totalPrice;}
+
 
 
     public class serviceDetailesHolder extends RecyclerView.ViewHolder{
