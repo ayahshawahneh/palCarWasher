@@ -122,7 +122,7 @@ Orders orderItem;
 
         /////////////  orderId ////////////////////
 
-        orderId.setText(orderItem.getOrderId());
+
 
 
         /////////////  totalPrice ////////////////////
@@ -182,7 +182,6 @@ Orders orderItem;
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 String orderId= databaseReference.push().getKey();
 

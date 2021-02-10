@@ -7,8 +7,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="15dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
     android:orientation="vertical"
-    android:background="@drawable/border9"
+    android:background="@drawable/border7"
     android:padding="4dp"
 
     >
@@ -17,57 +19,77 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
+
+        android:layout_marginEnd="5dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/border9">
+        android:background="@drawable/border7">
 
         <ImageView
-            android:id="@+id/imageLogo"
-            android:layout_width="55dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
+            android:id="@+id/imageView2"
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="7dp"
             app:srcCompat="@drawable/ic_baseline_person_24" />
 
+
+
+
         <TextView
-            android:id="@+id/company_name10"
+            android:id="@+id/customer_name20"
             android:layout_width="wrap_content"
             android:layout_height="55dp"
-            android:layout_marginStart="27dp"
+            android:layout_marginStart="7dp"
+            android:layout_weight="0"
+            android:paddingTop="10dp"
+            android:text="Customer Name"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/phone_number20"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_marginStart="7dp"
             android:layout_weight="1"
             android:textColor="#000"
-            android:paddingTop="10dp"
-            android:text="@string/company_name"
-            android:textAlignment="textStart"
+            android:paddingTop="14dp"
+            android:text="0598210025"
 
-            android:textSize="22sp"
+            android:textAlignment="center"
+
+            android:textSize="18sp"
 
             />
+        <ImageView
+            android:id="@+id/imageCopy"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_weight="0"
 
-
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/ic_baseline_content_copy_24" />
     </TableRow>
 
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border9"
-        android:layout_marginStart="10dp"
+        android:background="@drawable/border7"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
-        >
-
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="5dp">
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="5dp"
-            android:background="@drawable/shodow_border">
+
+            >
 
             <TextView
 
@@ -79,6 +101,7 @@
                 android:text="@string/status"
                 android:textAlignment="textStart"
                 android:textColor="#000"
+
                 android:textSize="16sp" />
 
             <TextView
@@ -89,20 +112,30 @@
                 android:layout_weight="1"
                 android:paddingTop="7dp"
                 android:text="cancelled"
-                android:textSize="18sp"
+                 android:textSize="18sp"
                 android:textStyle="bold" />
 
         </TableRow>
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+
+            android:layout_marginEnd="5dp"
+            android:background="?android:attr/listDivider" />
 
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
 
-            android:background="@drawable/shodow_border">
+            >
 
 
             <ImageView
@@ -116,28 +149,36 @@
 
 
             <TextView
-                android:id="@+id/date_time10"
+                android:id="@+id/date_time20"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:paddingTop="9dp"
                 android:text="20202020"
-                android:textStyle="bold"
                 android:textAlignment="textStart"
                 android:textSize="16sp" />
 
         </TableRow>
+        <View
 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+
+            android:layout_marginEnd="5dp"
+            android:background="?android:attr/listDivider" />
 
         <TableRow
+            android:id="@+id/order_type_row20"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
 
-            android:background="@drawable/shodow_border">
+            >
 
             <TextView
 
@@ -153,27 +194,82 @@
 
 
             <TextView
-                android:id="@+id/order_type10"
+                android:id="@+id/order_type20"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:paddingTop="9dp"
                 android:text="Mobile"
-                android:textStyle="bold"
                 android:textAlignment="textStart"
                 android:textSize="16sp" />
 
         </TableRow>
 
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+
+            android:layout_marginEnd="5dp"
+            android:background="?android:attr/listDivider" />
+        <TableRow
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+
+            >
+
+
+            <ImageView
+
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="0"
+                android:padding="3dp"
+                app:srcCompat="@drawable/ic_baseline_directions_car_24" />
+
+
+
+
+
+            <TextView
+                android:id="@+id/vehicle20"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="car(5_pass)"
+                android:paddingTop="9dp"
+                android:textAlignment="textStart"
+                android:textSize="16sp"
+                android:layout_marginStart="8dp"
+                />
+
+        </TableRow>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+
+            android:layout_marginEnd="5dp"
+            android:background="?android:attr/listDivider" />
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="2dp"
-            android:background="@drawable/shodow_border">
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="15dp"
+
+            >
 
 
             <TextView
@@ -188,16 +284,14 @@
                 android:textColor="#000"
                 android:textSize="16sp" />
 
-
             <TextView
-                android:id="@+id/total_price10"
+                android:id="@+id/total_price20"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:paddingTop="8dp"
                 android:text="40$"
-                android:textStyle="bold"
                 android:textAlignment="textStart"
                 android:textSize="18sp" />
 
@@ -210,7 +304,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="9dp"
+
         android:layout_marginBottom="12dp"
         android:background="@drawable/btn_custom"
         android:padding="10dp"

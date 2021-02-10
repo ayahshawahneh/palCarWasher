@@ -18,7 +18,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ActivityFinalOrderToDB"></activity>
+        <activity android:name=".ActivityOrderrDetailsOrderPage"></activity>
+        <activity android:name=".ActivityOrdersPROVIDER" />
+        <activity android:name=".ActivityOrderDetailsFormPROVIDER" />
+        <activity android:name=".ActivityHomePROVIDER"> <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
+        <activity android:name=".ActivityFinalOrderToDB" />
         <activity android:name=".ActivityPayPal" />
         <activity android:name=".ActivityOrderDetailsForm" />
         <activity android:name=".ShowAllCompanyOnMap" />
@@ -34,13 +44,7 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".WalletActivity" />
         <activity android:name=".OrdersActivity" />
-        <activity android:name=".ActivityHome">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ActivityHome"/> >
         <activity android:name=".UploadLogo" />
         <activity android:name=".LaundaryLicencePicture" />
         <activity android:name=".BankAccountInformation" />

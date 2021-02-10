@@ -16,13 +16,14 @@ public class Orders implements Serializable {
     private String totalPrice;
     private String vehicleSize;
     List<String> offerIds;
-
+    private String evaluationLevel;
+    private String comment;
 
 
     public Orders() {
     }
 
-    public Orders(String providerId, String orderId, String customerId, String visaId, String orderType, String cleanAddress, String paymentType, String fullTime, String status, String totalPrice, String vehicleSize, List<String> offerIds) {
+    public Orders(String providerId, String orderId, String customerId, String visaId, String orderType, String cleanAddress, String paymentType, String fullTime, String status, String totalPrice, String vehicleSize, List<String> offerIds, String evaluationLevel, String comment) {
         this.providerId = providerId;
         this.orderId = orderId;
         this.customerId = customerId;
@@ -35,6 +36,24 @@ public class Orders implements Serializable {
         this.totalPrice = totalPrice;
         this.vehicleSize = vehicleSize;
         this.offerIds = offerIds;
+        this.evaluationLevel = evaluationLevel;
+        this.comment = comment;
+    }
+
+    public String getEvaluationLevel() {
+        return evaluationLevel;
+    }
+
+    public void setEvaluationLevel(String evaluationLevel) {
+        this.evaluationLevel = evaluationLevel;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public String getProviderId() {

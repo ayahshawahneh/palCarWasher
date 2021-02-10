@@ -140,4 +140,16 @@
     <string name="amount">Amount</string>
     <string name="take_the_order">Take the Order</string>
     <string name="confirm_order">Confirm Order</string>
+    <string name="upcoming_orders">Upcoming Orders</string>
+    <string name="confirmed_orders">Confirmed Orders</string>
+    <string name="completed_orders">Completed Orders</string>
+    <string name="canceled_orders">Canceled Orders</string>
+    <string name="total_price_ascending">Total Price Ascending</string>
+    <string name="all">All</string>
+    <string name="time_from_oldest_to_newest">Time(Oldest to Newest)</string>
+    <string name="view">View:</string>
+    <string name="filter">Filter:</string>
+    <string name="time_from_newest_to_oldest">Time(Newest to Oldest)</string>
+    <string name="order_type2">Order Type:</string>
+
 </resources>

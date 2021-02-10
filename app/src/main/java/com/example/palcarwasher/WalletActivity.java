@@ -17,7 +17,8 @@ public class WalletActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wallet);
 
-        customerId=getIntent().getStringExtra("customerId");
+       // customerId=getIntent().getStringExtra("customerId");
+        customerId="-MPQBYHkwU501cMmJC3p";
 
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);

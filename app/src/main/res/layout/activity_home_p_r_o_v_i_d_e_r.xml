@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-android:background="#ebfff8"
-    tools:context=".OrdersActivity">
+    android:background="#fff"
+    tools:context=".ActivityHomePROVIDER">
 
 
     <LinearLayout
@@ -19,16 +19,15 @@ android:background="#ebfff8"
         <TextView
 
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
-            android:layout_gravity="center"
+
             android:fontFamily="@font/dekko"
-            android:text="@string/orders"
-
-            android:textColor="#000"
-            android:textSize="46dp" />
-
+            android:text="@string/upcoming_orders"
+            android:layout_gravity="center"
+            android:textColor="@color/design_default_color_secondary_variant"
+            android:textSize="32dp" />
 
 
 
@@ -36,7 +35,6 @@ android:background="#ebfff8"
             android:id="@+id/recyclerview_orders"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
 
             >
 
@@ -44,7 +42,11 @@ android:background="#ebfff8"
         </androidx.recyclerview.widget.RecyclerView>
 
 
+
+
     </LinearLayout>
+
+
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -58,10 +60,6 @@ android:background="#ebfff8"
         android:layout_margin="15dp"
 
         />
-
-
-
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

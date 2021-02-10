@@ -119,6 +119,8 @@ public class OrderAdapter  extends RecyclerView.Adapter<OrderAdapter.orderHolder
         /////////////  totalPrice ////////////////////
 
         holder.totalPrice.setText(orderItem.getTotalPrice()+"$");
+        //////////////////////////
+        holder.orderType.setText(orderItem.getOrderType());
 
         //////////////////////////
 

@@ -219,7 +219,7 @@ Next.setOnClickListener(new View.OnClickListener() {
 
                 Orders order =new Orders(providerId,null,customerId,
                         null,selectedCompanyType,null,null,selectedArrivalTime,
-                        "confirmed",totalPrice+"",selectedVehicle,selectedid);
+                        "confirmed",totalPrice+"",selectedVehicle,selectedid,null,null);
 
                 Intent i =new Intent(ServiceDetailsActivity.this,CleanAddressForCustomerActivity.class);
                 i.putExtra("order",(Serializable) order);
@@ -248,7 +248,7 @@ Next.setOnClickListener(new View.OnClickListener() {
 
                                 Orders order = new Orders(providerId, null, customerId,
                                         null, selectedCompanyType, s.latitudeX + "," + s.longitudeY, null, selectedArrivalTime,
-                                        "confirmed", totalPrice + "", selectedVehicle, selectedid);
+                                        "confirmed", totalPrice + "", selectedVehicle, selectedid,null,null);
 
                                 Intent i = new Intent(ServiceDetailsActivity.this, SelectPaymentMethodActivity.class);
                                 i.putExtra("order", (Serializable) order);

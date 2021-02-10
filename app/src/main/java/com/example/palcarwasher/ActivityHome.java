@@ -25,6 +25,7 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,7 +64,6 @@ public class ActivityHome extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ProviderAdapter providerAdapter;
-    SobspAdapter sobspAdapter;
     DatabaseReference databaseReference2;
 
    String selectedCompanyType;
@@ -75,17 +75,22 @@ public class ActivityHome extends AppCompatActivity {
    FloatingActionButton floatingButtonFilter ;
    String filtering;
 
+
+     List<ServiceProvider> providerList=new ArrayList<>();
+     List<ServiceProviderAndAvgPrice> providerPriceList=new ArrayList<>();
+     double sum=0;
+     double count=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-  //customerId=getIntent().getStringExtra("customerId");
+
        // Toast.makeText(getApplicationContext(),customerId, Toast.LENGTH_LONG).show();
 
         filtering ="none";
 
-
+        //customerId=getIntent().getStringExtra("customerId");
         customerId="-MPQBYHkwU501cMmJC3p";
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setSelectedItemId(R.id.nav_home);
@@ -196,9 +201,6 @@ public class ActivityHome extends AppCompatActivity {
       selectedVehicle=vehicleSpinner.getSelectedItem()+"";
 
 
-      final  List<ServiceProvider> providerList;
-
-        providerList=new ArrayList<>();
 
 
         databaseReference2= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServiceProvider");
@@ -224,6 +226,7 @@ public class ActivityHome extends AppCompatActivity {
 
                 providerAdapter=new ProviderAdapter(providerList,selectedVehicle,selectedCompanyType,customerId);
                 recyclerView.setAdapter(providerAdapter);
+                providerAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -348,21 +351,19 @@ floatingButtonFilter.setOnClickListener(new View.OnClickListener() {
     void changeView(final String selecteVehicle, final String selecteCompanyType, final String filter ){
 
 
-final  List<ServiceProvider> providerList;
 
-        providerList=new ArrayList<>();
 
         databaseReference2= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServiceProvider");
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 providerList.clear();
+                providerPriceList.clear();
                 for(DataSnapshot ds: dataSnapshot.getChildren())
                 {
 
                     final ServiceProvider prov=ds.getValue(ServiceProvider.class);
                     if(prov.getCompanyType().equals(selecteCompanyType)||prov.getCompanyType().equals("both")){
-
 
                         providerList.add(prov);
 
@@ -370,51 +371,253 @@ final  List<ServiceProvider> providerList;
 
                 }
 
-  /*   if(filter.equals("ascending")){
-
-                    Toast.makeText(ActivityHome.this,"" +
-                            "lateron!", Toast.LENGTH_LONG).show();
-
-                }
-
-                else if(filter.equals("descending")){
-
-
-                    Toast.makeText(ActivityHome.this,"" +
-                            "lateron!", Toast.LENGTH_LONG).show();
-
-                }
-
-              else if(filter.equals("rating")){
-
-                    Collections.sort(providerList, new Comparator<ServiceProvider>()
-                    {
+                if(filter.equals("rating")) { ///from high rate and down
+                    Collections.sort(providerList, new Comparator<ServiceProvider>() {
                         @Override
-                        public int compare(ServiceProvider o1, ServiceProvider o2) {*/
-                          //  Double rate1 = Double.valueOf(o1.getEvaluationLevel());
-                          //  Double rate2 = Double.valueOf(o2.getEvaluationLevel());
-                          /*  if (rate1.compareTo(rate2) < 0) {
-                                return 1;
-                            } else if (rate1.compareTo(rate2) > 0) {
-                                return -1;
-                            } else {
-                                return 0;
-                            }*/
+                        public int compare(ServiceProvider o1, ServiceProvider o2) {
+                            Double rate1 = Double.valueOf(o1.getEvaluationLevel());
+                            Double rate2 = Double.valueOf(o2.getEvaluationLevel());
 
-                          //  return rate1 > rate2 ? 1 : (rate1 < rate2 ) ? -1 : 0;
+                            return rate1 > rate2 ? -1 : (rate1 < rate2) ? 1 : 0;
 
 
-                     /*       return Double.compare(  Double.parseDouble(o1.getEvaluationLevel()),Double.parseDouble(o2.getEvaluationLevel()) );
                         }
 
 
                     });
 
 
-                }*/
+                    providerAdapter=new ProviderAdapter(providerList,selecteVehicle,selectedCompanyType,customerId);
+                    recyclerView.setAdapter(providerAdapter);
+                    providerAdapter.notifyDataSetChanged();
 
-                providerAdapter=new ProviderAdapter(providerList,selecteVehicle,selectedCompanyType,customerId);
-                recyclerView.setAdapter(providerAdapter);
+                }
+
+                else if(filter.equals("ascending")) {
+
+//////////////////////////////////////////////////////
+
+
+
+
+
+               reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServicesOfferedByServiceProviders");
+               reference.addValueEventListener(new ValueEventListener() {
+                   @Override
+                   public void onDataChange(@NonNull DataSnapshot snapshot) {
+                       sum=0;
+                       count=0;
+
+                       for (int i=0;i<providerList.size();i++){
+
+                       final ServiceProvider prov = providerList.get(i);
+
+
+                       for(DataSnapshot ds2: snapshot.getChildren())
+                       {
+                           final ServicesOfferedByServiceProviders sobsp=ds2.getValue(ServicesOfferedByServiceProviders.class) ;
+
+                           if(prov.getProviderId().equals(sobsp.getProviderId())&&selecteVehicle.equals(sobsp.getVehicleName())){
+
+                               sum+= Double.parseDouble(sobsp.getPrice());
+                               count++;
+
+
+
+                           }
+
+
+
+
+                       }
+
+
+                       ServiceProviderAndAvgPrice pp=new ServiceProviderAndAvgPrice(prov,sum/count);
+                       providerPriceList.add(pp);
+
+                       }
+     //////////////////////************************sorting
+
+                       Collections.sort(providerPriceList, new Comparator<ServiceProviderAndAvgPrice>() {
+                           @Override
+                           public int compare(ServiceProviderAndAvgPrice o1, ServiceProviderAndAvgPrice o2) {
+                               Double price1 = Double.valueOf(o1.getAvg());
+                               Double price2 = Double.valueOf(o2.getAvg());
+
+                               return price1 > price2 ? -1 : (price1 < price2) ? 1 : 0;
+
+
+                           }
+
+
+                       });
+
+
+
+
+
+
+                       providerList.clear();
+
+
+                       for (int i=providerPriceList.size()-1;i>=0;i--){
+                     //      Log.v("DataOB",providerPriceList.get(i).getAvg()+"");
+                       providerList.add(providerPriceList.get(i).getSp());
+                     //  Log.v("DataOB",providerList.get(i).getCompanyName()+"");
+
+                   }
+
+
+                       providerAdapter=new ProviderAdapter(providerList,selecteVehicle,selectedCompanyType,customerId);
+                       recyclerView.setAdapter(providerAdapter);
+                       providerAdapter.notifyDataSetChanged();
+
+                       ////////////////////////////////****************
+
+                   }
+
+                   @Override
+                   public void onCancelled(@NonNull DatabaseError error) {
+
+                   }
+               });
+
+
+
+
+
+
+
+
+
+
+
+
+                    //////////////////////////////////////////////////////
+
+                }
+
+                else if(filter.equals("descending")) {
+
+
+//////////////////////////////////////////////////////
+
+
+
+
+
+                    reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServicesOfferedByServiceProviders");
+                    reference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            sum=0;
+                            count=0;
+
+                            for (int i=0;i<providerList.size();i++){
+
+                                final ServiceProvider prov = providerList.get(i);
+
+
+                                for(DataSnapshot ds2: snapshot.getChildren())
+                                {
+                                    final ServicesOfferedByServiceProviders sobsp=ds2.getValue(ServicesOfferedByServiceProviders.class) ;
+
+                                    if(prov.getProviderId().equals(sobsp.getProviderId())&&selecteVehicle.equals(sobsp.getVehicleName())){
+
+                                        sum+= Double.parseDouble(sobsp.getPrice());
+                                        count++;
+                                       // Log.v("DataOB",sum+"");
+
+
+                                    }
+
+
+
+
+
+
+
+                                }
+
+
+                                ServiceProviderAndAvgPrice pp=new ServiceProviderAndAvgPrice(prov,sum/count);
+
+                          //   Log.v("DataOB",sum/count+"");
+
+                                providerPriceList.add(pp);
+
+                            }
+                            //////////////////////************************sorting
+
+                            Collections.sort(providerPriceList, new Comparator<ServiceProviderAndAvgPrice>() {
+                                @Override
+                                public int compare(ServiceProviderAndAvgPrice o1, ServiceProviderAndAvgPrice o2) {
+                                    Double price1 = Double.valueOf(o1.getAvg());
+                                    Double price2 = Double.valueOf(o2.getAvg());
+
+                                    return price1 > price2 ? -1 : (price1 < price2) ? 1 : 0;
+
+
+                                }
+
+
+                            });
+
+
+
+
+
+
+                            providerList.clear();
+
+
+                            for (int i=0;i<providerPriceList.size();i++){
+                           //  Log.v("DataOB",providerPriceList.get(i).getAvg()+"");
+                                providerList.add(providerPriceList.get(i).getSp());
+                          // Log.v("DataOB",providerList.get(i).getCompanyName()+"");
+
+                            }
+
+
+                            providerAdapter=new ProviderAdapter(providerList,selecteVehicle,selectedCompanyType,customerId);
+                            recyclerView.setAdapter(providerAdapter);
+                            providerAdapter.notifyDataSetChanged();
+
+
+
+
+                            ////////////////////////////////****************
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
+
+
+
+
+
+
+
+
+
+
+                    //////////////////////////////////////////////////////
+
+                }
+
+                 else{
+                    providerAdapter=new ProviderAdapter(providerList,selecteVehicle,selectedCompanyType,customerId);
+                    recyclerView.setAdapter(providerAdapter);
+                    providerAdapter.notifyDataSetChanged();
+                    }
+
+
             }
 
             @Override
@@ -436,14 +639,10 @@ final  List<ServiceProvider> providerList;
     public class AlertDialogFilter extends Dialog implements
             android.view.View.OnClickListener {
 
-
-        RadioButton ratting;
-        RadioButton ascending;
-        RadioButton descending;
         Button aply;
+        RadioGroup rg;
 
 
-        String selection;
 
         public AlertDialogFilter( ) {
             super(ActivityHome.this);
@@ -456,16 +655,39 @@ final  List<ServiceProvider> providerList;
 
 
 
-            ratting=findViewById(R.id.ratting);
-            ascending=findViewById(R.id.ascending);
-            descending=findViewById(R.id.descending);
+
             aply=findViewById(R.id.aply);
 
 
-           if(ratting.isChecked())filtering="rating";
-           else if(ascending.isChecked())filtering="ascending";
-           else if(descending.isChecked())filtering="descending";
 
+
+             rg = (RadioGroup) findViewById(R.id.radioGroup1);
+
+            rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+            {
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    switch(checkedId){
+                        case R.id.ratting:
+                            // do operations specific to this selection
+                            filtering="rating";
+                            break;
+                        case R.id.ascending:
+                            // do operations specific to this selection
+                            filtering="ascending";
+
+
+                            break;
+                        case R.id.descending:
+                            // do operations specific to this selection
+
+                            filtering="descending";
+
+                            break;
+                    }
+                }
+            });
+
+            Log.v("DataOB","filtering"+filtering);
 
            aply.setOnClickListener(this);
 
@@ -474,99 +696,13 @@ final  List<ServiceProvider> providerList;
         @Override
         public void onClick(View v) {
 
-            //changeView(selectedVehicle,selectedCompanyType,filtering);
+           changeView(selectedVehicle,selectedCompanyType,filtering);
             dismiss();
 
         }
 
 
 
-
-        void changeView(final String selecteVehicle, final String selecteCompanyType, final String filter ){
-
-
-            final  List<ServiceProvider> providerList;
-
-            providerList=new ArrayList<>();
-
-            databaseReference2= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServiceProvider");
-            databaseReference2.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    providerList.clear();
-                    for(DataSnapshot ds: dataSnapshot.getChildren())
-                    {
-
-                        final ServiceProvider prov=ds.getValue(ServiceProvider.class);
-                        if(prov.getCompanyType().equals(selecteCompanyType)||prov.getCompanyType().equals("both")){
-
-
-                            providerList.add(prov);
-
-                        }
-
-                    }
-
-
-              /*      if(filter.equals("ascending")){
-
-                        Toast.makeText(ActivityHome.this,"" +
-                                "lateron!", Toast.LENGTH_LONG).show();
-
-                    }
-
-                    else if(filter.equals("descending")){
-
-
-                        Toast.makeText(ActivityHome.this,"" +
-                                "lateron!", Toast.LENGTH_LONG).show();
-
-                    }
-
-                    else if(filter.equals("rating")){
-
-                        Collections.sort(providerList, new Comparator<ServiceProvider>()
-                        {
-                            @Override
-                            public int compare(ServiceProvider o1, ServiceProvider o2) {*/
-                                //  Double rate1 = Double.valueOf(o1.getEvaluationLevel());
-                                //  Double rate2 = Double.valueOf(o2.getEvaluationLevel());
-                          /*  if (rate1.compareTo(rate2) < 0) {
-                                return 1;
-                            } else if (rate1.compareTo(rate2) > 0) {
-                                return -1;
-                            } else {
-                                return 0;
-                            }*/
-
-                                //  return rate1 > rate2 ? 1 : (rate1 < rate2 ) ? -1 : 0;
-
-
-                         /*       return Double.compare(  Double.parseDouble(o1.getEvaluationLevel()),Double.parseDouble(o2.getEvaluationLevel()) );
-                            }
-
-
-                        });
-
-
-                    }*/
-
-                    providerAdapter=new ProviderAdapter(providerList,selecteVehicle,selectedCompanyType,customerId);
-                    recyclerView.setAdapter(providerAdapter);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    throw databaseError.toException();
-                }
-            });
-
-
-
-
-
-
-        }
 
 
 

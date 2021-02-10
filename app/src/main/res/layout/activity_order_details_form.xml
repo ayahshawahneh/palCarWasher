@@ -8,7 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/border7"
+    android:background="@drawable/border9"
     android:layout_margin="3dp"
     tools:context=".ActivityOrderDetailsForm">
 
@@ -42,7 +42,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
-            android:background="@drawable/border7">
+            android:background="@drawable/border9">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -80,14 +80,19 @@
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/border9"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginEnd="7dp">
 
             <TableRow
                 android:layout_height="50dp"
                 android:layout_width="match_parent"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"
                 android:background="@drawable/shodow_border">
 
                 <TextView
@@ -122,8 +127,8 @@
                 android:layout_height="50dp"
                 android:layout_width="match_parent"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"
 
                 android:background="@drawable/shodow_border">
 
@@ -153,6 +158,7 @@
                     android:textSize="18sp"
                     android:paddingTop="9dp"
                     android:layout_marginStart="8dp"
+                    android:textIsSelectable="true"
                     />
 
             </TableRow>
@@ -162,8 +168,8 @@
                 android:layout_height="50dp"
                 android:layout_width="match_parent"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"
 
                 android:background="@drawable/shodow_border">
                 <TextView
@@ -201,8 +207,8 @@
                 android:layout_height="50dp"
                 android:layout_width="match_parent"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"
 
                 android:background="@drawable/shodow_border">
 
@@ -241,9 +247,8 @@
                 android:layout_height="50dp"
                 android:layout_width="match_parent"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
-
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"
                 android:background="@drawable/shodow_border">
 
 
@@ -269,7 +274,7 @@
                     android:textAlignment="textStart"
                     android:textSize="18sp"
                     android:layout_marginStart="8dp"
-
+                    android:textIsSelectable="true"
                     />
 
             </TableRow>
@@ -279,9 +284,8 @@
                 android:layout_height="50dp"
                 android:layout_width="match_parent"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
-
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"
                 android:background="@drawable/shodow_border">
 
 
@@ -316,9 +320,8 @@
                 android:layout_height="50dp"
                 android:layout_width="match_parent"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
-
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"
                 android:background="@drawable/shodow_border">
 
 
@@ -356,8 +359,8 @@
                 android:layout_height="50dp"
                 android:layout_width="match_parent"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"
 
                 android:background="@drawable/shodow_border">
 
@@ -396,9 +399,10 @@
                 android:layout_height="50dp"
                 android:layout_width="match_parent"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="7dp"
-                android:layout_marginStart="10dp"
+
+                android:layout_marginBottom="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"
 
                 android:background="@drawable/shodow_border">
                 <TextView
