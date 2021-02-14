@@ -35,7 +35,7 @@ import java.util.Date;
 import java.util.List;
 
 public class ActivityOrdersPROVIDER extends AppCompatActivity {
-    String customerId;
+
     String providerId;
     DatabaseReference databaseReference;
     RecyclerView recyclerView;
@@ -79,7 +79,7 @@ public class ActivityOrdersPROVIDER extends AppCompatActivity {
 
 
                     case R.id.nav_wallet:
-                        Intent intent2 = new Intent(ActivityOrdersPROVIDER.this, WalletActivity.class);
+                        Intent intent2 = new Intent(ActivityOrdersPROVIDER.this, ActivityWalletPROVIDER.class);
                         intent2.putExtra("providerId", providerId.toString());//new
                         startActivity(intent2);
                         overridePendingTransition(0, 0);
@@ -87,7 +87,7 @@ public class ActivityOrdersPROVIDER extends AppCompatActivity {
 
 
                     case R.id.nav_profile:
-                        Intent intent3 = new Intent(ActivityOrdersPROVIDER.this, ProfileActivity.class);
+                        Intent intent3 = new Intent(ActivityOrdersPROVIDER.this, ActivityProfilePROVIDER.class);
                         intent3.putExtra("providerId", providerId.toString());//new
                         startActivity(intent3);
                         overridePendingTransition(0, 0);

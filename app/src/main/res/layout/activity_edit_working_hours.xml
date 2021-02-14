@@ -1,0 +1,1402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:background="@drawable/border9"
+    android:layout_margin="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityEditWorkingHours"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/workingLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/dekko"
+            android:text="Change Working Hours"
+            android:layout_gravity="center"
+            android:textColor="#009688"
+            android:textSize="33sp"
+            android:textStyle="bold" />
+
+        <TextView
+
+            android:id="@+id/t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Do you provide services in this period?
+If you choose closed, your company will not appear to customers"
+            android:textAlignment="viewStart"
+            android:textColor="#858E8D"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_height="match_parent" >
+
+            <RadioButton
+                android:id="@+id/closed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:textColor="@color/design_default_color_secondary_variant"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginEnd="60dp"
+                android:text="Closed"
+                />
+
+            <RadioButton
+                android:id="@+id/opened"
+                android:layout_weight="0"
+                android:textColor="@color/design_default_color_secondary_variant"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Opened" />
+
+        </RadioGroup>
+
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:id="@+id/satBox"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:text="@string/saterday"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+        <TableLayout
+            android:id="@+id/satTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="10dp">
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+
+
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/open"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/satOpen"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:autofillHints=""
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+                    android:inputType="time"
+
+                    android:onClick="showHourPicker"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/close"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/satClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:importantForAutofill="no"
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    />
+
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+
+
+
+
+            </TableRow>
+
+
+            <TableRow
+                android:id="@+id/satPartTimeRow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/open"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/satPartOpen"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:importantForAutofill="no"
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/close"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/satPartClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:autofillHints=""
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+
+            </TableRow>
+
+
+        </TableLayout>
+
+
+
+
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+
+
+
+
+
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/sunBox"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:text="@string/sunday"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+
+        <TableLayout
+            android:id="@+id/sunTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="10dp">
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+
+
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/open"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/sunOpen"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:autofillHints=""
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/close"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/sunClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:importantForAutofill="no"
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+            </TableRow>
+
+
+
+
+            <TableRow
+                android:id="@+id/sunPartTimeRow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/open"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/sunPartOpen"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:importantForAutofill="no"
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/close"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/sunPartClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:autofillHints=""
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+
+            </TableRow>
+
+
+        </TableLayout>
+
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+
+
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/monBox"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:text="@string/monday"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+        <TableLayout
+            android:id="@+id/monTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="10dp">
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+
+
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/open"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/monOpen"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:autofillHints=""
+                    android:onClick="showHourPicker"
+                    android:inputType="time"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/close"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/monClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:importantForAutofill="no"
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+            </TableRow>
+
+
+
+
+            <TableRow
+                android:id="@+id/monPartTimeRow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/open"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/monPartOpen"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:importantForAutofill="no"
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/close"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/monPartClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:autofillHints=""
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+            </TableRow>
+
+
+        </TableLayout>
+
+
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+
+
+
+        <TextView
+            android:id="@+id/tusBox"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:text="@string/tuesday"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+        <TableLayout
+            android:id="@+id/tusTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="10dp">
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+
+
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/open"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/tusOpen"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:autofillHints=""
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/close"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/tusClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:importantForAutofill="no"
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+            </TableRow>
+
+
+            <TableRow
+                android:id="@+id/tusPartTimeRow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/open"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/tusPartOpen"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:importantForAutofill="no"
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/close"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/tusPartClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:autofillHints=""
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+            </TableRow>
+
+
+        </TableLayout>
+
+
+
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+
+
+
+        <TextView
+            android:id="@+id/wedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:text="@string/wednesday"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+        <TableLayout
+            android:id="@+id/wedTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="10dp">
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+
+
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/open"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/wedOpen"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:autofillHints=""
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/close"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/wedClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:importantForAutofill="no"
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+            </TableRow>
+
+
+
+
+
+            <TableRow
+                android:id="@+id/wedPartTimeRow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/open"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/wedPartOpen"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:importantForAutofill="no"
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/close"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/wedPartClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:autofillHints=""
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+
+            </TableRow>
+
+
+        </TableLayout>
+
+
+
+
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+
+
+        <TextView
+            android:id="@+id/thuBox"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:text="@string/thursday"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+        <TableLayout
+            android:id="@+id/thuTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="10dp">
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+
+
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/open"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/thuOpen"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:autofillHints=""
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/close"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/thuClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:importantForAutofill="no"
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+            </TableRow>
+
+
+            <TableRow
+                android:id="@+id/thuPartTimeRow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/open"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/thuPartOpen"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:importantForAutofill="no"
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/close"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/thuPartClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:autofillHints=""
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+
+            </TableRow>
+
+
+        </TableLayout>
+
+
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+
+        <TextView
+            android:id="@+id/friBox"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:text="@string/friday"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+        <TableLayout
+            android:id="@+id/friTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="10dp">
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+
+
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/open"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/friOpen"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:autofillHints=""
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/close"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/friClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:importantForAutofill="no"
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+            </TableRow>
+
+
+
+
+
+            <TableRow
+                android:id="@+id/friPartTimeRow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/open"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/friPartOpen"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:importantForAutofill="no"
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:ems="4"
+                    android:fontFamily="@font/roboto_regular"
+                    android:padding="15dp"
+                    android:text="@string/close"
+                    android:textSize="15sp" />
+
+                <EditText
+
+                    android:id="@+id/friPartClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/et_custom"
+                    android:ems="6"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:inputType="time"
+                    android:padding="15dp"
+                    android:textSize="15sp"
+                    android:autofillHints=""
+                    android:onClick="showHourPicker"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+
+
+            </TableRow>
+
+
+        </TableLayout>
+
+        <Button
+
+            android:id="@+id/submit_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/ic_launcher_background"
+            android:fontFamily="@font/roboto_regular"
+
+            android:onClick="ocClickAndSubmit"
+            android:padding="15dp"
+            android:text="@string/save_modification"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+</ScrollView>

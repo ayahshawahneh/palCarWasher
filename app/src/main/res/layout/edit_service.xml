@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/form"
+    android:background="@drawable/border4"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="7dp"
+    android:paddingBottom="10dp"
+    >
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+
+
+        <TextView
+            android:id="@+id/vehicle"
+            android:layout_width="110dp"
+            android:layout_height="60dp"
+            android:layout_weight="0"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="7dp"
+
+            android:background="@drawable/et_custom"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/service"
+            android:padding="15dp"
+
+            android:textColor="#000"
+            android:layout_marginBottom="7dp"
+            android:layout_marginTop="7dp"
+            />
+
+        <TextView
+            android:id="@+id/service"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="@drawable/et_custom"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/service"
+            android:padding="15dp"
+            android:textColor="#000"
+
+            android:layout_marginBottom="7dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="7dp"
+
+            />
+
+
+
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="7dp"
+
+            android:background="@drawable/et_custom"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/price"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:padding="15dp"
+            android:textSize="15sp"
+            android:textColor="#000"
+
+            android:layout_weight="0"/>
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:background="@drawable/et_custom"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/description"
+            android:inputType="textMultiLine"
+            android:padding="15dp"
+            android:textSize="15sp"
+            android:textColor="#000"
+
+            android:layout_marginEnd="7dp"
+            android:layout_weight="1"/>
+
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        >
+
+
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+
+            android:background="@drawable/btn_custom4"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/delete"
+            android:textColor="@android:color/white"
+            android:layout_weight="0"/>
+        <Button
+            android:id="@+id/edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+
+            android:background="@drawable/btn_custom2"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Edit"
+            android:textColor="@android:color/white"
+            android:layout_weight="1"/>
+</TableRow>
+
+</TableLayout>
+
+
+
+

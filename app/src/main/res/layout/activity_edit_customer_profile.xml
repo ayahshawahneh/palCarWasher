@@ -30,10 +30,8 @@
             android:layout_marginBottom="12dp"
             android:fontFamily="@font/dekko"
             android:text="@string/edit_my_information"
-
             android:textColor="@color/colorPrimary"
             android:textSize="30sp"
-
             android:textStyle="bold" />
 
         <TableRow
@@ -44,13 +42,13 @@
             android:layout_marginBottom="10dp">
 
             <TextView
-
+                android:text="@string/full_name"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
 
                 android:fontFamily="@font/roboto_regular"
                 android:padding="15dp"
-                android:text="@string/full_name"
+
                 android:textColor="@color/progressBarColor"
                 android:textSize="20sp" />
 

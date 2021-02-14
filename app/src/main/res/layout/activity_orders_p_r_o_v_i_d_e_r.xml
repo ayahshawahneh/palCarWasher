@@ -24,7 +24,7 @@
             android:layout_marginBottom="10dp"
 
             android:fontFamily="@font/dekko"
-            android:text="@string/orders"
+            android:text="Orders History"
             android:layout_gravity="center"
             android:textColor="@color/design_default_color_secondary_variant"
             android:textSize="36dp" />

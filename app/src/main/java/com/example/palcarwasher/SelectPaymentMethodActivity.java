@@ -14,8 +14,8 @@ import java.io.Serializable;
 
 public class SelectPaymentMethodActivity extends AppCompatActivity {
 
-    RadioButton cash ;
-    RadioButton paypal;
+
+    RadioGroup rg;
     String selectedPaymentMethod=null;
     Button next;
     Orders order;
@@ -26,13 +26,37 @@ public class SelectPaymentMethodActivity extends AppCompatActivity {
         order=(Orders) getIntent().getSerializableExtra("order");
 
         next=findViewById(R.id.next1);
-        cash=findViewById(R.id.cash);
-        paypal=findViewById(R.id.paypal);
 
-        if(cash.isChecked())
-            selectedPaymentMethod="Cash";
-        else
-            selectedPaymentMethod="PayPal";
+
+        rg = (RadioGroup) findViewById(R.id.rg);
+
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId){
+                    case R.id.paypal:
+
+                        selectedPaymentMethod="PayPal";
+
+
+                        break;
+                    case R.id.cash:
+
+                        selectedPaymentMethod="Cash";
+
+
+
+                        break;
+
+                }
+            }
+        });
+
+
+
+
+
+
 
 
 

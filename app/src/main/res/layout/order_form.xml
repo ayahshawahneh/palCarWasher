@@ -204,18 +204,47 @@
         </TableRow>
 
     </TableLayout>
-
-    <Button
-        android:id="@+id/show_details"
+    <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+       >
+
+
+        <Button
+            android:id="@+id/start_trip"
+            android:layout_width="190dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/darkYellow"
+            android:padding="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="1"
+            android:text="Start Trip"
+            android:textColor=" #FFF"
+            android:visibility="gone"
+
+            />
+    <Button
+        android:id="@+id/show_details"
+        android:layout_width="190dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
         android:layout_marginTop="9dp"
+        android:layout_weight="1"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/btn_custom"
         android:padding="10dp"
         android:text="@string/show_more_details"
         android:textColor=" #FFF"
 
+
         />
+    </TableRow>
 </LinearLayout>

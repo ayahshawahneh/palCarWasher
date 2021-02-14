@@ -138,7 +138,7 @@ orderItem=(Orders) getIntent().getSerializableExtra("orderItem");
                     //AlertDialog dialog=
                     new AlertDialog.Builder(ActivityOrderDetailsForm.this)
                             .setTitle("Cancel Order")
-                            .setMessage("Are you sure that you want to cancel this order?\n\nYou will lose 70% of total amount!\nIf your payment method is cash the cut amount will be calculated with the next order\nIf you cancel two consecutive bookings in cash and without payment, you will be banned from the application! ")
+                            .setMessage("Are you sure that you want to cancel this order?\n\nYou will lose 50% of total amount!\nIf your payment method is cash the cut amount will be calculated with the next order\nIf you cancel two consecutive bookings in cash and without payment, you will be banned from the application! ")
 
                             // Specifying a listener allows you to take an action before dismissing the dialog.
                             // The dialog is automatically dismissed when a dialog button is clicked.

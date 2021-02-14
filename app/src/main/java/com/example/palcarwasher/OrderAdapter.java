@@ -33,7 +33,11 @@ import com.google.firebase.storage.StorageReference;
 import org.w3c.dom.Text;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class OrderAdapter  extends RecyclerView.Adapter<OrderAdapter.orderHolder>{
@@ -136,6 +140,62 @@ holder.show.setOnClickListener(new View.OnClickListener() {
 
 
 
+/////////////////////////////
+    //    Log.v("DataOB",Calendar.getInstance().getTime()+"" );
+    Date dateObj,dateObj2, nowPlus20;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm aa");
+
+
+        //Log.v("DataOB","heello");
+        String orderTime = orderItem.getFullTime().substring(4, 23);
+        String t1 = orderItem.getFullTime().substring(4, 14);
+        String t2 = orderItem.getFullTime().substring(24, 32);
+        String endOrderTime=t1+" "+t2;
+
+        Calendar currentTime = Calendar.getInstance();
+        currentTime.add(Calendar.MINUTE, 20);
+        nowPlus20 = currentTime.getTime();
+       // Log.v("DataOB",nowPlus20 +"" );
+        try {
+            dateObj2=sdf.parse(endOrderTime);
+          //  Log.v("DataOB",dateObj2 +"" );
+
+
+         dateObj = sdf.parse(orderTime);
+           // Log.v("DataOB",dateObj +"" );
+
+
+
+      //  Log.v("DataOB",Calendar.getInstance().getTime()+"" );
+if (!nowPlus20.before(dateObj)&&!nowPlus20.after(dateObj2)&&orderItem.getOrderType().equals("stationary")&&orderItem.getStatus().equals("confirmed")) {
+
+            holder.startTrip.setVisibility(View.VISIBLE);
+
+            holder.startTrip.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Toast.makeText(context, "go to map", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+
+        }else
+            holder.startTrip.setVisibility(View.GONE);
+
+
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+
+
+
+
+
+
+//////////////////////////////////////
+
 holder.logo.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
@@ -184,21 +244,22 @@ holder.logo.setOnClickListener(new View.OnClickListener() {
 
 
 
-        Button show;
+        Button show,startTrip;
 
 
 
         public orderHolder(@NonNull View itemView) {
             super(itemView);
 
-            logo=itemView.findViewById(R.id.imageLogo);
+           logo=itemView.findViewById(R.id.imageLogo);
            companyName=itemView.findViewById(R.id.company_name10);
            status=itemView.findViewById(R.id.status10);
-            dateTime=itemView.findViewById(R.id.date_time10);
+           dateTime=itemView.findViewById(R.id.date_time10);
            totalPrice=itemView.findViewById(R.id.total_price10);
            orderType=itemView.findViewById(R.id.order_type10);
 
            show=itemView.findViewById(R.id.show_details);
+           startTrip=itemView.findViewById(R.id.start_trip);
         }
 
 

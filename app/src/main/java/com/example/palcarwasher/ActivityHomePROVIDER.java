@@ -93,7 +93,7 @@ public class ActivityHomePROVIDER extends AppCompatActivity {
 
 
                     case R.id.nav_wallet:
-                        Intent intent2 = new Intent(ActivityHomePROVIDER.this,WalletActivity.class);
+                        Intent intent2 = new Intent(ActivityHomePROVIDER.this,ActivityWalletPROVIDER.class);
                         intent2.putExtra("providerId",providerId.toString());//new
                         startActivity(intent2);
                         overridePendingTransition(0,0);
@@ -101,7 +101,7 @@ public class ActivityHomePROVIDER extends AppCompatActivity {
 
 
                     case R.id.nav_profile:
-                        Intent intent3 = new Intent(ActivityHomePROVIDER.this,ProfileActivity.class);
+                        Intent intent3 = new Intent(ActivityHomePROVIDER.this,ActivityProfilePROVIDER.class);
                         intent3.putExtra("providerId",providerId.toString());//new
                         startActivity(intent3);
                         overridePendingTransition(0,0);

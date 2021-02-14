@@ -4,9 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/backg"
+    android:background="@drawable/border8"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="3dp"
     android:theme="@style/AppTheme.NoActionBar"
     tools:context=".AppRate">
 
@@ -18,11 +19,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:fontFamily="@font/aclonica"
+        android:fontFamily="@font/dekko"
         android:text="@string/how_would_you_rate_our_app_experience"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="22sp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="29sp"
         android:layout_marginTop="140dp"/>
 
 
@@ -42,8 +43,10 @@
     <Button
         android:id="@+id/ratingbutton"
         android:layout_width="170dp"
+        android:background="@drawable/btn_custom2"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="#fff"
         android:layout_marginTop="50dp"
         android:text="@string/submit" />
 

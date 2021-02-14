@@ -11,7 +11,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Layout;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -21,6 +23,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -80,6 +83,9 @@ public class ActivityHome extends AppCompatActivity {
      List<ServiceProviderAndAvgPrice> providerPriceList=new ArrayList<>();
      double sum=0;
      double count=0;
+
+     EditText search;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,11 +145,9 @@ public class ActivityHome extends AppCompatActivity {
         });
 
 
+///////////////////////////////////////
 
 
-
-
-        ///////////////////////////////////////////////////////
 
 
       vehicleList.add("Car(5-pass)");
@@ -311,7 +315,26 @@ public class ActivityHome extends AppCompatActivity {
 ///////////////////////////////////////////**********************************/////////////////////////
 
 
+        search=findViewById(R.id.search);
 
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+              searchView(selectedVehicle,selectedCompanyType,s.toString());
+            }
+        });
+
+        ///////////////////////////////////////////////////////
 
 
 
@@ -632,6 +655,86 @@ floatingButtonFilter.setOnClickListener(new View.OnClickListener() {
 
 
     }
+
+
+
+
+
+
+
+
+    void searchView(final String selecteVehicle, final String selecteCompanyType, final String text ){
+
+
+
+
+        databaseReference2= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServiceProvider");
+        databaseReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                providerList.clear();
+                providerPriceList.clear();
+                for(DataSnapshot ds: dataSnapshot.getChildren())
+                {
+
+                    final ServiceProvider prov=ds.getValue(ServiceProvider.class);
+                    if(prov.getCompanyType().equals(selecteCompanyType)||prov.getCompanyType().equals("both")){
+
+                        providerList.add(prov);
+
+                    }
+
+                }
+
+
+ArrayList<ServiceProvider> searchProvider=new ArrayList<>();
+for(ServiceProvider s : providerList){
+
+    if(s.getCompanyName().toLowerCase().contains(text.toLowerCase()))
+
+        searchProvider.add(s);
+
+                            }
+
+
+
+
+
+
+               providerAdapter.searchedList(searchProvider);
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

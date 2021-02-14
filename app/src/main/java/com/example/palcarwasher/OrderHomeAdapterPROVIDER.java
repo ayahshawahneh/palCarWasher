@@ -36,8 +36,12 @@ import com.google.firebase.storage.StorageReference;
 import org.w3c.dom.Text;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class OrderHomeAdapterPROVIDER extends RecyclerView.Adapter<OrderHomeAdapterPROVIDER.orderHolder1>{
@@ -186,7 +190,61 @@ public class OrderHomeAdapterPROVIDER extends RecyclerView.Adapter<OrderHomeAdap
                 v.getContext().startActivity(intent);
             }
         });
+/////////////////////////////
+        //    Log.v("DataOB",Calendar.getInstance().getTime()+"" );
+        Date dateObj,dateObj2, nowPlus20;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm aa");
 
+
+        //Log.v("DataOB","heello");
+        String orderTime = orderItem.getFullTime().substring(4, 23);
+        String t1 = orderItem.getFullTime().substring(4, 14);
+        String t2 = orderItem.getFullTime().substring(24, 32);
+        String endOrderTime=t1+" "+t2;
+
+        Calendar currentTime = Calendar.getInstance();
+        currentTime.add(Calendar.MINUTE, 20);
+        nowPlus20 = currentTime.getTime();
+        // Log.v("DataOB",nowPlus20 +"" );
+        try {
+            dateObj2=sdf.parse(endOrderTime);
+            //  Log.v("DataOB",dateObj2 +"" );
+
+
+            dateObj = sdf.parse(orderTime);
+            // Log.v("DataOB",dateObj +"" );
+
+
+
+            //  Log.v("DataOB",Calendar.getInstance().getTime()+"" );
+            if (!nowPlus20.before(dateObj)&&!nowPlus20.after(dateObj2)&&orderItem.getOrderType().equals("mobile")) {
+
+                holder.startTrip.setVisibility(View.VISIBLE);
+
+                holder.startTrip.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Toast.makeText(context, "go to map", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
+            }else
+                holder.startTrip.setVisibility(View.GONE);
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+//////////////////////////////////////
 
 
 
@@ -221,7 +279,7 @@ public class OrderHomeAdapterPROVIDER extends RecyclerView.Adapter<OrderHomeAdap
         TextView vehicleType;
         TableRow orderTypeRow;
 
-        Button show;
+        Button show,startTrip;
 
 
 
@@ -237,6 +295,7 @@ public class OrderHomeAdapterPROVIDER extends RecyclerView.Adapter<OrderHomeAdap
             vehicleType=itemView.findViewById(R.id.vehicle20);
             orderTypeRow=itemView.findViewById(R.id.order_type_row20);
             show=itemView.findViewById(R.id.show_details);
+            startTrip=itemView.findViewById(R.id.start_trip);
         }
 
 

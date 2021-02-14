@@ -18,7 +18,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ActivityOrderrDetailsOrderPage"></activity>
+        <activity android:name=".ActivityEditWorkingHours"></activity>
+        <activity android:name=".SuggestNewService" />
+        <activity android:name=".ActivityAddNewVehicle" />
+        <activity android:name=".AddnewService" />
+        <activity android:name=".EditServiceProviderProfile" />
+        <activity android:name=".ActivityProfilePROVIDER" />
+        <activity android:name=".ActivityWalletPROVIDER" />
+        <activity android:name=".ActivityEditServicesPROVIDER" />
+        <activity android:name=".ActivityOrderrDetailsOrderPage" />
         <activity android:name=".ActivityOrdersPROVIDER" />
         <activity android:name=".ActivityOrderDetailsFormPROVIDER" />
         <activity android:name=".ActivityHomePROVIDER"> <intent-filter>
@@ -44,7 +52,7 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".WalletActivity" />
         <activity android:name=".OrdersActivity" />
-        <activity android:name=".ActivityHome"/> >
+        <activity android:name=".ActivityHome"/>
         <activity android:name=".UploadLogo" />
         <activity android:name=".LaundaryLicencePicture" />
         <activity android:name=".BankAccountInformation" />

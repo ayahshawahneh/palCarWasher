@@ -151,5 +151,14 @@
     <string name="filter">Filter:</string>
     <string name="time_from_newest_to_oldest">Time(Newest to Oldest)</string>
     <string name="order_type2">Order Type:</string>
+    <string name="edit_services_provided_by_the_company">Edit services provided by the company</string>
+    <string name="delete">Delete</string>
+    <string name="working_hours">Working Hours</string>
+    <string name="comments_and_feedback">Comments and feedback</string>
+    <string name="no_comments_yet">NO COMMENTS YET ..!</string>
+    <string name="customer_name">customer name</string>
+    <string name="comment">comment</string>
+    <string name="the_dept_is_cased_by_canceled_orders_with_cash_payment_method_it_must_not_exceed_100_or_you_will_be_banned_from_the_application_if_you_want_to_pay_you_must_go_to_the_bank_and_pay_the_required_amount_into_the_application_account_or_you_can_use_the_visa_card_through_the_following_link">The debt is cased by canceled orders with cash payment method, it must not exceed 20$ or you will be banned from the application If you want to pay, you must go to the bank and pay the required amount into the application account, or you can use the Visa card through the following link</string>
+    <string name="pay_with_visa"><u>Pay with visa</u></string>
 
 </resources>

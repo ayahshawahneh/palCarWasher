@@ -302,6 +302,16 @@ String customerId;
         return providersList.size();
     }
 
+
+   public void searchedList(ArrayList<ServiceProvider> searchList){
+
+        providersList=searchList;
+        notifyDataSetChanged();
+
+   }
+
+
+
     public class providerHolder extends RecyclerView.ViewHolder{
             ImageView companyLogo;
             TextView companyName;

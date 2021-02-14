@@ -327,18 +327,9 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysHolder> {
                                 e.printStackTrace();
                             }
                             getReservedTimeSlots(fullDate);
-/*if(reservedTimeSlots.size()!=0) {
-    for (int i = 0; i < stringSlotList.size(); i++) {
-        String fullTimeSlot=fullDate+" "+stringSlotList.get(i);
-        Log.v("DataOB",fullTimeSlot);
-        for (int j = 1; j < reservedTimeSlots.size(); j++) {
-            if (fullTimeSlot.equals(reservedTimeSlots.get(j)))
-                stringSlotList.remove(i);
-        }
-    }
-}*/
 
-                            //    gridView.setAdapter(new GridViewAdapter() );
+
+
 
                         }
 

@@ -126,7 +126,7 @@ public class ActivityOrderDetailsFormPROVIDER extends AppCompatActivity {
 
 
         /////////////  button ////////////////////
-       if(orderItem.getStatus().equals("confirmed")){
+     /*  if(orderItem.getStatus().equals("confirmed")){
             cancelOrder.setVisibility(View.VISIBLE);
 
 
@@ -202,7 +202,7 @@ public class ActivityOrderDetailsFormPROVIDER extends AppCompatActivity {
                 }
             });
 
-        }
+        }*/
 
 
         /////////////  orderId ////////////////////

@@ -315,12 +315,12 @@ void changeView(){
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
                     final Orders o = ds.getValue(Orders.class);
-                    if(!filtering.equals("all")&&!filtering3.equals("both")){
-                    if (o.getCustomerId().equals(customerId)&&o.getStatus().equals(filtering)&&o.getOrderType().equals(filtering3)) {
-                          ordersList.add(o);
+                    if(!filtering.equals("all")&&!filtering3.equals("both")) {
+                        if (o.getCustomerId().equals(customerId) && o.getStatus().equals(filtering) && o.getOrderType().equals(filtering3)) {
+                            ordersList.add(o);
                         }
 
-
+                    }
 
                      else   if(!filtering.equals("all")&&filtering3.equals("both")){
                             if (o.getCustomerId().equals(customerId)&&o.getStatus().equals(filtering)) {
@@ -341,7 +341,7 @@ void changeView(){
                         }
 
 
-                    }  else {
+                      else {
 
                         if (o.getCustomerId().equals(customerId)){
 

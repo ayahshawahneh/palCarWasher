@@ -27,93 +27,67 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityTester extends AppCompatActivity {
-DatabaseReference databaseReference;
     RecyclerView recyclerView;
-    OrderAdapter orderAdapter;
-    List<Orders> ordersList =new ArrayList<Orders>();
-    String customerId;
+    CommentAndEvaluationAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tester);
 
-/*
-    private String providerId;
-    private String orderId;
-    private String customerId;
-    private String visaId;
-    private String orderType;
-    private String cleanAddress;
-    private String paymentType;
-    private String fullTime;
-    private String status;
-    private String totalPrice;
 
-    List<String> offerIds;
+        final String   providerId="-MRC4TAdUkYXdnRp0thN";
+        final List<Orders> ordersList=new <Orders> ArrayList();
+        recyclerView=(RecyclerView)findViewById(R.id.recycler_view);
+        ///recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
-        List<String> offerIds=new ArrayList<String>();
-        offerIds.add("-MPq9CMryyaieSLPdAaH");
-        offerIds.add("-MPq9CMweziFXu-dSUYa");
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
+                .child("Orders");
 
-          databaseReference = FirebaseDatabase.getInstance().getReference()
-                 .child("PalCarWasher").child("Orders");
-         final String orderId = databaseReference.push().getKey();
+        reference.addListenerForSingleValueEvent(new ValueEventListener(){
 
-           Orders o=new Orders("-MPq8uV089ZVlR0gDrnW",orderId,"-MPQBYHkwU501cMmJC3p",null,"stationary","main street/selat Al-Harthia/jenin","Cash","Sun 24/01/2021 01:00 PM-02:00 PM","completed","20","Car(5-pass)",offerIds);
-        databaseReference.push().setValue(o);*/
-
-     //  ServicesInEachOrder o2 =new ServicesInEachOrder("-MRWqI3MKHw6bxtJrgSR",offerIds);
-
-
-     // databaseReference.push().setValue(o);
-
-/////////////////////////////////
-        customerId="-MPQBYHkwU501cMmJC3p";
-
-
- recyclerView=findViewById(R.id.recyclerview_orders);
- recyclerView.setHasFixedSize(true);
-recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-
-
-
-        databaseReference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("Orders");
-        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ordersList.clear();
-            if(dataSnapshot.exists()) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                   final Orders o = ds.getValue(Orders.class);
-                      if (o.getCustomerId().equals(customerId)) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Orders o = snapshot.getValue(Orders.class);
+
+                    if (o.getProviderId().equals(providerId)&&!o.getComment().equals("")) {
+
+                        //      Log.v("DataOB",o.getComment()+"here");
+                        ordersList.add(o);
 
 
-                         //  Log.v("DataOB",o.getOfferIds().get(1)) ;
+                    }
 
-                         ordersList.add(o);
-
-                       }
 
                 }
-            }
+
+               // if(ordersList.size()==0)
+                    //  Log.v("DataOB","here");
+                  //  commentText.setVisibility(View.VISIBLE);
+               // else {
+
+                    adapter=new CommentAndEvaluationAdapter(ordersList);
+                    recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
 
 
-            orderAdapter=new OrderAdapter(ordersList,ActivityTester.this);
-              //  orderAdapter.notifyDataSetChanged();
-            recyclerView.setAdapter(orderAdapter);
-           orderAdapter.notifyDataSetChanged();
+               // }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                throw databaseError.toException();
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
 
+
+/////////////////////////////////
 
 
 

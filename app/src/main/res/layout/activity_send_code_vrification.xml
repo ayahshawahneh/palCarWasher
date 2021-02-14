@@ -39,7 +39,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="28dp"
-
+            android:visibility="gone"
         android:background="@drawable/ic_arrow_left"
 
 
@@ -95,17 +95,17 @@
         app:layout_constraintVertical_bias="0.462"
         tools:ignore="LabelFor,MissingConstraints" />
 
+
     <TextView
         android:id="@+id/back_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:text="@string/tap_here_to_edit_your_phone_number"
+        android:layout_marginBottom="36dp"
+        android:text="Click back to edit phone number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.456"
+        app:layout_constraintHorizontal_bias="0.922"
         app:layout_constraintStart_toEndOf="@+id/back" />
-
 
     <ProgressBar
         android:id="@+id/progressBar2"

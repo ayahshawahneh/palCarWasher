@@ -185,6 +185,9 @@ Orders orderItem;
 
                 String orderId= databaseReference.push().getKey();
 
+
+                orderItem.setComment("");
+                orderItem.setEvaluationLevel("");
                 orderItem.setOrderId(orderId);
 
 
