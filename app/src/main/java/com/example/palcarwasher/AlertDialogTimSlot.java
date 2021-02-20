@@ -27,8 +27,7 @@ public class AlertDialogTimSlot extends Dialog implements
     Button selectArrivalTime;
     Button save;
 
-    String finalSelection;
-    String FinalSelectionDB;
+
     List <String> finalSelections;
     List<String> finalSelectionsDB;
     List<String> finalSlots;
@@ -48,7 +47,7 @@ public class AlertDialogTimSlot extends Dialog implements
 
 
 
-        // String providerId="-MPq8uV089ZVlR0gDrnW";
+
 
         gridView=findViewById(R.id.timeSlot_gridView);
 

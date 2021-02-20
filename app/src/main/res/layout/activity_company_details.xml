@@ -435,7 +435,8 @@ android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:text="@string/no_comments_yet"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
         android:visibility="gone"
         />
 
@@ -447,6 +448,7 @@ android:layout_gravity="center"
         app:layoutManager="LinearLayoutManager"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1px"
+        android:clipToPadding="false"
         android:visibility="visible">
 
 

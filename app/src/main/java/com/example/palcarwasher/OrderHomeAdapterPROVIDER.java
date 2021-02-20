@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +44,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class OrderHomeAdapterPROVIDER extends RecyclerView.Adapter<OrderHomeAdapterPROVIDER.orderHolder1>{
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
@@ -193,7 +195,7 @@ public class OrderHomeAdapterPROVIDER extends RecyclerView.Adapter<OrderHomeAdap
 /////////////////////////////
         //    Log.v("DataOB",Calendar.getInstance().getTime()+"" );
         Date dateObj,dateObj2, nowPlus20;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm aa");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm aa");
 
 
         //Log.v("DataOB","heello");
@@ -205,10 +207,10 @@ public class OrderHomeAdapterPROVIDER extends RecyclerView.Adapter<OrderHomeAdap
         Calendar currentTime = Calendar.getInstance();
         currentTime.add(Calendar.MINUTE, 20);
         nowPlus20 = currentTime.getTime();
-        // Log.v("DataOB",nowPlus20 +"" );
+           Log.v("DataOB",nowPlus20 +"" );
         try {
             dateObj2=sdf.parse(endOrderTime);
-            //  Log.v("DataOB",dateObj2 +"" );
+           Log.v("DataOB",dateObj2 +"" );
 
 
             dateObj = sdf.parse(orderTime);
@@ -225,7 +227,15 @@ public class OrderHomeAdapterPROVIDER extends RecyclerView.Adapter<OrderHomeAdap
                     @Override
                     public void onClick(View v) {
 
-                        Toast.makeText(context, "go to map", Toast.LENGTH_SHORT).show();
+
+
+
+                        String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?&daddr="+orderItem.getCleanAddress());
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                        intent.setPackage("com.google.android.apps.maps");
+
+                       context.startActivity(intent);
+
 
                     }
                 });

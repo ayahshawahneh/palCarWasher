@@ -1,11 +1,19 @@
 package com.example.palcarwasher;
 
+import android.app.ActivityManager;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationChannelGroup;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +47,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class OrderAdapter  extends RecyclerView.Adapter<OrderAdapter.orderHolder>{
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
@@ -142,8 +151,8 @@ holder.show.setOnClickListener(new View.OnClickListener() {
 
 /////////////////////////////
     //    Log.v("DataOB",Calendar.getInstance().getTime()+"" );
-    Date dateObj,dateObj2, nowPlus20;
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm aa");
+    Date dateObj,dateObj2, nowPlus20,now;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm aa");
 
 
         //Log.v("DataOB","heello");
@@ -155,6 +164,9 @@ holder.show.setOnClickListener(new View.OnClickListener() {
         Calendar currentTime = Calendar.getInstance();
         currentTime.add(Calendar.MINUTE, 20);
         nowPlus20 = currentTime.getTime();
+
+        Calendar currentTime2 = Calendar.getInstance();
+        now = currentTime2.getTime();
        // Log.v("DataOB",nowPlus20 +"" );
         try {
             dateObj2=sdf.parse(endOrderTime);
@@ -169,20 +181,104 @@ holder.show.setOnClickListener(new View.OnClickListener() {
       //  Log.v("DataOB",Calendar.getInstance().getTime()+"" );
 if (!nowPlus20.before(dateObj)&&!nowPlus20.after(dateObj2)&&orderItem.getOrderType().equals("stationary")&&orderItem.getStatus().equals("confirmed")) {
 
-            holder.startTrip.setVisibility(View.VISIBLE);
 
+
+            holder.startTrip.setVisibility(View.VISIBLE);
             holder.startTrip.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    Toast.makeText(context, "go to map", Toast.LENGTH_SHORT).show();
+
+                    String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?&daddr="+orderItem.getCleanAddress());
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    intent.setPackage("com.google.android.apps.maps");
+
+                    context.startActivity(intent);
+
 
                 }
             });
 
 
+
+
         }else
             holder.startTrip.setVisibility(View.GONE);
+
+
+///////////////////////////////////////////////
+if(now.after(dateObj2)&&orderItem.getStatus().equals("confirmed")){
+
+    orderItem.setStatus("completed");
+
+    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
+            .child("orders");
+
+    final DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
+            .child("Orders");
+    Query query=reference.orderByChild("orderId").equalTo(orderItem.getOrderId());
+    query.addListenerForSingleValueEvent(new ValueEventListener(){
+
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+            if(dataSnapshot.exists()){
+                for (DataSnapshot snapshot:dataSnapshot.getChildren()){
+                    Orders o=snapshot.getValue(Orders.class);
+                    o.setStatus("completed");
+
+                    databaseReference.push().setValue(o); //new child !!!!!
+                    reference.child(snapshot.getKey()).removeValue();
+
+
+
+
+                }
+
+            }
+
+
+
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    });
+
+
+
+
+
+}
+
+//////////////////////
+
+if(orderItem.getStatus().equals("completed")&&(orderItem.getComment().equals("")||orderItem.getEvaluationLevel().equals(""))){
+
+    holder.evaluateOrder.setVisibility(View.VISIBLE);
+
+    holder.evaluateOrder.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            Intent intent =new Intent(context,ActivityCommentAndEvaluation.class);
+            intent.putExtra("orderItem",(Serializable) orderItem);
+            context.startActivity(intent);
+
+        }
+    });
+
+
+
+
+  }
+
+
+
+
+
 
 
     } catch (ParseException e) {
@@ -230,6 +326,32 @@ holder.logo.setOnClickListener(new View.OnClickListener() {
     public int getItemCount() {
         return ordersList.size();
     }
+/////////////
+
+
+
+
+
+
+    ///////////////
+   private void createNotificationChanel(){
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+
+CharSequence name= "LemubitReminderChanel";
+String description ="Chanel for Lemubit Reminder";
+int importance = NotificationManager.IMPORTANCE_DEFAULT;
+NotificationChannel channel =new NotificationChannel("notifyLemubit",name,importance);
+channel.setDescription(description);
+
+NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+notificationManager.createNotificationChannel(channel);
+
+        }
+   }
+
+
+
+   ///////////////////
 
     public class orderHolder extends RecyclerView.ViewHolder {
 
@@ -244,7 +366,7 @@ holder.logo.setOnClickListener(new View.OnClickListener() {
 
 
 
-        Button show,startTrip;
+        Button show,startTrip,evaluateOrder;
 
 
 
@@ -260,6 +382,7 @@ holder.logo.setOnClickListener(new View.OnClickListener() {
 
            show=itemView.findViewById(R.id.show_details);
            startTrip=itemView.findViewById(R.id.start_trip);
+            evaluateOrder=itemView.findViewById(R.id.evaluate_order);
         }
 
 

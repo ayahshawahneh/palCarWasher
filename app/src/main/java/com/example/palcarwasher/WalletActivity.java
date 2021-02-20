@@ -29,8 +29,8 @@ List<Orders> ordersList =new ArrayList<Orders>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wallet);
 
-       // customerId=getIntent().getStringExtra("customerId");
-        customerId="-MPQBYHkwU501cMmJC3p";
+        customerId=getIntent().getStringExtra("customerId");
+      //  customerId="-MPQBYHkwU501cMmJC3p";
 
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);

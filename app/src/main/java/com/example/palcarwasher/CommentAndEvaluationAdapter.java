@@ -31,7 +31,7 @@ public class CommentAndEvaluationAdapter extends RecyclerView.Adapter<CommentAnd
     @NonNull
     @Override
     public commentHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_form,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_view,parent,false);
         return new CommentAndEvaluationAdapter.commentHolder(view);
     }
 
@@ -52,7 +52,7 @@ public class CommentAndEvaluationAdapter extends RecyclerView.Adapter<CommentAnd
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ordersList.clear();
+
                 if(dataSnapshot.exists()) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         Customer s= snapshot.getValue(Customer.class);

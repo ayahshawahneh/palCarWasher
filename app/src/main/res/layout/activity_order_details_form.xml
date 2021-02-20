@@ -436,6 +436,86 @@
 
 
 
+            <TableRow
+                android:id="@+id/commentRow"
+                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginStart="2dp"
+
+                android:background="@drawable/shodow_border">
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Comment"
+                    android:textAlignment="textStart"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:layout_weight="0"
+                    android:paddingTop="9dp"
+                    android:layout_marginStart="5dp"
+                    />
+
+
+
+                <TextView
+                    android:id="@+id/comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:paddingTop="9dp"
+                    android:textColor="@color/design_default_color_secondary_variant"
+                    android:layout_weight="1"
+                    android:text="good wash"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp"
+                    android:layout_marginStart="8dp"
+                    />
+
+            </TableRow>
+
+
+
+
+
+            <TableRow
+                android:id="@+id/rateRow"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/shodow_border">
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Rating"
+                    android:textAlignment="textStart"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:layout_weight="0"
+                    android:paddingTop="9dp"
+                    android:layout_marginStart="5dp"
+                    />
+
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="4dp"
+                    android:numStars="5"
+                    android:stepSize=".5"
+                    android:theme="@style/RatingBar"/>
+            </TableRow>
+
+
+
 
 
         </TableLayout>
@@ -447,11 +527,25 @@
             android:layout_marginTop="9dp"
             android:layout_marginBottom="12dp"
             android:padding="10dp"
-            android:background="@drawable/btn_custom2"
+            android:visibility="gone"
+                android:background="#f56b53"
             android:text="@string/cancel_this_order"
             android:textColor=" #FFF"
-            android:visibility="gone"
+
            />
+
+
+
+
+
+
+
+
+
+
+
+
+
     </LinearLayout>
 
 

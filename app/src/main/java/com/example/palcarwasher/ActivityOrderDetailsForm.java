@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +49,9 @@ DatabaseReference databaseReference;
     TextView cleanAddress;
     RecyclerView services;
     Button cancelOrder;
-
+    TableRow commentRow,ratingRow;
+RatingBar rate;
+TextView comment;
 
 
     @Override
@@ -72,6 +76,12 @@ orderItem=(Orders) getIntent().getSerializableExtra("orderItem");
         services=findViewById(R.id.recycler_view_services);
 
         cancelOrder=findViewById(R.id.cancel_button10);
+
+        commentRow =findViewById(R.id.commentRow);
+        ratingRow=findViewById(R.id.rateRow);
+        rate=findViewById(R.id.ratingBar);
+        comment=findViewById(R.id.comment);
+
 
 //////////////////////////logo///////////////////////
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
@@ -202,7 +212,8 @@ orderItem=(Orders) getIntent().getSerializableExtra("orderItem");
                 }
             });
 
-        }
+        }else
+            cancelOrder.setVisibility(View.GONE);
 
 
         /////////////  orderId ////////////////////
@@ -239,7 +250,36 @@ orderItem=(Orders) getIntent().getSerializableExtra("orderItem");
 
        dateTime.setText(orderItem.getFullTime());
 /////////////////////////////////////status////////////////
-        status.setText(orderItem.getStatus());
+       status.setText(orderItem.getStatus());
+
+
+
+
+////////////////////////////comment/////
+
+if(!orderItem.getComment().equals("")){
+
+    commentRow.setVisibility(View.VISIBLE);
+    comment.setText(orderItem.getComment());
+
+}
+else commentRow.setVisibility(View.GONE);
+
+
+/////////////////rate//
+
+
+        if(!orderItem.getEvaluationLevel().equals("")){
+
+            ratingRow.setVisibility(View.VISIBLE);
+            rate.setRating(Float.parseFloat(orderItem.getEvaluationLevel()));
+
+        }
+        else ratingRow.setVisibility(View.GONE);
+
+
+
+
 
         /////////////////////services///////////////////////////////////
 

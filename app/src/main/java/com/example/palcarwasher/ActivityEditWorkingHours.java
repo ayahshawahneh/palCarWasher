@@ -128,12 +128,12 @@ opened=findViewById(R.id.opened);
 
 
 
-                            //if(serviceProvider.getWorkingStatus().equals(null)||serviceProvider.getWorkingStatus().equals("opened"))
-                              //  opened.setChecked(true);
+                        if(serviceProvider.getWorkingStatus().equals("closed"))
+                            closed.setChecked(true);
 
-                           // else
-                               // closed.setChecked(true);
-//
+                     else
+                           opened.setChecked(true);
+
 
 
                         }
@@ -142,6 +142,7 @@ opened=findViewById(R.id.opened);
                     }
 
                 }
+
             }
 
             @Override
@@ -355,17 +356,34 @@ opened=findViewById(R.id.opened);
         long difference ;
 
 
-            if(!open.getText().toString().equals(null)&&close.getText().toString().equals(null)){
+            if((!open.getText().toString().equals("")&&close.getText().toString().equals(""))){
 
-                Toast.makeText(this, "Please fill the time closing time!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please fill closing time!", Toast.LENGTH_SHORT).show();
                 return false;
             }
 
-        if(!openpart.getText().toString().equals(null)&&closepart.getText().toString().equals(null)){
+        if((open.getText().toString().equals("")&&!close.getText().toString().equals(""))){
 
-            Toast.makeText(this, "Please fill the time closing part time!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please fill opening time!", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+
+
+        if((!openpart.getText().toString().equals("")&&closepart.getText().toString().equals(""))){
+
+
+            Toast.makeText(this, "Please fill closing part time!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if((openpart.getText().toString().equals("")&&!closepart.getText().toString().equals(""))){
+
+
+            Toast.makeText(this, "Please fill opening part time!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
 
 if(!open.getText().toString().equals("")&&!close.getText().toString().equals("")) {
     try {
@@ -505,40 +523,6 @@ if(!open.getText().toString().equals("")&&!close.getText().toString().equals("")
 
 
 
-        final DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServiceProvider");
-        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServiceProvider");
-
-
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        ServiceProvider serviceProvider = snapshot.getValue(ServiceProvider.class);
-
-                        if (serviceProvider.getProviderId().equals(providerId)) {
-
-                            serviceProvider.setWorkingStatus(compStatus);
-
-                            reference2.push().setValue(serviceProvider); //new child !!!!!
-                            reference.child(snapshot.getKey()).removeValue();
-
-                        }
-
-
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
 
 
 
@@ -563,8 +547,47 @@ if(!open.getText().toString().equals("")&&!close.getText().toString().equals("")
 
         if(d1&d2&d3&d4&d5&d6&d7){
 
+/////////////////
 
 
+
+            final DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServiceProvider");
+            final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child("ServiceProvider");
+
+
+            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    if (dataSnapshot.exists()) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            ServiceProvider serviceProvider = snapshot.getValue(ServiceProvider.class);
+
+                            if (serviceProvider.getProviderId().equals(providerId)) {
+
+                                serviceProvider.setWorkingStatus(compStatus);
+
+                                reference2.push().setValue(serviceProvider); //new child !!!!!
+                                reference.child(snapshot.getKey()).removeValue();
+
+                            }
+
+
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
+
+            ////////////////
 
             toDB("WorkingTimeOnSaturdy",sat);
 
@@ -602,7 +625,7 @@ if(!open.getText().toString().equals("")&&!close.getText().toString().equals("")
     void toDB(String child , final WorkingTimeOnSaturdy day2){
 
 
-        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child(child);
+        DatabaseReference  databaseReference4 = FirebaseDatabase.getInstance().getReference().child("PalCarWasher").child(child);
 
 
         final DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
@@ -615,14 +638,20 @@ if(!open.getText().toString().equals("")&&!close.getText().toString().equals("")
                 if(dataSnapshot.exists()){
                     for (DataSnapshot snapshot:dataSnapshot.getChildren()){
                         WorkingTimeOnSaturdy day =snapshot.getValue(WorkingTimeOnSaturdy.class);
-                        if(day.getPrviderId().equals(providerId)){
+
+
+
+
+                  if(day.getPrviderId().equals(providerId)){
                        day.setFrom(day2.getFrom());
                        day.setTo(day2.getTo());
                        day.setPartTimeFrom(day2.getPartTimeFrom());
                        day.setPartTimeTo(day2.getPartTimeTo());
-                        databaseReference.push().setValue(day); //new child !!!!!
-                        reference.child(snapshot.getKey()).removeValue();
+                        databaseReference4.push().setValue(day);
 
+                        //new child !!!!!
+                       reference.child(snapshot.getKey()).removeValue();
+                        Toast.makeText(ActivityEditWorkingHours.this,"Updated Successfully! ",Toast.LENGTH_SHORT).show();
                         // Toast.makeText(getApplicationContext(),snapshot.getKey(),Toast.LENGTH_LONG).show();
                         // Toast.makeText(getApplicationContext(),"Done ",Toast.LENGTH_LONG).show();
 

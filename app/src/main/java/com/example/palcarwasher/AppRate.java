@@ -15,11 +15,11 @@ import android.widget.Toast;
 public class AppRate extends AppCompatActivity {
 
 
-    ImageView back ;
+
     Button RatingButton;
     TextView RatingText;
     RatingBar ratingBar1;
-    RatingBar ratingBar2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

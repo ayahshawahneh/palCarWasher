@@ -181,7 +181,7 @@ DatabaseReference databaseReference;
 
                     ProviderId = databaseReference.push().getKey();
                     //(String providerId, String companyName, String companyType, String logo, String name, String email, String password, String phoneNumber, String address, String gender, String bankAccount, String workingStatus)
-                    ServiceProvider company = new ServiceProvider( ProviderId, companyName, companyType,null, ownerName, email, password, PhoneNumber,address,Gender,null,null,"0");
+                    ServiceProvider company = new ServiceProvider( ProviderId, companyName, companyType,null, ownerName, email, password, PhoneNumber,address,Gender,null,"","0");
                     databaseReference.push().setValue(company);
 
                    // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

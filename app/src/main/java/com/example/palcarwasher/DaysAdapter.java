@@ -85,39 +85,39 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysHolder> {
             if (dayName.equals("Friday")) {
 
                 databaseChild = "WorkingTimeOnFriday";
-                getFromDatabase(databaseChild,toDate2);
+                getFromDatabase(position,databaseChild,toDate2);
             }
             else if (dayName.equals("Saturday")) {
                 databaseChild = "WorkingTimeOnSaturdy";
-                getFromDatabase(databaseChild,toDate2);
+                getFromDatabase(position,databaseChild,toDate2);
             }
 
 
             else if (dayName.equals("Sunday")) {
                 databaseChild = "WorkingTimeOnSunday";
-                getFromDatabase(databaseChild,toDate2);
+                getFromDatabase(position,databaseChild,toDate2);
             }
 
 
             else if (dayName.equals("Monday")) {
                 databaseChild = "WorkingTimeOnMonday";
-                getFromDatabase(databaseChild,toDate2);
+                getFromDatabase(position,databaseChild,toDate2);
             }
 
 
             else if (dayName.equals("Tuesday")) {
                 databaseChild = "WorkingTimeOnTueseday";
-                getFromDatabase(databaseChild,toDate2);
+                getFromDatabase(position,databaseChild,toDate2);
             }
 
             else if (dayName.equals("Wednesday")) {
                 databaseChild = "WorkingTimeOnWednesday";
-                getFromDatabase(databaseChild,toDate2);
+                getFromDatabase(position,databaseChild,toDate2);
             }
 
             else  {
                 databaseChild = "WorkingTimeOnThuresday";
-                getFromDatabase(databaseChild,toDate2);
+                getFromDatabase(position,databaseChild,toDate2);
             }
 
         }else holder.dayButton.setBackgroundResource(R.color.gray);
@@ -153,34 +153,34 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysHolder> {
                 if(dayName.equals("Friday")){
 
                     databaseChild="WorkingTimeOnFriday";
-                    getFromDatabase(databaseChild,toDate2);
+                    getFromDatabase(position,databaseChild,toDate2);
                 }
                 else if(dayName.equals("Saturday")) {
                     databaseChild="WorkingTimeOnSaturdy";
-                    getFromDatabase(databaseChild,toDate2);}
+                    getFromDatabase(position,databaseChild,toDate2);}
 
 
                 else if(dayName.equals("Sunday")) {
                     databaseChild="WorkingTimeOnSunday";
-                    getFromDatabase(databaseChild,toDate2);}
+                    getFromDatabase(position,databaseChild,toDate2);}
 
 
                 else if(dayName.equals("Monday")) {
                     databaseChild="WorkingTimeOnMonday";
-                    getFromDatabase(databaseChild,toDate2);}
+                    getFromDatabase(position,databaseChild,toDate2);}
 
 
                 else if(dayName.equals("Tuesday")){
                     databaseChild="WorkingTimeOnTueseday";
-                    getFromDatabase(databaseChild,toDate2);}
+                    getFromDatabase(position,databaseChild,toDate2);}
 
                 else if(dayName.equals("Wednesday")) {
                     databaseChild="WorkingTimeOnWednesday";
-                    getFromDatabase(databaseChild,toDate2);}
+                    getFromDatabase(position,databaseChild,toDate2);}
 
                 else {
                     databaseChild="WorkingTimeOnThuresday";
-                    getFromDatabase(databaseChild,toDate2);}
+                    getFromDatabase(position,databaseChild,toDate2);}
 
             }
         });
@@ -228,44 +228,43 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysHolder> {
 
     }
     //////////////////****************************************************************************
-    void getFromDatabase(String databaseChild, final String fullDate){
+    void getFromDatabase(int position,String databaseChild, final String fullDate) {
+        if (position == 0){
+            //  final List<String> reservedTimeSlots=getReservedTimeSlots();
 
-        //  final List<String> reservedTimeSlots=getReservedTimeSlots();
-
-        //  reservedTimeSlots.add("Sun 24/01/2021 01:00 PM-02:00 PM");
-        reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
-                .child(databaseChild);
+            //  reservedTimeSlots.add("Sun 24/01/2021 01:00 PM-02:00 PM");
+            reference = FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
+                    .child(databaseChild);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 stringSlotList.clear();
-                for (DataSnapshot dataSnapshot:snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     WorkingTimeOnSaturdy fri = dataSnapshot.getValue(WorkingTimeOnSaturdy.class);
-                    if(fri.getPrviderId().equals(providerId)){
-                        String start=fri.getFrom();
-                        String end=fri.getTo();
-                        String  partStart=fri.getPartTimeFrom();
-                        String  partEnd=fri.getPartTimeTo();
+                    if (fri.getPrviderId().equals(providerId)) {
+                        Log.v("DataOB", providerId);
+
+                        String start = fri.getFrom();
+                        String end = fri.getTo();
+                        String partStart = fri.getPartTimeFrom();
+                        String partEnd = fri.getPartTimeTo();
 
 
                         ///////////////////////////
 
 
-                        if(start!=null){
-
+                        if (start != null) {
+                            Log.v("DataOB", "start" + start);
                             String format = "hh:mm aa";
                             SimpleDateFormat sdf = new SimpleDateFormat(format);
-
-
-
 
 
                             Date dateObj1 = null;
                             Date dateObj2 = null;
                             Date dateObj11 = null;
                             Date dateObj22 = null;
-                            Date  nowPlus30  =null;
+                            Date nowPlus30 = null;
 
                             try {
                                 dateObj1 = sdf.parse(start);
@@ -275,43 +274,42 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysHolder> {
                                 currentTime.add(Calendar.MINUTE, 30);
 
 
+                                String s = sdf.format(currentTime.getTime());
+                                // Log.v("DataOB",s);
 
+                                nowPlus30 = sdf.parse(s);
 
-                                String s=  sdf.format(currentTime.getTime());
-                               // Log.v("DataOB",s);
-
-                                 nowPlus30 =sdf.parse(s);
-
-                               // Log.v("DataOB",now+"");
-                               // Log.v("DataOB",dateObj1+"");
-
+                                Log.v("DataOB", nowPlus30 + "nowPlus30");
+                                Log.v("DataOB", dateObj1 + "dateObj1");
+                                Log.v("DataOB", dateObj2 + "dateObj2");
 
 
                                 long dif = dateObj1.getTime();
                                 while (dif < dateObj2.getTime()) {
                                     Date slot = new Date(dif);
-                                        if (slot.after( nowPlus30)){
-                                    Date nextSlot =new Date( dif + 3600000);
-                                    if(!nextSlot.after(dateObj2))
-                                    { String fullSlot = sdf.format(slot)+"-"+sdf.format(nextSlot);
-                                        stringSlotList.add(fullSlot);
-                                       }
+                                    if (slot.after(nowPlus30)) {
+                                        Date nextSlot = new Date(dif + 3600000);
+                                        if (!nextSlot.after(dateObj2)) {
+                                            String fullSlot = sdf.format(slot) + "-" + sdf.format(nextSlot);
+                                            // Log.v("DataOB",fullSlot+"");
+                                            stringSlotList.add(fullSlot);
                                         }
+                                    }
                                     dif += 3600000;
                                 }
 
 
-
-                                dateObj11 = sdf.parse( partStart);
+                                dateObj11 = sdf.parse(partStart);
                                 dateObj22 = sdf.parse(partEnd);
-                                if(partStart!=null){
+                                if (partStart != null) {
                                     long dif2 = dateObj11.getTime();
                                     while (dif2 < dateObj22.getTime()) {
                                         Date slot = new Date(dif2);
-                                        if (slot.after( nowPlus30)) {
+                                        if (slot.after(nowPlus30)) {
                                             Date nextSlot = new Date(dif2 + 3600000);
                                             if (!nextSlot.after(dateObj22)) {
                                                 String fullSlot = sdf.format(slot) + "-" + sdf.format(nextSlot);
+                                                // Log.v("DataOB",fullSlot+"");
                                                 stringSlotList.add(fullSlot);
 
                                             }
@@ -322,13 +320,10 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysHolder> {
                                 }
 
 
-
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
                             getReservedTimeSlots(fullDate);
-
-
 
 
                         }
@@ -340,6 +335,116 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysHolder> {
                     }
 
 
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }else
+    {
+        reference = FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
+                .child(databaseChild);
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                stringSlotList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    WorkingTimeOnSaturdy fri = dataSnapshot.getValue(WorkingTimeOnSaturdy.class);
+                    if (fri.getPrviderId().equals(providerId)) {
+                        Log.v("DataOB", providerId);
+
+                        String start = fri.getFrom();
+                        String end = fri.getTo();
+                        String partStart = fri.getPartTimeFrom();
+                        String partEnd = fri.getPartTimeTo();
+
+
+                        ///////////////////////////
+
+
+                        if (start != null) {
+                            Log.v("DataOB", "start" + start);
+                            String format = "hh:mm aa";
+                            SimpleDateFormat sdf = new SimpleDateFormat(format);
+
+
+                            Date dateObj1 = null;
+                            Date dateObj2 = null;
+                            Date dateObj11 = null;
+                            Date dateObj22 = null;
+
+
+                            try {
+                                dateObj1 = sdf.parse(start);
+                                dateObj2 = sdf.parse(end);
+
+                                Calendar currentTime = Calendar.getInstance();
+                                currentTime.add(Calendar.MINUTE, 30);
+
+
+                                String s = sdf.format(currentTime.getTime());
+                                // Log.v("DataOB",s);
+
+
+
+
+                                Log.v("DataOB", dateObj1 + "dateObj1");
+                                Log.v("DataOB", dateObj2 + "dateObj2");
+
+
+                                long dif = dateObj1.getTime();
+                                while (dif < dateObj2.getTime()) {
+                                    Date slot = new Date(dif);
+                                        Date nextSlot = new Date(dif + 3600000);
+                                        if (!nextSlot.after(dateObj2)) {
+                                            String fullSlot = sdf.format(slot) + "-" + sdf.format(nextSlot);
+                                            // Log.v("DataOB",fullSlot+"");
+                                            stringSlotList.add(fullSlot);
+                                        }
+
+                                    dif += 3600000;
+                                }
+
+
+                                dateObj11 = sdf.parse(partStart);
+                                dateObj22 = sdf.parse(partEnd);
+                                if (partStart != null) {
+                                    long dif2 = dateObj11.getTime();
+                                    while (dif2 < dateObj22.getTime()) {
+                                        Date slot = new Date(dif2);
+                                            Date nextSlot = new Date(dif2 + 3600000);
+                                            if (!nextSlot.after(dateObj22)) {
+                                                String fullSlot = sdf.format(slot) + "-" + sdf.format(nextSlot);
+                                                // Log.v("DataOB",fullSlot+"");
+                                                stringSlotList.add(fullSlot);
+
+                                            }
+
+                                        dif2 += 3600000;
+                                    }
+
+                                }
+
+
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            getReservedTimeSlots(fullDate);
+
+
+                        }
+
+
+                        /////////////////////////
+
+
+                    }
 
 
                 }
@@ -350,6 +455,15 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysHolder> {
 
             }
         });
+
+
+
+
+
+
+
+    }
+
 
 
 

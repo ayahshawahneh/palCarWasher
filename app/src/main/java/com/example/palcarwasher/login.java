@@ -166,7 +166,7 @@ public class login extends AppCompatActivity {
                         Customer customer=snapshot.getValue(Customer.class);
                         //Toast.makeText(getApplicationContext(),customer.getPassword(),Toast.LENGTH_LONG).show();
                         if(Password.getText().toString().equals(customer.getPassword())){
-                            Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),"WELCOME",Toast.LENGTH_LONG).show();
                            /////////////
 
                             //////////////////////////
@@ -216,8 +216,9 @@ public class login extends AppCompatActivity {
                         //Toast.makeText(getApplicationContext(),customer.getPassword(),Toast.LENGTH_LONG).show();
 
                         if(Password.getText().toString().equals(serviceProvider.getPassword())){
-                            Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(login.this,insideOurProject.class);
+                         Toast.makeText(getApplicationContext(),"WELCOME",Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(login.this,ActivityHomePROVIDER.class);
+                            intent.putExtra("providerId",serviceProvider.getProviderId());
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                         }
@@ -231,7 +232,7 @@ public class login extends AppCompatActivity {
                     }
                 }
 
-                else  Toast.makeText(getApplicationContext(), "you dont have an a account ", Toast.LENGTH_LONG).show();
+                else  Toast.makeText(getApplicationContext(), "you don't have an a account ", Toast.LENGTH_LONG).show();
             }
 
             @Override

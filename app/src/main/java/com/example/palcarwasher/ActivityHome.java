@@ -7,9 +7,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.AlarmManager;
 import android.app.Dialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Layout;
@@ -43,11 +49,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class ActivityHome extends AppCompatActivity {
@@ -85,7 +93,10 @@ public class ActivityHome extends AppCompatActivity {
      double count=0;
 
      EditText search;
-
+    int r;
+    List<String> stringSlotList=new ArrayList<String>();
+    List<String> stringSlotListFull=new ArrayList<String>();
+    List<ProviderTimeSlot> providerTime=new ArrayList<ProviderTimeSlot>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,8 +107,8 @@ public class ActivityHome extends AppCompatActivity {
 
         filtering ="none";
 
-        //customerId=getIntent().getStringExtra("customerId");
-        customerId="-MPQBYHkwU501cMmJC3p";
+        customerId=getIntent().getStringExtra("customerId");
+       // customerId="-MPQBYHkwU501cMmJC3p";
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setSelectedItemId(R.id.nav_home);
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -145,7 +156,7 @@ public class ActivityHome extends AppCompatActivity {
         });
 
 
-///////////////////////////////////////
+///////////////////fill vehicle spinner////////////////////
 
 
 
@@ -182,7 +193,7 @@ public class ActivityHome extends AppCompatActivity {
         vehicleSpinner.setAdapter(vehicleArrayAdapter);
         vehicleArrayAdapter.notifyDataSetChanged();
 
-//////////////////////////////////////////////////////////////////
+////////////////////////fill company type//////////////////////////////////////////
 
 
 
@@ -195,7 +206,7 @@ public class ActivityHome extends AppCompatActivity {
         compTypeSpinner.setAdapter(compTypeArrayAdapter);
         compTypeArrayAdapter.notifyDataSetChanged();
 
-////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////initial view of companies//////////////////////////////////////////////////////////////
 
 
 
@@ -243,7 +254,7 @@ public class ActivityHome extends AppCompatActivity {
         floatingActionButton=findViewById(R.id.floating_location);
 
 
-////////////////////////////////////////////////////////
+////////////////////////////click listener on compSpinner////////////////////////////
        compTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             @Override
@@ -361,15 +372,33 @@ floatingButtonFilter.setOnClickListener(new View.OnClickListener() {
 
 
 
+///////////////
 
 
-
-
+//        YourService   mYourService = new YourService();
+//        Intent mServiceIntent = new Intent(this, mYourService.getClass());
+//        mServiceIntent.putExtra("customerId",customerId);
+//            startService(mServiceIntent);
 
 
 
 
     }
+
+
+//    @Override
+//    protected void onDestroy() {
+//        //stopService(mServiceIntent);
+//        Intent broadcastIntent = new Intent();
+//        broadcastIntent.setAction("restartservice");
+//        broadcastIntent.setClass(this, Restarter.class);
+//        this.sendBroadcast(broadcastIntent);
+//        super.onDestroy();
+//    }
+
+
+
+
 
     void changeView(final String selecteVehicle, final String selecteCompanyType, final String filter ){
 
@@ -484,7 +513,7 @@ floatingButtonFilter.setOnClickListener(new View.OnClickListener() {
 
 
                        for (int i=providerPriceList.size()-1;i>=0;i--){
-                     //      Log.v("DataOB",providerPriceList.get(i).getAvg()+"");
+                    //    Log.v("DataOB",providerPriceList.get(i).getAvg()+"");
                        providerList.add(providerPriceList.get(i).getSp());
                      //  Log.v("DataOB",providerList.get(i).getCompanyName()+"");
 
@@ -634,6 +663,14 @@ floatingButtonFilter.setOnClickListener(new View.OnClickListener() {
 
                 }
 
+     ///////////////////////////////////////
+       ////////////////////////
+          /////////////////////////
+
+
+                ////////////////////////
+                ///////////////////////////////////
+                ///////////////////////
                  else{
                     providerAdapter=new ProviderAdapter(providerList,selecteVehicle,selectedCompanyType,customerId);
                     recyclerView.setAdapter(providerAdapter);
@@ -657,12 +694,243 @@ floatingButtonFilter.setOnClickListener(new View.OnClickListener() {
     }
 
 
+ ////////////////////////??????????????????????????????????????????   //////////////////////
+
+
+    void getFromDatabase(String databaseChild, final String fullDate,String providerId){
+
+        reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
+                .child(databaseChild);
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    WorkingTimeOnSaturdy fri = dataSnapshot.getValue(WorkingTimeOnSaturdy.class);
+                    if(fri.getPrviderId().equals(providerId)){
+                       // Log.v("DataOB",providerId);
+
+                        String start=fri.getFrom();
+                        String end=fri.getTo();
+                        String  partStart=fri.getPartTimeFrom();
+                        String  partEnd=fri.getPartTimeTo();
+
+                       // Log.v("DataOB",start);
+                        ///////////////////////////
+
+
+                        if(start!=null){
+
+                         genarateTimeSlots(start,end,partStart,partEnd,fullDate,providerId);
+
+
+
+                        }
+
+
+                        /////////////////////////
+
+
+                    }
+
+
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+    }
+
+
+/////////////////////////////////////////
+
+void genarateTimeSlots(String start,String end,String partStart,String partEnd,String fullDate,String providerId){
+
+
+    Log.v("DataOB", "genarate");
+    String format = "hh:mm aa";
+    SimpleDateFormat sdf = new SimpleDateFormat(format);
+
+
+
+
+
+    Date dateObj1 = null;
+    Date dateObj2 = null;
+    Date dateObj11 = null;
+    Date dateObj22 = null;
+    Date  nowPlus30  =null;
+
+    try {
+        dateObj1 = sdf.parse(start);
+        dateObj2 = sdf.parse(end);
+
+        Calendar currentTime = Calendar.getInstance();
+        currentTime.add(Calendar.MINUTE, 30);
+
+
+
+
+        String s=  sdf.format(currentTime.getTime());
+        // Log.v("DataOB",s);
+
+        nowPlus30 =sdf.parse(s);
+
+        //  Log.v("DataOB",nowPlus30+"");
+        // Log.v("DataOB",dateObj1+"");
+        //Log.v("DataOB",dateObj2+"");
+
+
+        long dif = dateObj1.getTime();
+        while (dif < dateObj2.getTime()) {
+            Date slot = new Date(dif);
+            if (slot.after( nowPlus30)){
+                Date nextSlot =new Date( dif + 3600000);
+                if(!nextSlot.after(dateObj2))
+                { String fullSlot = sdf.format(slot)+"-"+sdf.format(nextSlot);
+                    // Log.v("DataOB",fullSlot+"");
+                    stringSlotList.add(fullSlot);
+                }
+            }
+            dif += 3600000;
+        }
+
+
+
+        dateObj11 = sdf.parse( partStart);
+        dateObj22 = sdf.parse(partEnd);
+        if(partStart!=null){
+            long dif2 = dateObj11.getTime();
+            while (dif2 < dateObj22.getTime()) {
+                Date slot = new Date(dif2);
+                if (slot.after( nowPlus30)) {
+                    Date nextSlot = new Date(dif2 + 3600000);
+                    if (!nextSlot.after(dateObj22)) {
+                        String fullSlot = sdf.format(slot) + "-" + sdf.format(nextSlot);
+                        //   Log.v("DataOB",fullSlot+"");
+                        stringSlotList.add(fullSlot);
+
+                    }
+                }
+                dif2 += 3600000;
+            }
+
+        }
+
+
+
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+    getReservedTimeSlots(fullDate,providerId);
+
+
+
+
+}
 
 
 
 
 
 
+
+
+/////////////////////
+    void getReservedTimeSlots(final String fullDate,String providerId){
+
+        Log.v("DataOB", "reserved");
+
+
+        //Log.v("DataOB", providerId);
+
+        //reservedTimeSlots.clear();
+        DatabaseReference ref= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
+                .child("Orders");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+             //   Log.v("DataOB", "2");
+
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Orders order = dataSnapshot.getValue(Orders.class);
+                       // Log.v("DataOB", order.getFullTime());
+                        if (order.getProviderId().equals(providerId)&&order.getStatus().equals("confirmed")) {
+
+
+                              // deleteTimeSlot(order.getFullTime(),fullDate,providerId);
+                          //  Log.v("DataOB", order.getFullTime());
+
+
+                            for(int i=0;i<stringSlotList.size();i++){
+                                String fullTimeSlot=fullDate+" "+stringSlotList.get(i);
+                                if(fullTimeSlot.equals(order.getFullTime()))
+                                    stringSlotList.remove(i);
+
+
+                            }
+
+
+
+                        }// if
+
+                    }
+
+
+/////////////////////////
+
+
+////////////////////////
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+//Log.v("DataOB",reservedTimeSlots.get(0));
+
+
+
+
+        for(int i=0;i<stringSlotList.size();i++){
+            String fullTimeSlot=fullDate+" "+stringSlotList.get(i);
+            stringSlotListFull.add(fullTimeSlot);
+         //   Log.v("DataOB",   stringSlotListFull.get(i));
+
+
+        }
+
+
+
+//return reservedTimeSlots2;
+    }
+
+////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+////////////////
     void searchView(final String selecteVehicle, final String selecteCompanyType, final String text ){
 
 
@@ -786,11 +1054,17 @@ for(ServiceProvider s : providerList){
                             filtering="descending";
 
                             break;
+//                        case R.id.timeSlot:
+//                            // do operations specific to this selection
+//
+//                            filtering="timeSlot";
+//
+//                            break;
                     }
                 }
             });
 
-            Log.v("DataOB","filtering"+filtering);
+        Log.v("DataOB","filtering"+filtering);
 
            aply.setOnClickListener(this);
 

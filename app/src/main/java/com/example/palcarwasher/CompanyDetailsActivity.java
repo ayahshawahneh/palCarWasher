@@ -260,7 +260,7 @@ final List<Orders> ordersList=new <Orders> ArrayList();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                        Orders o = snapshot.getValue(Orders.class);
 
-                        if (o.getProviderId().equals(providerId)&&!o.getComment().equals("")) {
+                        if (o.getProviderId().equals(providerId)&&!o.getComment().equals("")&&!o.getEvaluationLevel().equals("")) {
 
                      //      Log.v("DataOB",o.getComment()+"here");
                             ordersList.add(o);

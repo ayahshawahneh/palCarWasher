@@ -53,8 +53,8 @@ public class ActivityOrdersPROVIDER extends AppCompatActivity {
         setContentView(R.layout.activity_orders_p_r_o_v_i_d_e_r);
 
 
-        //  providerId=getIntent().getStringExtra("providerId");
-        providerId = "-MRC4TAdUkYXdnRp0thN";
+       providerId=getIntent().getStringExtra("providerId");
+      //  providerId = "-MRC4TAdUkYXdnRp0thN";
 
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
@@ -429,13 +429,13 @@ public class ActivityOrdersPROVIDER extends AppCompatActivity {
                                     String o11=o1.getFullTime().substring(4,23);
                                     Log.v("DataOB",o11+"");
                                     String o22=o2.getFullTime().substring(4,23);
-                                    SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy HH:mm aa");
+                                    SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy hh:mm aa");
 
 
                                     dateObj1 = sdf.parse(o11);
                                     dateObj2 = sdf.parse(o22);
 
-                                    Log.v("DataOB",dateObj1+"");
+                                   // Log.v("DataOB",dateObj1+"");
                                     return dateObj1.compareTo( dateObj2);
 
 

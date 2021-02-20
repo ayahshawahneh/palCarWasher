@@ -18,12 +18,14 @@ public class SelectArrivalTimeActivity extends AppCompatActivity {
     List<Calendar> daysList;
     DaysAdapter daysAdapter;
     GridView gridView;
+    String providerId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_arrival_time);
 
-        String providerId="-MPq8uV089ZVlR0gDrnW";
+        providerId=getIntent().getStringExtra("providerId");
+
 
         gridView=findViewById(R.id.timeSlot_gridView);
 

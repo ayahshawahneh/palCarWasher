@@ -137,7 +137,15 @@ public class OrdersActivity extends AppCompatActivity {
     }
 
 
-
+//    @Override
+//    protected void onDestroy() {
+//        //stopService(mServiceIntent);
+//        Intent broadcastIntent = new Intent();
+//        broadcastIntent.setAction("restartservice");
+//        broadcastIntent.setClass(this, Restarter.class);
+//        this.sendBroadcast(broadcastIntent);
+//        super.onDestroy();
+//    }
 
 
 
@@ -371,7 +379,7 @@ void changeView(){
                                 String o11=o1.getFullTime().substring(4,23);
                                 Log.v("DataOB",o11+"");
                                 String o22=o2.getFullTime().substring(4,23);
-                                SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy HH:mm aa");
+                                SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy hh:mm aa");
 
 
                                 dateObj1 = sdf.parse(o11);
@@ -413,7 +421,7 @@ void changeView(){
 
                                 String o11=o1.getFullTime().substring(4,23);
                                 String o22=o2.getFullTime().substring(4,23);
-                                SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy HH:mm aa");
+                                SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy hh:mm aa");
 
 
                                 dateObj1 = sdf.parse(o11);

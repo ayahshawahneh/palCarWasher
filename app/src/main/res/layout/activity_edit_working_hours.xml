@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView"
+
     android:background="@drawable/border9"
     android:layout_margin="5dp"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent"
     tools:context=".ActivityEditWorkingHours"
     >
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/submit_button"
+       >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
 
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/workingLabel"
@@ -1379,24 +1386,24 @@ If you choose closed, your company will not appear to customers"
 
         </TableLayout>
 
-        <Button
 
-            android:id="@+id/submit_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="30dp"
-            android:layout_marginRight="20dp"
-            android:background="@color/ic_launcher_background"
-            android:fontFamily="@font/roboto_regular"
+</LinearLayout>
+    </ScrollView>
+    <Button
 
-            android:onClick="ocClickAndSubmit"
-            android:padding="15dp"
-            android:text="@string/save_modification"
-            android:textColor="@android:color/white" />
-
-    </LinearLayout>
-
-</ScrollView>
+        android:id="@+id/submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/ic_launcher_background"
+        android:fontFamily="@font/roboto_regular"
+        android:onClick="ocClickAndSubmit"
+        android:padding="15dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/save_modification"
+        android:textColor="@android:color/white" />
+</RelativeLayout>

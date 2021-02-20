@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -18,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ActivityEditWorkingHours"></activity>
+        <activity android:name=".ActivityCommentAndEvaluation"></activity>
+        <activity android:name=".ActivityEditWorkingHours" />
         <activity android:name=".SuggestNewService" />
         <activity android:name=".ActivityAddNewVehicle" />
         <activity android:name=".AddnewService" />
@@ -29,13 +31,7 @@
         <activity android:name=".ActivityOrderrDetailsOrderPage" />
         <activity android:name=".ActivityOrdersPROVIDER" />
         <activity android:name=".ActivityOrderDetailsFormPROVIDER" />
-        <activity android:name=".ActivityHomePROVIDER"> <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
-
+        <activity android:name=".ActivityHomePROVIDER"/>
         <activity android:name=".ActivityFinalOrderToDB" />
         <activity android:name=".ActivityPayPal" />
         <activity android:name=".ActivityOrderDetailsForm" />
@@ -53,6 +49,7 @@
         <activity android:name=".WalletActivity" />
         <activity android:name=".OrdersActivity" />
         <activity android:name=".ActivityHome"/>
+
         <activity android:name=".UploadLogo" />
         <activity android:name=".LaundaryLicencePicture" />
         <activity android:name=".BankAccountInformation" />
@@ -65,7 +62,12 @@
         <activity android:name=".sendCodeVrification" />
         <activity android:name=".insideOurProject" />
         <activity android:name=".register" />
-        <activity android:name=".login" />
+        <activity android:name=".login" > <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".BeforGPS" />
         <activity android:name=".GPSAddress" />
@@ -78,6 +80,23 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
+
+        <receiver
+            android:name=".Restarter"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="restartservice" />
+            </intent-filter>
+        </receiver>
+
+
+
+        <service
+            android:name=".YourService"
+            android:enabled="true"/>
+
+
     </application>
 
 </manifest>

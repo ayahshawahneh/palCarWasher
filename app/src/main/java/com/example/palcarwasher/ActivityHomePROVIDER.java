@@ -65,8 +65,8 @@ public class ActivityHomePROVIDER extends AppCompatActivity {
 
 
 
-        //  providerId=getIntent().getStringExtra("providerId");
-            providerId="-MRC4TAdUkYXdnRp0thN";
+        providerId=getIntent().getStringExtra("providerId");
+            //providerId="-MRC4TAdUkYXdnRp0thN";
 
 
 
@@ -164,6 +164,22 @@ public class ActivityHomePROVIDER extends AppCompatActivity {
 
 
 
+
+
+
+        YourService2   mYourService = new YourService2();
+        Intent mServiceIntent = new Intent(this, mYourService.getClass());
+        mServiceIntent.putExtra("providerId",providerId);
+        startService(mServiceIntent);
+
+
+
+
+
+
+
+
+
     }
 
 
@@ -174,6 +190,16 @@ public class ActivityHomePROVIDER extends AppCompatActivity {
 
 
 
+
+    @Override
+    protected void onDestroy() {
+        //stopService(mServiceIntent);
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction("restartservice2");
+        broadcastIntent.setClass(this, Restarter2.class);
+        this.sendBroadcast(broadcastIntent);
+        super.onDestroy();
+    }
 
 
 
@@ -231,7 +257,7 @@ public class ActivityHomePROVIDER extends AppCompatActivity {
                                     dateObj1 = sdf.parse(o11);
                                     dateObj2 = sdf.parse(o22);
 
-                                    Log.v("DataOB",dateObj1+"");
+                                  //  Log.v("DataOB",dateObj1+"");
                                     return dateObj1.compareTo( dateObj2);
 
 
@@ -360,26 +386,24 @@ public class ActivityHomePROVIDER extends AppCompatActivity {
 
             DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
                     .child("ServiceProvider");
-            Query query=reference.orderByChild("providerId");
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
+           reference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        String type = snapshot.getValue(ServiceProvider.class).getCompanyType();
+                        ServiceProvider type = snapshot.getValue(ServiceProvider.class);
+                if(type.getProviderId().equals(providerId)) {
+                    if (type.getCompanyType().equals("both")) {
+                        t.setVisibility(View.VISIBLE);
+                        rg3.setVisibility(View.VISIBLE);
 
-                        if(type.equals("both")){
-                            t.setVisibility(View.VISIBLE);
-                            rg3.setVisibility(View.VISIBLE);
 
+                    } else {
 
+                        t.setVisibility(View.GONE);
+                        rg3.setVisibility(View.GONE);
 
-                        }else{
-
-                            t.setVisibility(View.GONE);
-                            rg3.setVisibility(View.GONE);
-
-                        }
-
+                    }
+                }
 
                     }
 

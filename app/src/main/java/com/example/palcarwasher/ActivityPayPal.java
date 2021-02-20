@@ -10,7 +10,8 @@ package com.example.palcarwasher;
         import android.util.Log;
         import android.view.View;
         import android.widget.Button;
-        import android.widget.Toast;
+ import android.widget.TextView;
+ import android.widget.Toast;
 
         import com.paypal.android.sdk.payments.PayPalAuthorization;
         import com.paypal.android.sdk.payments.PayPalConfiguration;
@@ -36,6 +37,7 @@ public class ActivityPayPal extends AppCompatActivity  {
     private static final String TAG = "paymentExample";
     Button orderButton ;
     Orders order;
+    TextView am;
     String paymentId;
     private static PayPalConfiguration config = new PayPalConfiguration()
             .environment(CONFIG_ENVIRONMENT)
@@ -48,8 +50,12 @@ public class ActivityPayPal extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay_pal);
 
-        order=(Orders) getIntent().getSerializableExtra("order");
 
+
+
+        order=(Orders) getIntent().getSerializableExtra("order");
+        am=findViewById(R.id.am);
+        am.setText(order.getTotalPrice()+"$");
 
         orderButton = findViewById(R.id.order);
         orderButton.setOnClickListener(new View.OnClickListener() {
@@ -57,10 +63,7 @@ public class ActivityPayPal extends AppCompatActivity  {
             public void onClick(View v) {
                 onBuyPressed(v);
 
-                order.setVisaId(paymentId);
-                Intent intent = new Intent(ActivityPayPal.this,ActivityFinalOrderToDB.class);
-                intent.putExtra("order",(Serializable) order);
-                startActivity(intent);
+
 
 
             }
@@ -112,6 +115,13 @@ public class ActivityPayPal extends AppCompatActivity  {
                                 getApplicationContext(),
                                 "PaymentConfirmation info received from PayPal", Toast.LENGTH_LONG)
                                 .show();
+
+                        order.setVisaId(paymentId);
+                        Intent intent = new Intent(ActivityPayPal.this,ActivityFinalOrderToDB.class);
+                        intent.putExtra("order",(Serializable) order);
+                        startActivity(intent);
+
+
 
                     } catch (JSONException e) {
                         Log.e(TAG, "an extremely unlikely failure occurred: ", e);

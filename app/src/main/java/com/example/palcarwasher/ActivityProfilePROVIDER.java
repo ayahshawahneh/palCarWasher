@@ -40,8 +40,8 @@ public class ActivityProfilePROVIDER extends AppCompatActivity {
         setContentView(R.layout.activity_profile_p_r_o_v_i_d_e_r);
 
         //////////////
-        //  providerId=getIntent().getStringExtra("providerId");
-        providerId = "-MRC4TAdUkYXdnRp0thN";
+     providerId=getIntent().getStringExtra("providerId");
+      //  providerId = "-MRC4TAdUkYXdnRp0thN";
 
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);

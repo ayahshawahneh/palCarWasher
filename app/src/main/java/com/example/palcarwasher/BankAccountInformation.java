@@ -124,14 +124,14 @@ verify.setOnClickListener(new View.OnClickListener() {
       //  databaseReference = FirebaseDatabase.getInstance().getReference()
              //   .child("PalCarWasher").child("BankAccounts");
 
-      Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+      Intent intent = new Intent(getApplicationContext(),ActivityHomePROVIDER.class);
 
        // String locationId = databaseReference.push().getKey();
        // BankAccounts pa=new BankAccounts();
       //  databaseReference.push().setValue(pa);
 
 
-        intent.putExtra("ProviderId", ProviderId);
+        intent.putExtra("providerId", ProviderId);
         startActivity(intent);
 
 

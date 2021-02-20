@@ -31,6 +31,7 @@ public class AddnewService extends AppCompatActivity {
     String spinnerSel;
     String spinnerSel2;
     // DatabaseReference databaseReference;
+    String ProviderId;
     DatabaseReference databaseReference2;
     DatabaseReference databaseReference3;
     DatabaseReference databaseReferenceSer;
@@ -46,7 +47,7 @@ public class AddnewService extends AppCompatActivity {
         spinnerVehicles = findViewById(R.id.spinnerVehicle);
         spinnerServices = findViewById(R.id.spinnerService1);
 
-        final String ProviderId = getIntent().getStringExtra("providerId");
+        ProviderId = getIntent().getStringExtra("providerId");
 
 
 

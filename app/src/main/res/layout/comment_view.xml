@@ -18,8 +18,8 @@
 
         <androidx.cardview.widget.CardView
 
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:padding="0dp"
             android:layout_margin="8dp"
             android:orientation="vertical"
@@ -29,8 +29,8 @@
 
             <ImageView
                 android:id="@+id/company_logo_logo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:contentDescription="@string/company_logo"
                 android:src="@drawable/ic_baseline_person_24"
                 android:scaleType="fitXY"
@@ -65,7 +65,7 @@
                 android:text="@string/company_name"
                 android:textAlignment="textStart"
 
-                android:textSize="20sp"
+                android:textSize="16sp"
 
 
 
@@ -91,9 +91,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                  android:layout_marginTop="4dp"
-                android:layout_marginBottom="7dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginStart="7dp"
                 android:enabled="false"
+        android:textColor="#635e5a"
                 android:text="fast and good wash" />
 
 
