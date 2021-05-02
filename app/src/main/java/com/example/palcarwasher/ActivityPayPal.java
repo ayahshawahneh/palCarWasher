@@ -29,7 +29,7 @@ package com.example.palcarwasher;
 
 public class ActivityPayPal extends AppCompatActivity  {
     //  private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_NO_NETWORK;
-    private static final String CONFIG_CLIENT_ID = "AS8JzfB3ZhS0fR3Y2FG66dOq3sbOx91v9VrU0asCzXObJaXBCeI42U34e1-znNoj5BsXZha_FxjjETlS";
+    private static final String CONFIG_CLIENT_ID = "AcKC69TRvkrcExgyBYnr2VIOLTZR8Szl8V_P6LSi0vfW_HYWWvuAdl4giOffeb_Tklk7J0bgX4_5lZtR";
     //private static final String CONFIG_RECEIVER_EMAIL = "test-facilitator@officialgates.com";
     private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_SANDBOX;
 

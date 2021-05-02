@@ -161,7 +161,7 @@ public class ActivityHome extends AppCompatActivity {
 
 
 
-      vehicleList.add("Car(5-pass)");
+      vehicleList.add("Car(7-pass)");
         reference= FirebaseDatabase.getInstance().getReference().child("PalCarWasher")
                 .child("VehicleType");
         Query query=reference.orderByChild("size");
@@ -171,7 +171,7 @@ public class ActivityHome extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String vehicleType = snapshot.getValue(VehicleType.class).getSize();
 
-                    if(!vehicleType.equals("Car(5-pass)"))
+                    if(!vehicleType.equals("Car(7-pass)"))
                         vehicleList.add(vehicleType);
 
                 }
